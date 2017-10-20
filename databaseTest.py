@@ -1,12 +1,18 @@
 import sqlite3
 from sqlite3 import Error
  
+#File path/name of database file to be read
 DATABASE = 'new.db'
+
+#Connection to the database
+conn = sqlite3.connect(DATABASE)
+c = conn.cursor()
+
+
 def initDB(db_file):
-    """ create a database connection to a SQLite database """
+    """ Initialize the database with the specified tables and other information """
+    
     try:
-        conn = sqlite3.connect(db_file)
-        c = conn.cursor()
 
         '''initialize the Tables'''
         #c.execute('''CREATE TABLE event(EventID integer, UserID integer, Start text, End text, Description text, ImportanceRanking integer, Title text, ProgramID integer, EventType text, StudyPlan text, StudyType text) ''')
@@ -23,7 +29,7 @@ def initDB(db_file):
         '''Test Queries'''
         #for row in c.execute("SELECT email FROM user"):
         #    print(row)
-        #c.execute('')
+        
         
 
 
@@ -32,12 +38,25 @@ def initDB(db_file):
     except Error as e:
         print(e)
     finally:
-        conn.close()
+        
  
 def getEvent(givenID):
     
     #need to edit later, perhaps create a 'global' c value, as defined above
      return c.execute("SELECT * FROM event WHERE eventID = '%s'" % givenID)
 
+def addNewEvent(EventID, UserID, Time, Length, Date, Description, ImportanceRanking, Title, ProgramID , EventType, StudyPlan, StudyType):
+    # make sure all information is in the correct formats. Date and Time processing can be done here.
+    #format can be copied for all tables
+    try:
+        print('success')
+        conn.commit()
+    except Error as e:
+        print(e)
+
+    finally:
+        
+
 if __name__ == '__main__':
     initDB(DATABASE)
+    conn.close()

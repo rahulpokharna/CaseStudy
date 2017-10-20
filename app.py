@@ -10,8 +10,9 @@ def index():
 @app.route('/login', methods=['GET','POST'])
 def login():
     form = LoginForm(request.form)
+    print('REQUEST: %s' % request.data)
     if request.method == 'POST' and form.validate():
-        print('got a login')
+        print('REQUEST: %s' % request.data)
     return redirect('/home')
 
 @app.route('/home')
