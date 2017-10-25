@@ -14,10 +14,17 @@ def kian():
 @app.route('/login', methods=['GET','POST'])
 def login():
     form = LoginForm(request.form)
-    print('REQUEST: %s' % request.data)
+    print('Email: %s' % request.form['email'])
+    print('Password: %s' % request.form['password'])
+
+    print('REQUEST: %s' % request.form)
     if request.method == 'POST' and form.validate():
         print('REQUEST: %s' % request.data)
-    return redirect('/home')
+        if str(request.form['email']) == 'email' and str(request.form['password']) == 'password':
+            return redirect('/kian')
+        else:
+            print(str(request.form['email']))
+            print(str(request.form['password']))
 
 @app.route('/home')
 def home():
