@@ -7,6 +7,10 @@ def index():
      form = LoginForm(request.form)
      return render_template('index.html', form = form)
 
+@app.route('/kian')
+def kian():
+	return render_template('kianindex.html')
+
 @app.route('/login', methods=['GET','POST'])
 def login():
     form = LoginForm(request.form)

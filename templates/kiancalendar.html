@@ -1,0 +1,24 @@
+<!-- Full Calendar Imports -->
+<link rel="stylesheet" href="static/fullCalendar/fullcalendar.css" />
+<script src="static/fullCalendar/lib/moment.min.js"></script>
+<script src="static/fullCalendar/lib/jquery.min.js"></script>
+<script src="static/fullCalendar/lib/jquery-ui.min.js"></script>
+<script src="static/fullCalendar/fullcalendar.min.js"></script>
+
+<h1>CALENDAR!</h1>
+<div id="calendar"></div>
+<script>
+	$(document).ready(function() {
+		$('#calendar').fullCalendar({
+			header: {
+				center: 'month,agendaWeek,agendaDay'
+			},
+			navLinks: true, // can click day/week names to navigate views
+			editable: true,
+		})
+	});
+</script>
+
+<div id="calendarButtons">
+	
+</div>
