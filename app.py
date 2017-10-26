@@ -55,8 +55,8 @@ def requestEvent():
         eventDict = {
             'EventID' : form['id'],
             'Title' : form['title'],
-            'start' : form['start'],
-            'end' : form['end']
+            'Start' : form['start'],
+            'End' : form['end']
         }
         addNewEvent(eventDict)
 

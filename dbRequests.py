@@ -3,21 +3,13 @@ from sqlite3 import Error
 import json
 
 DATABASE = 'test.db'
-
+defaultEvent = {'EventID': -1, 'UserID': 1, 'Start': '2017-10-26T18:53:08Z', 'End': '2017-10-26T19:53:08Z', 'Description': 'An Event', 'ImportanceRanking': 1, 'Title': 'Default Event', 'ProgramID': -1, 'EventType': '', 'StudyPlan': '', 'StudyType': ''}
+    
 def getEvent(eventID):
     
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
-    #need to edit later, perhaps create a 'global' c value, as defined above
     ret = c.execute("SELECT * FROM event WHERE eventID = {}".format(eventID))
-    conn.close()
-    return ret
-
-def getUserEvents(userID):
-    conn = sqlite3.connect(DATABASE)
-    c = conn.cursor()
-    #need to edit later, perhaps create a 'global' c value, as defined above
-    ret = c.execute("SELECT * FROM event WHERE userID = {}".format(userID))
     rowList = []
     for row in ret:
         rowList.append({'EventID':row[0],'Title':row[7],'start':row[1],'end':row[2]})
@@ -25,15 +17,50 @@ def getUserEvents(userID):
     conn.close()
     return rowList
 
-# Gets a dic with values of 9EventID, UserID, Time, Length, Date, Description, ImportanceRanking, Title, ProgramID , EventType, StudyPlan, StudyType) AS A DICT
+def getUserEvents(userID):
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+    ret = c.execute("SELECT * FROM event WHERE userID = {}".format(userID))
+    rowList = []
+    for row in ret:
+        rowList.append({'EventID':row[0],'Title':row[6],'Start':row[2],'End':row[3]})
+    
+    conn.close()
+    return rowList
 
+#TODO
+def editEvent(eventID,obj):
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+    t = eventID,
+    c.execute('SELECT * FROM event WHERE eventID =?',t)
+    r = c.fetchone()
+    tempEvent = makeEventDict(r)
+    for col in obj:
+        tempEvent[col] = obj[col]
+    try:
+        c.execute('DELETE FROM event WHERE eventID=?',t)
+        c.execute('INSERT INTO event VALUES(:EventID, :UserID, :Start, :End, :Description, :ImportanceRanking, :Title, :ProgramID, :EventType, :StudyPlan, :StudyType)',tempEvent)
+        conn.commit()
+    except Error as e:
+        print(e)
+        conn.rollback()
+    finally:
+        conn.close()
+
+# Gets a dict with values of 9EventID, UserID, Time, Length, Date, Description, ImportanceRanking, Title, ProgramID , EventType, StudyPlan, StudyType) AS A DICT
 def addNewEvent(obj):     # make sure all information is in the correct formats. Date and Time processing can be done here.
     #format can be copied for all tables
+    tempEvent = defaultEvent
+    for thing in obj:
+        tempEvent[thing] = obj[thing]
 
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
     try:
-        c.execute('"INSERT INTO event VALUES({}, 1, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}))'.format(obj['EventID'], obj['Start'], obj['End'], obj['Date'], obj['Description'], obj['ImportanceRanking'], obj['Title'], obj['ProgramID'] , obj['EventType'], obj['StudyPlan'], obj['StudyType']))
+        
+        c.execute('INSERT INTO event VALUES(:EventID, :UserID, :Start, :End, :Description, :ImportanceRanking, :Title, :ProgramID, :EventType, :StudyPlan, :StudyType)', tempEvent)
+        
         conn.commit()
     except Error as e:
         print(e)
@@ -45,19 +72,24 @@ def getUser(email):
     
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
-    #need to edit later, perhaps create a 'global' c value, as defined above
-    ret = c.execute("SELECT * FROM user WHERE email = {}".format(email))
+
+    t = email,
+    c.execute("SELECT * FROM user WHERE email = ?", t)
+    r = c.fetchone()
     conn.close()
-    return ret
+    return r
 
 def checkLogin(email, password):
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
-    #need to edit later, perhaps create a 'global' c value, as defined above
-    ret = c.execute("SELECT * FROM user WHERE email = {}".format(email))
-    conn.close()
 
-    if password == ret[5]:
+    t = email,
+    print(t)
+    c.execute("SELECT hashedpassword FROM user WHERE email = ?", t) 
+
+    r = c.fetchone()
+    conn.close()
+    if password == r[0]:
         return True
     
     return False
@@ -65,10 +97,13 @@ def checkLogin(email, password):
 def getDriveLink(email):
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
-    #need to edit later, perhaps create a 'global' c value, as defined above
-    ret = c.execute("SELECT * FROM user WHERE email = {}".format(email))
+    
+    t = email,
+    ret = c.execute("SELECT DriveLink FROM user WHERE email = ?", t)
+    r = c.fetchone()
     conn.close()
-    return ret[8]
+    return r[0]
+    
 
 '''This method is when we implement multiple users'''
 # input is dict with values (UserID, email, FirstName, LastName, Password, GoogleID, CanvasID, DriveLink)
@@ -101,15 +136,16 @@ def getStudyLength(programID, studyType):
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
     #need to edit later, perhaps create a 'global' c value, as defined above
-    ret = c.execute("SELECT * FROM program WHERE programID = {}".format(programID))
+    c.execute("SELECT * FROM program WHERE programID = {}".format(programID))
+    r = c.fetchone()
     conn.close()
 
-    if studyType == 'exam':
-        return ret[5]
-    elif studyType == 'assignment':
-        return ret[6]
-    elif studyType == 'quiz':
-        return ret[7]
+    if studyType.lower() == 'exam':
+        return r[4]
+    elif studyType.lower() == 'assignment':
+        return r[5]
+    elif studyType.lower() == 'quiz':
+        return r[6]
     else:
         return 1
 
@@ -129,3 +165,10 @@ def addNewProgram(obj):
     finally:
         conn.close()
 
+def makeEventDict(row):
+    tempEvent = defaultEvent
+    x = 0
+    for col in tempEvent:
+        tempEvent[col] = row[x]
+        x += 1
+    return tempEvent

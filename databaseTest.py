@@ -1,5 +1,6 @@
 import sqlite3
 from sqlite3 import Error
+import collections
 import dbRequests
 #File path/name of database file to be read
 DATABASE = 'test.db'
@@ -61,10 +62,29 @@ def queryDB():
     
     '''Test Queries'''
     #test for printing
+    nameTuple = ()
+    c.execute("SELECT count(*) FROM event")
+    r = c.fetchone()
+    eventDict = {
+        'EventID' :3,
+        'Title' : 'Test',
+        'Start' : 'earlier',
+        'End' : 'never'
+    }
+    nameTuple = tuple(eventDict.values())
+    '''    print(eventDict)
+    print(eventDict.items())
+    print(nameTuple)'''
+    #dbRequests.addNewEvent(eventDict)
 
+    #Editing Event Here
+    dbRequests.editEvent(eventDict['EventID'], eventDict)
 
-    variable = dbRequests.getUserEvents(1)
-    print(variable)
+    '''values = dbRequests.checkLogin('abc123@case.edu','hashed')
+    print('Here are the events for the user')
+    
+    print(values)'''
+
     '''
     c.execute("SELECT count(*) FROM user")
     r = c.fetchone()
