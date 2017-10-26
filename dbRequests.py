@@ -2,7 +2,7 @@ import sqlite3
 from sqlite3 import Error
 import json
 
-DATABASE = 'new.db'
+DATABASE = 'test.db'
 
 def getEvent(eventID):
     
@@ -18,11 +18,13 @@ def getUserEvents(userID):
     c = conn.cursor()
     #need to edit later, perhaps create a 'global' c value, as defined above
     ret = c.execute("SELECT * FROM event WHERE userID = {}".format(userID))
-
+    rowList = []
     for row in ret:
-        print(row)
+        rowList.append({'EventID':row[0],'Title':row[7],'start':row[1],'end':row[2]})
+    
     conn.close()
-    return ret
+    return rowList
+
 # Gets a dic with values of 9EventID, UserID, Time, Length, Date, Description, ImportanceRanking, Title, ProgramID , EventType, StudyPlan, StudyType) AS A DICT
 
 def addNewEvent(obj):     # make sure all information is in the correct formats. Date and Time processing can be done here.
@@ -31,7 +33,7 @@ def addNewEvent(obj):     # make sure all information is in the correct formats.
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
     try:
-        c.execute('"INSERT INTO event VALUES({}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}))'.format(obj['EventID'], obj['UserID'], obj['start'], obj['end'], obj['Date'], obj['Description'], obj['ImportanceRanking'], obj['Title'], obj['ProgramID'] , obj['EventType'], obj['StudyPlan'], obj['StudyType']))
+        c.execute('"INSERT INTO event VALUES({}, 1, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}))'.format(obj['EventID'], obj['Start'], obj['End'], obj['Date'], obj['Description'], obj['ImportanceRanking'], obj['Title'], obj['ProgramID'] , obj['EventType'], obj['StudyPlan'], obj['StudyType']))
         conn.commit()
     except Error as e:
         print(e)
@@ -126,3 +128,4 @@ def addNewProgram(obj):
         conn.rollback()
     finally:
         conn.close()
+

@@ -1,6 +1,6 @@
 import sqlite3
 from sqlite3 import Error
- 
+import dbRequests
 #File path/name of database file to be read
 DATABASE = 'test.db'
 
@@ -32,26 +32,23 @@ def fillDB():
     c = conn.cursor()
     '''Add Test Values to Tables'''
     try:
-        test = 0
-        numUsers = c.execute('''SELECT count(*) FROM user''')
-        nums = c.fetchone()
-        print(nums)
-
-        for x in numUsers:
-            print(x)
-            test = x
-            
-        print(test)
-        
-        c.execute("INSERT INTO user VALUES (?,'abc123@case.edu','Alpha', 'Cavern','hashed','','','https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU')", (nums))
         '''
-        c.execute("INSERT INTO user VALUES ({},'axc1223@case.edu','Andrew', 'Clark','hashed','','','https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU')".format(numUsers + 2))
-        c.execute("INSERT INTO user VALUES ({},'yxs123@case.edu','Yongju', 'Sui','hashed','','','https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU')".format(numUsers + 3))
+        c.execute("SELECT count(*) FROM user")
+        r = c.fetchone()
 
-        numEvents = c.execute("SELECT count(*) FROM event")
+        c.execute("INSERT INTO user VALUES ({},'abc123@case.edu','Alpha', 'Cavern','hashed','','','https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU')".format(r[0] + 1))
+        
+        c.execute("INSERT INTO user VALUES ({},'axc1223@case.edu','Andrew', 'Clark','hashed','','','https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU')".format(r[0] + 2))
+        c.execute("INSERT INTO user VALUES ({},'yxs123@case.edu','Yongju', 'Sui','hashed','','','https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU')".format(r[0] + 3))
 
-        c.execute("INSERT INTO event VALUES ({}}, 0001,'Start Time', 'End Time','this is annoying',4,'Test Event 2', -1,'One Time', '','')".format(numEvents + 1))
-'''
+        '''
+
+        c.execute("SELECT count(*) FROM user")
+        r = c.fetchone()
+        c.execute("INSERT INTO event VALUES ({}, 0001,'Start Time', 'End Time','this is annoying',4,'Test Event 2', -1,'One Time', '','')".format(r[0] + 1))
+        c.execute("INSERT INTO event VALUES ({}, 0001,'1 Time', '1 Time','this is great',4,'Test Event a2', -1,'One Time', '','')".format(r[0] + 2))
+        c.execute("INSERT INTO event VALUES ({}, 0001,'Start 1', 'End 1','this is sad',4,'Test Event 2aa', -1,'One Time', '','')".format(r[0] + 3))
+
         conn.commit()
     except Error as e:
         print(e)
@@ -64,11 +61,34 @@ def queryDB():
     
     '''Test Queries'''
     #test for printing
+
+
+    variable = dbRequests.getUserEvents(1)
+    print(variable)
+    '''
+    c.execute("SELECT count(*) FROM user")
+    r = c.fetchone()
+    num = r[0]
+    c.execute("SELECT * FROM user")
+    for x in range(num):
+        r = c.fetchone()
+        print(r)
+
     for row in c.execute("SELECT * FROM user"):
+        print(type(row))
         for col in row:
-            print(col)
+            print(type(col))
         print()
+
+    c.execute("SELECT * FROM user")
+    names = [description[0] for description in c.description]
+    print(names)
+
+    print(type(c.execute("SELECT * FROM user")))
+    ''' 
     conn.close()
+
+
 
 if __name__ == '__main__':
     #initDB()
