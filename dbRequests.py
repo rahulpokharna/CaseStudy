@@ -18,10 +18,10 @@ def getUserEvents(userID):
     c = conn.cursor()
     #need to edit later, perhaps create a 'global' c value, as defined above
     ret = c.execute("SELECT * FROM event WHERE userID = {}".format(userID))
-    conn.close()
 
     for row in ret:
         print(row)
+    conn.close()
     return ret
 # Gets a dic with values of 9EventID, UserID, Time, Length, Date, Description, ImportanceRanking, Title, ProgramID , EventType, StudyPlan, StudyType) AS A DICT
 
@@ -31,7 +31,7 @@ def addNewEvent(obj):     # make sure all information is in the correct formats.
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
     try:
-        c.execute('"INSERT INTO event VALUES({}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}))'.format(obj['EventID'], obj['UserID'], obj['Time'], obj['Length'], obj['Date'], obj['Description'], obj['ImportanceRanking'], obj['Title'], obj['ProgramID'] , obj['EventType'], obj['StudyPlan'], obj['StudyType']))
+        c.execute('"INSERT INTO event VALUES({}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}))'.format(obj['EventID'], obj['UserID'], obj['start'], obj['end'], obj['Date'], obj['Description'], obj['ImportanceRanking'], obj['Title'], obj['ProgramID'] , obj['EventType'], obj['StudyPlan'], obj['StudyType']))
         conn.commit()
     except Error as e:
         print(e)

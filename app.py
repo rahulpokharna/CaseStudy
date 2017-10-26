@@ -26,20 +26,43 @@ def login():
         else:
             print(str(request.form['email']))
             print(str(request.form['password']))
-
+# This method is to either get event(s) or to create a new one.
 # for get request request with userId or eventId as url parameters (put it after the url like:
 # localhost://5000/requests/events?userID=1
+# for post request put the event object as the form. so form.title is the event's title, etc.
 @app.route('/request/events', methods=['GET','POST'])
 def requestEvent():
-
     #request with userID or eventID given as url parameters. If eventId is not given, this will return all events for this user.
     if request.method == 'GET':
         userID = request.args.get('userID')
         eventID = request.args.get('eventID')
         if eventID == None:
-            return jsonify(getUserEvents(userID))
+            try:
+                res = jsonify(getUserEvents(userID))
+            except TypeError as e:
+                res = 'couldnt jsonify the event'
+                return res
         else:
-            return jsonify(getEvent(eventID))
+            try:
+                res =  jsonify(getEvent(eventID))
+            except TypeError as e:
+                res = 'couldnt jsonify the event'
+                return res
+        return res
+    if request.method == 'POST':
+        form = request.form
+        #make a dictionary that can be put into the db. https://fullcalendar.io/docs/event_data/Event_Object/
+        eventDict = {
+            'EventID' : form['id'],
+            'Title' : form['title'],
+            'start' : form['start'],
+            'end' : form['end']
+        }
+        addNewEvent(eventDict)
+
+        
+
+        
 
     
 
