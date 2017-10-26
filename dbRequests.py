@@ -4,12 +4,12 @@ import json
 
 DATABASE = 'new.db'
 
-def getEvent(givenID):
+def getEvent(eventID):
     
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
     #need to edit later, perhaps create a 'global' c value, as defined above
-    ret = c.execute("SELECT * FROM event WHERE eventID = {}".format(givenID))
+    ret = c.execute("SELECT * FROM event WHERE eventID = {}".format(eventID))
     conn.close()
     return ret
 
@@ -19,6 +19,9 @@ def getUserEvents(userID):
     #need to edit later, perhaps create a 'global' c value, as defined above
     ret = c.execute("SELECT * FROM event WHERE userID = {}".format(userID))
     conn.close()
+
+    for row in ret:
+        print(row)
     return ret
 # Gets a dic with values of 9EventID, UserID, Time, Length, Date, Description, ImportanceRanking, Title, ProgramID , EventType, StudyPlan, StudyType) AS A DICT
 
@@ -36,14 +39,34 @@ def addNewEvent(obj):     # make sure all information is in the correct formats.
     finally:
         conn.close()
 
-def getUser(givenID):
+def getUser(email):
     
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
     #need to edit later, perhaps create a 'global' c value, as defined above
-    ret = c.execute("SELECT * FROM user WHERE userID = {}".format(givenID))
+    ret = c.execute("SELECT * FROM user WHERE email = {}".format(email))
     conn.close()
     return ret
+
+def checkLogin(email, password):
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+    #need to edit later, perhaps create a 'global' c value, as defined above
+    ret = c.execute("SELECT * FROM user WHERE email = {}".format(email))
+    conn.close()
+
+    if password == ret[5]:
+        return True
+    
+    return False
+
+def getDriveLink(email):
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+    #need to edit later, perhaps create a 'global' c value, as defined above
+    ret = c.execute("SELECT * FROM user WHERE email = {}".format(email))
+    conn.close()
+    return ret[8]
 
 '''This method is when we implement multiple users'''
 # input is dict with values (UserID, email, FirstName, LastName, Password, GoogleID, CanvasID, DriveLink)
@@ -62,14 +85,31 @@ def addNewUser(obj):
     finally:
         conn.close()
 
-def getProgram(givenID):
+def getProgram(programID):
     
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
     #need to edit later, perhaps create a 'global' c value, as defined above
-    ret = c.execute("SELECT * FROM program WHERE programID = {}".format(givenID))
+    ret = c.execute("SELECT * FROM program WHERE programID = {}".format(programID))
     conn.close()
     return ret
+
+
+def getStudyLength(programID, studyType):
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+    #need to edit later, perhaps create a 'global' c value, as defined above
+    ret = c.execute("SELECT * FROM program WHERE programID = {}".format(programID))
+    conn.close()
+
+    if studyType == 'exam':
+        return ret[5]
+    elif studyType == 'assignment':
+        return ret[6]
+    elif studyType == 'quiz':
+        return ret[7]
+    else:
+        return 1
 
 #input is dict with values of (ProgramID, UserID, Description, Notes, ExamLength, AssignmentLength, QuizLength)
 def addNewProgram(obj): 
