@@ -4,7 +4,7 @@ import json
 
 DATABASE = 'test.db'
 defaultEvent = {'EventID': -1, 'UserID': 1, 'Start': '2017-10-26T18:53:08Z', 'End': '2017-10-26T19:53:08Z', 'Description': 'An Event', 'ImportanceRanking': 1, 'Title': 'Default Event', 'ProgramID': -1, 'EventType': '', 'StudyPlan': '', 'StudyType': ''}
-    
+eventTable = ['EventID', 'UserID', 'Start', 'End', 'Description', 'ImportanceRanking', 'Title', 'ProgramID', 'EventType', 'StudyPlan', 'StudyType']
 def getEvent(eventID):
     
     conn = sqlite3.connect(DATABASE)
@@ -35,9 +35,15 @@ def editEvent(eventID,obj):
     t = eventID,
     c.execute('SELECT * FROM event WHERE eventID =?',t)
     r = c.fetchone()
+    print(r)
     tempEvent = makeEventDict(r)
+    print(tempEvent)
     for col in obj:
+        print(col)
+        print(obj[col])
+        print(tempEvent[col])
         tempEvent[col] = obj[col]
+        print(tempEvent[col])
     try:
         c.execute('DELETE FROM event WHERE eventID=?',t)
         c.execute('INSERT INTO event VALUES(:EventID, :UserID, :Start, :End, :Description, :ImportanceRanking, :Title, :ProgramID, :EventType, :StudyPlan, :StudyType)',tempEvent)
@@ -52,8 +58,8 @@ def editEvent(eventID,obj):
 def addNewEvent(obj):     # make sure all information is in the correct formats. Date and Time processing can be done here.
     #format can be copied for all tables
     tempEvent = defaultEvent
-    for thing in obj:
-        tempEvent[thing] = obj[thing]
+    for col in obj:
+        tempEvent[col] = obj[col]
 
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
@@ -168,7 +174,7 @@ def addNewProgram(obj):
 def makeEventDict(row):
     tempEvent = defaultEvent
     x = 0
-    for col in tempEvent:
-        tempEvent[col] = row[x]
+    for name in eventTable:
+        tempEvent[name] = row[x]
         x += 1
     return tempEvent

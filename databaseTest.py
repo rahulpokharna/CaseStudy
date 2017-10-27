@@ -67,18 +67,18 @@ def queryDB():
     r = c.fetchone()
     eventDict = {
         'EventID' :3,
-        'Title' : 'Test',
-        'Start' : 'earlier',
-        'End' : 'never'
+        'Title' : 'No Longer a Test',
+        'Start' : '2017-10-26T22:53:08Z',
+        'End' : '2017-10-26T18:53:08Z'
     }
     nameTuple = tuple(eventDict.values())
     '''    print(eventDict)
     print(eventDict.items())
     print(nameTuple)'''
-    #dbRequests.addNewEvent(eventDict)
+    dbRequests.addNewEvent(eventDict)
 
     #Editing Event Here
-    dbRequests.editEvent(eventDict['EventID'], eventDict)
+    #dbRequests.editEvent(eventDict['EventID'], eventDict)
 
     '''values = dbRequests.checkLogin('abc123@case.edu','hashed')
     print('Here are the events for the user')
