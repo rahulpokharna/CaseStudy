@@ -2,9 +2,14 @@ import sqlite3
 from sqlite3 import Error
 import json
 
+#Name/path of the database
 DATABASE = 'test.db'
-defaultEvent = {'EventID': -1, 'UserID': 1, 'Start': '2017-10-26T18:53:08Z', 'End': '2017-10-26T19:53:08Z', 'Description': 'An Event', 'ImportanceRanking': 1, 'Title': 'Default Event', 'ProgramID': -1, 'EventType': '', 'StudyPlan': '', 'StudyType': ''}
+# Helper variable for events
+defaultEvent = {'EventID': -1, 'UserID': 1, 'Start': '2017-10-26T18:53:08Z', 'End': '2017-10-26T19:53:08Z', 'Description': 'An Event', 'ImportanceRanking': 1, 'Title': 'Default Event', 'ProgramID': 1, 'EventType': '', 'StudyPlan': '', 'StudyType': ''}
+# Helper variable for events
 eventTable = ['EventID', 'UserID', 'Start', 'End', 'Description', 'ImportanceRanking', 'Title', 'ProgramID', 'EventType', 'StudyPlan', 'StudyType']
+
+#not used in demo
 def getEvent(eventID):
     
     conn = sqlite3.connect(DATABASE)
@@ -17,6 +22,7 @@ def getEvent(eventID):
     conn.close()
     return rowList
 
+# Returns a list of events, each event is a dictionary for a given ID
 def getUserEvents(userID):
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
@@ -28,7 +34,7 @@ def getUserEvents(userID):
     conn.close()
     return rowList
 
-#TODO
+# Edits an event based on the given ID and the dictionary passed in
 def editEvent(eventID,obj):
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
@@ -54,7 +60,7 @@ def editEvent(eventID,obj):
     finally:
         conn.close()
 
-# Gets a dict with values of 9EventID, UserID, Time, Length, Date, Description, ImportanceRanking, Title, ProgramID , EventType, StudyPlan, StudyType) AS A DICT
+# Gets a dict with values, changes values of the default event for what needs to be changed
 def addNewEvent(obj):     # make sure all information is in the correct formats. Date and Time processing can be done here.
     #format can be copied for all tables
     tempEvent = defaultEvent
@@ -79,6 +85,7 @@ def addNewEvent(obj):     # make sure all information is in the correct formats.
         conn.close()
         return tempEvent['EventID']
 
+#Deletes an event and returns the eventID
 def deleteEvent(eventID):
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
@@ -92,7 +99,9 @@ def deleteEvent(eventID):
         conn.rollback()
     finally:
         conn.close()
+        return eventID
 
+# Not implemented demo
 def getUser(email):
     
     conn = sqlite3.connect(DATABASE)
@@ -104,6 +113,7 @@ def getUser(email):
     conn.close()
     return r
 
+# Not implemented for demo
 def checkLogin(email, password):
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
@@ -119,6 +129,8 @@ def checkLogin(email, password):
     
     return False
 
+# Not implemented with front end
+# Returns the drive link for a specified user
 def getDriveLink(email):
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
@@ -129,9 +141,21 @@ def getDriveLink(email):
     conn.close()
     return r[0]
     
+# Not implemented in front end
+# Returns an auth key for canvas
+def canvasConnect(email):
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+    
+    t = email,
+    ret = c.execute("SELECT CanvasID FROM user WHERE email = ?", t)
+    r = c.fetchone()
+    conn.close()
+    return r[0]
+    
 
 '''This method is when we implement multiple users'''
-# input is dict with values (UserID, email, FirstName, LastName, Password, GoogleID, CanvasID, DriveLink)
+# not implemented for this demo
 def addNewUser(obj):
     # make sure all information is in the correct formats. Date and Time processing can be done here
     #format can be copied for all tables
@@ -139,7 +163,7 @@ def addNewUser(obj):
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
     try:
-        c.execute('"INSERT INTO user VALUES({}, {}, {}, {}, {}, {}, {}, {}))'.format(obj['UserID'], obj['email'], obj['FirstName'], obj ['LastName'], obj['Password'], obj['GoogleID'], obj['CanvasID'], obj['DriveLink']))
+        c.execute('"INSERT INTO user VALUES({}, {}, {}, {}, {}, {}, {}, {}))'.format(obj['UserID'], obj['Email'], obj['FirstName'], obj ['LastName'], obj['Password'], obj['GoogleID'], obj['CanvasID'], obj['DriveLink']))
         conn.commit()
     except Error as e:
         print(e)
@@ -147,8 +171,8 @@ def addNewUser(obj):
     finally:
         conn.close()
 
+# not implemented for demo
 def getProgram(programID):
-    
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
     #need to edit later, perhaps create a 'global' c value, as defined above
@@ -156,25 +180,42 @@ def getProgram(programID):
     conn.close()
     return ret
 
-
-def getStudyLength(programID, studyType):
+# not implemented for demo
+def getStudyLength(StudyType):
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
     #need to edit later, perhaps create a 'global' c value, as defined above
-    c.execute("SELECT * FROM program WHERE programID = {}".format(programID))
+    c.execute("SELECT * FROM program WHERE programID = 1")
     r = c.fetchone()
     conn.close()
 
-    if studyType.lower() == 'exam':
+    if StudyType.lower() == 'exam':
         return r[4]
-    elif studyType.lower() == 'assignment':
+    elif StudyType.lower() == 'assignment':
         return r[5]
-    elif studyType.lower() == 'quiz':
+    elif StudyType.lower() == 'quiz':
         return r[6]
     else:
         return 1
 
-#input is dict with values of (ProgramID, UserID, Description, Notes, ExamLength, AssignmentLength, QuizLength)
+# Edits the event of the specified ID adding a study plan to it
+def editStudyEvent(eventID, StudyPlan):
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+    c.execute('UPDATE event SET StudyPlan = ? WHERE EventID = ?',(StudyPlan, eventID))
+    conn.close()
+
+# Returns the value of the study plan stored in the DB
+def viewStudyPlan(eventID):
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+    t = eventID,
+    c.execute("SELECT StudyPlan FROM event WHERE EventID = ?",t)
+    r = c.fetchone()
+    conn.close()
+    return r[0]
+
+# Not implemented for Demo 1
 def addNewProgram(obj): 
     # make sure all information is in the correct formats. Date and Time processing can be done here.
     #format can be copied for all tables
@@ -190,6 +231,7 @@ def addNewProgram(obj):
     finally:
         conn.close()
 
+# Helper Method for converting tuple rows into dictionaries
 def makeEventDict(row):
     tempEvent = defaultEvent
     x = 0
