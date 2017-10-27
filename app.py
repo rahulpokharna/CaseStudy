@@ -10,7 +10,11 @@ def index():
 
 @app.route('/kian')
 def kian():
-	return render_template('calendarChild.html')
+    return render_template('calendarChild.html')
+
+@app.route('/study')
+def study():
+    return render_template('studyChild.html')
 
 @app.route('/login', methods=['GET','POST'])
 def login():
