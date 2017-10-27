@@ -109,10 +109,15 @@ function addEvent(title, start, end) {
 }
 
 function editEvent(id, title, start, end) {
-
+    var eventID = $.ajax({
+        type: 'POST',
+        url: "request/events",
+        data: {title: title, start: start, end: end, id: id},
+        async: false});
 }
 
-function notifyEvent(id) {
+function notifyEvent() {
+    var id = Number(prompt("What event would you like to send a notification for?", "Event ID"));
     alert("Event " + id + " has started.");
     window.location = "/study?eventID=" + id;
 }
