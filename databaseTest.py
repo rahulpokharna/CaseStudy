@@ -73,7 +73,7 @@ def queryDB():
     print(eventDict.items())
     print(nameTuple)'''
     dbRequests.addNewEvent(eventDict)
-
+    #dbRequests.deleteEvent(4)
     #Editing Event Here
     #dbRequests.editEvent(eventDict['EventID'], eventDict)
 
