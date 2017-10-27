@@ -63,13 +63,15 @@ def requestEvent():
         eventID = request.args.get('eventID')
         deleteEvent(eventID)
 
-@app.route('/request/studyplan',methods=['POST'])
+#request to get or set a study plan for a given event Put eventID in the URL. 
+@app.route('/request/studyplan',methods=['GET','POST'])
 def setStudyPlan():
     if request.method == 'POST':
         form = request.form
-        id = form['id']
+        id = request.args.get('eventID')
         studyplan = form['studyplan']
         return editStudyEvent(id, studyplan)
+    if request.method == 'GET':
         
 
         
