@@ -69,8 +69,7 @@ class TestAppMethods(unittest.TestCase):
         response = self.app.get('/request/events?eventID={}&delete=true'.format(self.testEventID))
         #try getting it again
         response = self.app.get('/request/events?eventID={}'.format(self.testEventID))
-        print('fuck u')
-        print(response.data.decode("utf-8"))
+        #check that the get request now returns empyt list :)
         assert response.data.decode("utf-8") == '[]\n'
 if __name__ == '__main__':
     unittest.main()
