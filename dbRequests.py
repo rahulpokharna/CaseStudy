@@ -26,31 +26,37 @@ def getEvent(eventID):
 def getUserEvents(userID):
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
-    ret = c.execute("SELECT * FROM event WHERE userID = {}".format(userID))
-    rowList = []
-    for row in ret:
-        rowList.append({'EventID':row[0],'Title':row[6],'Start':row[2],'End':row[3], 'StudyType':row[10]})
-    
-    conn.close()
-    return rowList
-
+    try:
+        ret = c.execute("SELECT * FROM event WHERE userID = {}".format(userID))
+        rowList = []
+        for row in ret:
+            rowList.append({'EventID':row[0],'Title':row[6],'Start':row[2],'End':row[3], 'StudyType':row[10]})
+    except Error as e:
+        print(e)
+    finally:       
+        conn.close()
+        if(type(rowList) != None):
+            return rowList
+        return ['Failed']
 # Edits an event based on the given ID and the dictionary passed in
 def editEvent(eventID,obj):
+    
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
-    t = eventID,
-    c.execute('SELECT * FROM event WHERE eventID =?',t)
-    r = c.fetchone()
-    print(r)
-    tempEvent = makeEventDict(r)
-    print(tempEvent)
-    for col in obj:
-        print(col)
-        print(obj[col])
-        print(tempEvent[col])
-        tempEvent[col] = obj[col]
-        print(tempEvent[col])
+
     try:
+        t = eventID,
+        c.execute('SELECT * FROM event WHERE eventID =?',t)
+        r = c.fetchone()
+        print(r)
+        tempEvent = makeEventDict(r)
+        print(tempEvent)
+        for col in obj:
+            print(col)
+            print(obj[col])
+            print(tempEvent[col])
+            tempEvent[col] = obj[col]
+            print(tempEvent[col])
         c.execute('DELETE FROM event WHERE eventID=?',t)
         c.execute('INSERT INTO event VALUES(:EventID, :UserID, :Start, :End, :Description, :ImportanceRanking, :Title, :ProgramID, :EventType, :StudyPlan, :StudyType)',tempEvent)
         conn.commit()
@@ -59,21 +65,23 @@ def editEvent(eventID,obj):
         conn.rollback()
     finally:
         conn.close()
+        return eventID
 
 # Gets a dict with values, changes values of the default event for what needs to be changed
 def addNewEvent(obj):     # make sure all information is in the correct formats. Date and Time processing can be done here.
-    #format can be copied for all tables
-    tempEvent = defaultEvent
-    for col in obj:
-        tempEvent[col] = obj[col]
 
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
-    c.execute('SELECT MAX(eventID) FROM event')
-    r = c.fetchone()
-    tempEvent['EventID'] = r[0] + 1
-    
+        
     try:
+        tempEvent = defaultEvent
+        for col in obj:
+            tempEvent[col] = obj[col]
+
+        c.execute('SELECT MAX(eventID) FROM event')
+        r = c.fetchone()
+        tempEvent['EventID'] = r[0] + 1
+
         
         c.execute('INSERT INTO event VALUES(:EventID, :UserID, :Start, :End, :Description, :ImportanceRanking, :Title, :ProgramID, :EventType, :StudyPlan, :StudyType)', tempEvent)
         
@@ -202,19 +210,31 @@ def getStudyLength(StudyType):
 def editStudyEvent(eventID, StudyPlan):
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
-    c.execute('UPDATE event SET StudyPlan = ? WHERE EventID = ?',(StudyPlan, eventID))
-    conn.close()
+    try:
+        c.execute('UPDATE event SET StudyPlan = ? WHERE EventID = ?',(StudyPlan, eventID))
+        conn.commit()
+    except Error as e:
+        print(e)
+        conn.rollback()
+    finally:
+        conn.close()
+        return eventID
 
 # Returns the value of the study plan stored in the DB
 def viewStudyPlan(eventID):
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
-    t = eventID,
-    c.execute("SELECT StudyPlan FROM event WHERE EventID = ?",t)
-    r = c.fetchone()
-    conn.close()
-    return r[0]
-
+    try:
+        t = eventID,
+        c.execute("SELECT StudyPlan FROM event WHERE EventID = ?",t)
+        r = c.fetchone()
+    except Error as e:
+        print(e)
+    finally:
+        conn.close()
+        if(type(r) != None):
+            return r[0]
+        return 'Something went wrong'
 # Not implemented for Demo 1
 def addNewProgram(obj): 
     # make sure all information is in the correct formats. Date and Time processing can be done here.
