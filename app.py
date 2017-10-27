@@ -9,7 +9,7 @@ def index():
      return render_template('index.html', form = form)
 
 @app.route('/calendar')
-def kian():
+def calendar():
     return render_template('calendarChild.html')
 
 @app.route('/study')
@@ -26,7 +26,7 @@ def login():
     if request.method == 'POST' and form.validate():
         # print('REQUEST: %s' % request.data)
         if str(request.form['email']) == 'email' and str(request.form['password']) == 'password':
-            return redirect('/kian')
+            return redirect('/calendar')
         else:
             # print(str(request.form['email']))
             # print(str(request.form['password']))
