@@ -4,10 +4,13 @@ import sys, os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import unittest
 import app
+import json
 class TestAppMethods(unittest.TestCase):
     def setUp(self):
         app.app.testing = True
         self.app = app.app.test_client()
+        
+
 
     def testIndex(self):
        response = self.app.get('/')
@@ -33,11 +36,22 @@ class TestAppMethods(unittest.TestCase):
         # we should be redirected back to the login page.
         assert 'target URL: <a href="/">/</a>' in str(response.data)
     
-    def testGetEvent(self):
+    def testGetUserEvents(self):
+        #test getting all events for a user.
         response = self.app.get('/request/events?userID=1')
         #just check if the user has multiple events.
-        print (response.data.length)
+        s = response.data.decode("utf-8")
+        assert len(json.loads(s)) > 1
 
+    def testGetEvent(self):
+        #test getting a specific event for a user.
+        response = self.app.post('/request/events', data=dict(
+            title = 'testEvetn',
+            start = 1,
+            end = 2
+        ), follow_redirects=True)
+        # self.testEventID = response.data
+        print(response.data)
 if __name__ == '__main__':
     unittest.main()
     

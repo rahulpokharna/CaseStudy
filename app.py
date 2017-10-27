@@ -76,6 +76,7 @@ def requestEvent():
                 'End' : form['end']
             }
             return addNewEvent(eventDict)
+            
     
      
 #request to get or set a study plan for a given event Put eventID in the URL. 
