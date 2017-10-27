@@ -72,7 +72,7 @@ def requestEvent():
             return addNewEvent(eventDict)
     if request.method == 'DELETE':
         eventID = request.args.get('eventID')
-        deleteEvent(eventID)
+        return deleteEvent(eventID)
 
 #request to get or set a study plan for a given event Put eventID in the URL. 
 @app.route('/request/studyplan',methods=['GET','POST'])
