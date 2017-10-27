@@ -108,6 +108,15 @@ function addEvent(title, start, end) {
     console.log(idnum);
 }
 
+function editEvent(id, title, start, end) {
+
+}
+
+function notifyEvent(id) {
+    alert("Event " + id + " has started.");
+    window.location = "/study?eventID=" + id;
+}
+
 function deleteEvent() {
     var eventToDelete = Number(prompt("Which Event ID would you like to delete?", "Event ID"));
     console.log(eventToDelete);

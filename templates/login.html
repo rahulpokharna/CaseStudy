@@ -1,9 +1,12 @@
-<h2>Hello, this is the login template</h2>
-{% from "_formhelpers.html" import render_field %}
-<form method=post action='/login'>
-  <dl>
-    {{ render_field(form.email) }}
-    {{ render_field(form.password) }}
-  </dl>
-  <p><input type=submit value=Login>
-</form>
+<div id="content">
+	<h2>Welcome to Case Study</h2>
+	<h4>Please enter your email and password below</h4>
+	{% from "_formhelpers.html" import render_field %}
+	<form method=post action='/login'>
+	  <dl>
+	    {{ render_field(form.email) }}
+	    {{ render_field(form.password) }}
+	  </dl>
+	  <p><input type=submit value=Login></p>
+	</form>
+</div>
