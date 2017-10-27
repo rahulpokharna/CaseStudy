@@ -59,20 +59,26 @@ def queryDB():
     
     '''Test Queries'''
     #test for printing
-    nameTuple = ()
-    c.execute("SELECT count(*) FROM event")
-    r = c.fetchone()
-    eventDict = {
-        'EventID' :3,
-        'Title' : 'No Longer a Test',
-        'Start' : '2017-10-26T22:53:08Z',
-        'End' : '2017-10-26T18:53:08Z'
-    }
+    #nameTuple = ()
+    #c.execute("SELECT count(*) FROM event")
+    #r = c.fetchone()
+    #eventDict = {
+    #    'EventID' :3,
+    #    'Title' : 'No Longer a Test',
+    #    'Start' : '2017-10-26T22:53:08Z',
+    #    'End' : '2017-10-26T18:53:08Z'
+    #}
     '''nameTuple = tuple(eventDict.values())
     print(eventDict)
     print(eventDict.items())
     print(nameTuple)'''
-    dbRequests.addNewEvent(eventDict)
+    
+    
+    
+    dbRequests.editStudyEvent(1,'this is a test plan')
+    value = dbRequests.viewStudyPlan(1)
+    print(value)
+    
     #dbRequests.deleteEvent(4)
     #Editing Event Here
     #dbRequests.editEvent(eventDict['EventID'], eventDict)

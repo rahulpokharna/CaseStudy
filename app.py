@@ -35,21 +35,27 @@ def login():
 def requestEvent():
     #request with userID or eventID given as url parameters. If eventId is not given, this will return all events for this user.
     if request.method == 'GET':
-        userID = request.args.get('userID')
-        eventID = request.args.get('eventID')
-        if eventID == None:
-            try:
-                res = jsonify(getUserEvents(userID))
-            except TypeError as e:
-                res = 'couldnt jsonify the event'
-                return res
+        delete = request.args.get('delete')
+        if delete == 'true':
+            #delete this event.
+            eventID = request.args.get('eventID')
+            return deleteEvent(eventID)
         else:
-            try:
-                res =  jsonify(getEvent(eventID))
-            except TypeError as e:
-                res = 'couldnt jsonify the event'
-                return res
-        return res
+            userID = request.args.get('userID')
+            eventID = request.args.get('eventID')
+            if eventID == None:
+                try:
+                    res = jsonify(getUserEvents(userID))
+                except TypeError as e:
+                    res = 'couldnt jsonify the event'
+                    return res
+            else:
+                try:
+                    res =  jsonify(getEvent(eventID))
+                except TypeError as e:
+                    res = 'couldnt jsonify the event'
+                    return res
+            return res
     if request.method == 'POST':
         form = request.form
         #make a dictionary that can be put into the db. https://fullcalendar.io/docs/event_data/Event_Object/
@@ -70,16 +76,14 @@ def requestEvent():
                 'End' : form['end']
             }
             return addNewEvent(eventDict)
-    if request.method == 'DELETE':
-        eventID = request.args.get('eventID')
-        return deleteEvent(eventID)
-
+    
+     
 #request to get or set a study plan for a given event Put eventID in the URL. 
 @app.route('/request/studyplan',methods=['GET','POST'])
 def setStudyPlan():
     if request.method == 'POST':
         form = request.form
-        id = request.args.get('eventID')
+        id = form['eventID']
         studyplan = form['studyplan']
         return editStudyEvent(id, studyplan)
     if request.method == 'GET':
