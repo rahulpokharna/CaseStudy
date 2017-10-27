@@ -26,11 +26,12 @@ def login():
         else:
             print(str(request.form['email']))
             print(str(request.form['password']))
+            return redirect('/')
 # This method is to either get event(s) or to create a new one.
 # for get request request with userId or eventId as url parameters (put it after the url like:
 # localhost://5000/requests/events?userID=1
 # for post request put the event object as the form. so form.title is the event's title, etc.
-@app.route('/request/events', methods=['GET','POST'])
+@app.route('/request/events', methods=['GET','POST','DELETE'])
 def requestEvent():
     #request with userID or eventID given as url parameters. If eventId is not given, this will return all events for this user.
     if request.method == 'GET':
@@ -53,13 +54,22 @@ def requestEvent():
         form = request.form
         #make a dictionary that can be put into the db. https://fullcalendar.io/docs/event_data/Event_Object/
         eventDict = {
-            'EventID' : form['id'],
             'Title' : form['title'],
             'Start' : form['start'],
             'End' : form['end']
         }
-        addNewEvent(eventDict)
+        return addNewEvent(eventDict)
+    if request.method == 'DELETE':
+        eventID = request.args.get('eventID')
+        deleteEvent(eventID)
 
+@app.route('/request/studyplan',methods=['POST'])
+def setStudyPlan():
+    if request.method == 'POST':
+        form = request.form
+        id = form['id']
+        studyplan = form['studyplan']
+        return editStudyEvent(id, studyplan)
         
 
         
