@@ -1,26 +1,26 @@
-<!DOCTYPE html>
-<html>
+{% extends "calendarDesign.html" %}
 <!-- Full Calendar Imports -->
-    <link rel="stylesheet" href="static/fullCalendar/fullcalendar.css" />
-    <script src="static/fullCalendar/lib/moment.min.js"></script>
-    <script src="static/fullCalendar/lib/jquery.min.js"></script>
-    <script src="static/fullCalendar/lib/jquery-ui.min.js"></script>
-    <script src="static/fullCalendar/fullcalendar.min.js"></script>
-    <script src="static/kianCalendar.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js">
-</script>
+{% block head %}
+<link rel="stylesheet" href="static/fullCalendar/fullcalendar.css" />
+<script src="static/fullCalendar/lib/moment.min.js"></script>
+<script src="static/fullCalendar/lib/jquery.min.js"></script>
+<script src="static/fullCalendar/lib/jquery-ui.min.js"></script>
+<script src="static/fullCalendar/fullcalendar.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 <script>
 url = window.location.href
 url = new URL(url)
 eventID = url.searchParams.get('eventID')
 function studyPlan(eventID, studyplan){
-
-var studyToAdd = {
-eventID: eventID
-studyplan: studyplan
+  var studyToAdd = {
+    eventID: eventID,
+    studyplan: studyplan
+  }
 };
 </script>
-<body>
+{% endblock %}
+
+{% block content %}
 <style>
 
 label {
@@ -58,7 +58,7 @@ button {
 </style>
    
 
-<b><font size = "6"><u>Study Page</u></font></b>
+<b><font size = "6">Study Page</font></b>
 <br>
 <br>
 <a href="https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU"> Link to Google Drive </a>
@@ -78,5 +78,4 @@ button {
   </button> 
 </div>
 </form>
-</body>
-</html>
+{% endblock %}

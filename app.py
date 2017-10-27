@@ -8,7 +8,7 @@ def index():
      form = LoginForm(request.form)
      return render_template('index.html', form = form)
 
-@app.route('/kian')
+@app.route('/calendar')
 def kian():
     return render_template('calendarChild.html')
 
