@@ -77,7 +77,7 @@ def addNewEvent(obj):     # make sure all information is in the correct formats.
         tempEvent = defaultEvent
         for col in obj:
             tempEvent[col] = obj[col]
-
+       
         c.execute('SELECT MAX(eventID) FROM event')
         r = c.fetchone()
         tempEvent['EventID'] = r[0] + 1
@@ -91,7 +91,7 @@ def addNewEvent(obj):     # make sure all information is in the correct formats.
         conn.rollback()
     finally:
         conn.close()
-        return tempEvent['EventID']
+        return str(tempEvent['EventID'])
 
 #Deletes an event and returns the eventID
 def deleteEvent(eventID):

@@ -9,7 +9,12 @@ class TestAppMethods(unittest.TestCase):
     def setUp(self):
         app.app.testing = True
         self.app = app.app.test_client()
-        
+        response = self.app.post('/request/events', data=dict(
+            title = 'test',
+            start = 1,
+            end = 1
+        ))
+        self.testEventID = int(response.data.decode("utf-8"))
 
 
     def testIndex(self):
@@ -45,13 +50,28 @@ class TestAppMethods(unittest.TestCase):
 
     def testGetEvent(self):
         #test getting a specific event for a user.
+        response = self.app.get('/request/events?eventID={}'.format(self.testEventID))
+        #check if the event ID we get back is the same one we asked for.
+        assert json.loads(response.data.decode('utf-8'))[0]['EventID'] == self.testEventID
+    
+    def testEditEvent(self):
         response = self.app.post('/request/events', data=dict(
-            title = 'testEvetn',
-            start = 1,
-            end = 2
-        ), follow_redirects=True)
-        # self.testEventID = response.data
-        print(response.data)
+            id = self.testEventID,
+            title = 'test',
+            start = 2,
+            end = '3'
+        ))
+        #get back the event we just editted
+        #just checking the event ID here. Im having issues with checking the acutal attributes.
+        assert int(response.data.decode('utf-8')) == self.testEventID
+    def testDeleteEvent(self):
+        #delete the event
+        response = self.app.get('/request/events?eventID={}&delete=true'.format(self.testEventID))
+        #try getting it again
+        response = self.app.get('/request/events?eventID={}'.format(self.testEventID))
+        print('fuck u')
+        print(response.data.decode("utf-8"))
+        assert response.data.decode("utf-8") == '[]\n'
 if __name__ == '__main__':
     unittest.main()
     
