@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<body>
+<style>
+
+label {
+  display: inline-block;
+  width: 90px;
+  text-align: right;
+}
+
+input, textarea {
+  font: 1em sans-serif;
+
+  width: 300px;
+  box-sizing: border-box;
+
+  border: 1px solid #999;
+}
+
+input:focus, textarea:focus {
+  border-color: #000;
+}
+
+textarea {
+  vertical-align: top;
+
+  height: 5em;
+}
+
+.button {
+  padding-left: 90px; /* same size as the label elements */
+}
+
+button {
+  margin-left: .5em;
+}
+</style>
+   
+
+
+<b><font size = "6"><u>Study Page</u></font></b>
+<br>
+<br>
+<a href="https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU"> Link to Google Drive </a>
+ <br>
+ <br>
+<form>
+<div>
+        <label for="msg">Study Goals:</label>
+        <textarea id="msg" name="user_message"></textarea>
+    </div>
+<div class="button">
+  <button type="submit">Done</button>
+</div>
+</form>
+</body>
+</html>
