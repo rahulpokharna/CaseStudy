@@ -27,22 +27,19 @@ def initDB():
         print(e)
     finally:
         conn.close()
-        
+
+
+'''Add Test Values to Tables'''
 def fillDB():
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
-    '''Add Test Values to Tables'''
     try:
-        '''
+        
         c.execute("SELECT count(*) FROM user")
         r = c.fetchone()
-
         c.execute("INSERT INTO user VALUES ({},'abc123@case.edu','Alpha', 'Cavern','hashed','','','https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU')".format(r[0] + 1))
-        
         c.execute("INSERT INTO user VALUES ({},'axc1223@case.edu','Andrew', 'Clark','hashed','','','https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU')".format(r[0] + 2))
         c.execute("INSERT INTO user VALUES ({},'yxs123@case.edu','Yongju', 'Sui','hashed','','','https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU')".format(r[0] + 3))
-
-        '''
 
         c.execute("SELECT count(*) FROM user")
         r = c.fetchone()
@@ -107,8 +104,6 @@ def queryDB():
     print(type(c.execute("SELECT * FROM user")))
     ''' 
     conn.close()
-
-
 
 if __name__ == '__main__':
     #initDB()

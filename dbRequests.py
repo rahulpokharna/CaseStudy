@@ -74,6 +74,20 @@ def addNewEvent(obj):     # make sure all information is in the correct formats.
     finally:
         conn.close()
 
+def deleteEvent(eventID):
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+    try:
+        t = eventID,
+        c.execute('DELETE FROM event WHERE eventID = ?',t)
+        
+        conn.commit()
+    except Error as e:
+        print(e)
+        conn.rollback()
+    finally:
+        conn.close()
+
 def getUser(email):
     
     conn = sqlite3.connect(DATABASE)
