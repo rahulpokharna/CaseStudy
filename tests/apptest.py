@@ -20,8 +20,23 @@ class TestAppMethods(unittest.TestCase):
             password='password'
         ))
         # check if the user redirected to the correct page
-        print(response.data)
+        # print(response.data)
         assert 'kian' in str(response.data)
+    
+    def testLoginFailing(self):
+        response = self.app.post('/login', data=dict(
+            email='WrongEmail',
+            password='WrongPassword'
+        ))
+        # check if the user redirected to the correct page
+        # print(response.data)
+        # we should be redirected back to the login page.
+        assert 'target URL: <a href="/">/</a>' in str(response.data)
+    
+    def testGetEvent(self):
+        response = self.app.get('/request/events?userID=1')
+        #just check if the user has multiple events.
+        print (response.data.length)
 
 if __name__ == '__main__':
     unittest.main()
