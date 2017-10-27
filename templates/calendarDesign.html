@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     {% block head %}
-    <link rel="stylesheet" href="style.css" />
     <title>{% block title %}{% endblock %}</title>
     {% endblock %}
 </head>
 <body style="margin: 0;">
 	<div id="header">
+        {% include 'header.html' %}
 		{% block header %}
 		{% endblock %}
 	</div>

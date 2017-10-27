@@ -3,27 +3,51 @@
 {% block head %}
 <!-- Full Calendar Imports -->
     <link rel="stylesheet" href="static/fullCalendar/fullcalendar.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     <script src="static/fullCalendar/lib/moment.min.js"></script>
     <script src="static/fullCalendar/lib/jquery.min.js"></script>
     <script src="static/fullCalendar/lib/jquery-ui.min.js"></script>
     <script src="static/fullCalendar/fullcalendar.min.js"></script>
     <script src="static/kianCalendar.js"></script>
+    <style>
+        a {
+            font-family: 'Open Sans', sans-serif;
+        }
+    </style>
 {% endblock %}
 {% block header %}
-    <nav style="padding: 1em; background-color: #C1C1C1;">
-        <a href="#">Case Study</a>
-        <button id="month" type="button" class="viewChange" onclick="$('#calendar').fullCalendar('changeView', 'month');">Month</button>
-        <button id="week" type="button" class="viewChange" onclick="$('#calendar').fullCalendar('changeView', 'agendaWeek');">Week</button>
-        <button id="day" type="button" class="viewChange" onclick="$('#calendar').fullCalendar('changeView', 'agendaDay');">Day</button>
-        <a id="date"></a>
-        <button id="prev" type="button" class="dateChange" onclick="$('#calendar').fullCalendar('prev');"><</button>
-        <button id="today" type="button" class="dateChange" onclick="$('#calendar').fullCalendar('today');">Today</button>
-        <button id="next" type="button" class="dateChange" onclick="$('#calendar').fullCalendar('next');">></button>
+    <style type="text/css">
+        button {
+            background-color: #41aff4;
+            border: none;
+            color: #F0F0F0;
+            padding: 0.5em 0.5em;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1em;
+            cursor:pointer;
+        }
+    </style>
+    <nav id="menu" style="padding: 1em; background-color: #2b1d4f; display: flex; justify-content: space-between;">
+        <div id="navigation">
+            <button id="prev" type="button" class="dateChange" onclick="$('#calendar').fullCalendar('prev');"><</button>
+            <button id="today" type="button" class="dateChange" onclick="$('#calendar').fullCalendar('today');">Today</button>
+            <button id="next" type="button" class="dateChange" onclick="$('#calendar').fullCalendar('next');">></button>
+        </div>
+        <div id="monthWeekDay">
+            <a id="date" style="color: #FFFFFF; font-weight: bold;"></a>
+            <button id="month" type="button" class="viewChange" onclick="$('#calendar').fullCalendar('changeView', 'month');">Month</button>
+            <button id="week" type="button" class="viewChange" onclick="$('#calendar').fullCalendar('changeView', 'agendaWeek');">Week</button>
+            <button id="day" type="button" class="viewChange" onclick="$('#calendar').fullCalendar('changeView', 'agendaDay');">Day</button>
+        </div>
+        <div id="eventManipulation">
+            <button id="addEvent" type="button" onclick="addEventButton()">Add Event</button>
+            <button id="editEvent" type="button" onclick="$('#calendar').fullCalendar('next');">Edit Event</button>
+            <button id="removeEvent" type="button" onclick="deleteEvent()">Delete Event</button>
+        </div>
     </nav>    
     <nav style="padding: 1em;">
-        <button id="addEvent" type="button" onclick="addEventButton()">Add Event</button>
-        <button id="editEvent" type="button" onclick="$('#calendar').fullCalendar('next');">Edit Event</button>
-        <button id="removeEvent" type="button" onclick="removeEvent()">Delete Event</button>
     </nav>
 {% endblock %}
 {% block content %}
