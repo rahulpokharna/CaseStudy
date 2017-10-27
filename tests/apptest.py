@@ -29,7 +29,7 @@ class TestAppMethods(unittest.TestCase):
         ))
         # check if the user redirected to the correct page
         # print(response.data)
-        assert 'kian' in str(response.data)
+        assert 'target URL: <a href="/calendar">/calendar</a>' in str(response.data)
     
     def testLoginFailing(self):
         response = self.app.post('/login', data=dict(
