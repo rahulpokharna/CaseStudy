@@ -68,8 +68,8 @@ def queryDB():
         'Start' : '2017-10-26T22:53:08Z',
         'End' : '2017-10-26T18:53:08Z'
     }
-    nameTuple = tuple(eventDict.values())
-    '''    print(eventDict)
+    '''nameTuple = tuple(eventDict.values())
+    print(eventDict)
     print(eventDict.items())
     print(nameTuple)'''
     dbRequests.addNewEvent(eventDict)

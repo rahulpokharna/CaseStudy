@@ -23,7 +23,7 @@ def getUserEvents(userID):
     ret = c.execute("SELECT * FROM event WHERE userID = {}".format(userID))
     rowList = []
     for row in ret:
-        rowList.append({'EventID':row[0],'Title':row[6],'Start':row[2],'End':row[3]})
+        rowList.append({'EventID':row[0],'Title':row[6],'Start':row[2],'End':row[3], 'StudyType':row[10]})
     
     conn.close()
     return rowList
@@ -63,6 +63,10 @@ def addNewEvent(obj):     # make sure all information is in the correct formats.
 
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
+    c.execute('SELECT MAX(eventID) FROM event')
+    r = c.fetchone()
+    tempEvent['EventID'] = r[0] + 1
+    
     try:
         
         c.execute('INSERT INTO event VALUES(:EventID, :UserID, :Start, :End, :Description, :ImportanceRanking, :Title, :ProgramID, :EventType, :StudyPlan, :StudyType)', tempEvent)
@@ -73,6 +77,7 @@ def addNewEvent(obj):     # make sure all information is in the correct formats.
         conn.rollback()
     finally:
         conn.close()
+        return tempEvent['EventID']
 
 def deleteEvent(eventID):
     conn = sqlite3.connect(DATABASE)
