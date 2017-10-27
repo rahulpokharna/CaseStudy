@@ -72,7 +72,8 @@ def setStudyPlan():
         studyplan = form['studyplan']
         return editStudyEvent(id, studyplan)
     if request.method == 'GET':
-        
+        id = request.args.get('eventID')
+        return viewStudyPlan('eventID')
 
         
 
