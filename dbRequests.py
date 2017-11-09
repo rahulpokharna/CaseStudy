@@ -8,6 +8,15 @@ DATABASE = 'test.db'
 defaultEvent = {'EventID': -1, 'UserID': 1, 'Start': '2017-10-26T18:53:08Z', 'End': '2017-10-26T19:53:08Z', 'Description': 'An Event', 'ImportanceRanking': 1, 'Title': 'Default Event', 'ProgramID': 1, 'EventType': '', 'StudyPlan': '', 'StudyType': ''}
 # Helper variable for events
 eventTable = ['EventID', 'UserID', 'Start', 'End', 'Description', 'ImportanceRanking', 'Title', 'ProgramID', 'EventType', 'StudyPlan', 'StudyType']
+#Helpervariable for users
+defaultUser = {'UserID': 1 , 'email': 'abc123@case.edu', 'FirstName': 'Alpha', 'LastName': 'Cavern', 'HashedPassword': 'hashed', 'GoogleID': -1, 'CanvasID': -1, 'DriveLink': 'https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU'}
+#Helpervariable for users
+userTable = ['UserID', 'email', 'FirstName', 'LastName', 'HashedPassword', 'GoogleID', 'CanvasID', 'DriveLink']
+#Helpervariable for program
+defaultProgram = {'ProgramID': 1, 'UserID': 1, 'Description': '', 'Notes': 'https://docs.google.com/document/d/1Aeaj_uiwTcv5IFS2tH7vJcaj2LbMJOO-0dad8l7x98I/edit', 'ExamLength': 3, 'AssignmentLength': 1, 'QuizLength': 2}
+#Helpervariable for program
+programTable = ['ProgramID', 'UserID', 'Description', 'Notes', 'ExamLength', 'AssignmentLength', 'QuizLength']
+
 
 #not used in demo
 def getEvent(eventID):
@@ -17,7 +26,7 @@ def getEvent(eventID):
     ret = c.execute("SELECT * FROM event WHERE eventID = {}".format(eventID))
     rowList = []
     for row in ret:
-        rowList.append({'EventID':row[0],'Title':row[7],'start':row[1],'end':row[2]})
+        rowList.append({'EventID':row[0],'Title':row[6],'Start':row[2],'End':row[3], 'StudyType':row[10]})
     
     conn.close()
     return rowList
@@ -48,24 +57,20 @@ def editEvent(eventID,obj):
         t = eventID,
         c.execute('SELECT * FROM event WHERE eventID =?',t)
         r = c.fetchone()
-        print(r)
         tempEvent = makeEventDict(r)
-        print(tempEvent)
         for col in obj:
-            print(col)
-            print(obj[col])
-            print(tempEvent[col])
             tempEvent[col] = obj[col]
-            print(tempEvent[col])
         c.execute('DELETE FROM event WHERE eventID=?',t)
         c.execute('INSERT INTO event VALUES(:EventID, :UserID, :Start, :End, :Description, :ImportanceRanking, :Title, :ProgramID, :EventType, :StudyPlan, :StudyType)',tempEvent)
         conn.commit()
+        retVal = eventID
     except Error as e:
         print(e)
         conn.rollback()
+        retVal = e
     finally:
         conn.close()
-        return eventID
+        return retVal
 
 # Gets a dict with values, changes values of the default event for what needs to be changed
 def addNewEvent(obj):     # make sure all information is in the correct formats. Date and Time processing can be done here.
@@ -251,7 +256,7 @@ def addNewProgram(obj):
     finally:
         conn.close()
 
-# Helper Method for converting tuple rows into dictionaries
+# Helper Method for converting tuple rows into dictionaries for events
 def makeEventDict(row):
     tempEvent = defaultEvent
     x = 0
@@ -259,3 +264,21 @@ def makeEventDict(row):
         tempEvent[name] = row[x]
         x += 1
     return tempEvent
+
+# Helper Method for converting tuple rows into dictionaries
+def makeUserDict(row):
+    tempUser = defaultUser
+    x = 0
+    for name in eventTable:
+        tempUser[name] = row[x]
+        x += 1
+    return tempUser
+
+# Helper Method for converting tuple rows into dictionaries
+def makeProgramDict(row):
+    tempProgram = defaultProgram
+    x = 0
+    for name in eventTable:
+        tempProgram[name] = row[x]
+        x += 1
+    return tempProgram

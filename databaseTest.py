@@ -62,12 +62,12 @@ def queryDB():
     #nameTuple = ()
     #c.execute("SELECT count(*) FROM event")
     #r = c.fetchone()
-    #eventDict = {
-    #    'EventID' :3,
-    #    'Title' : 'No Longer a Test',
-    #    'Start' : '2017-10-26T22:53:08Z',
-    #    'End' : '2017-10-26T18:53:08Z'
-    #}
+    eventDict = {
+       'EventID' :3,
+       'Title' : 'No Longer a Test',
+       'Start' : '2017-10-26T22:53:08Z',
+       'End' : '2017-10-26T18:53:08Z'
+    }
     '''nameTuple = tuple(eventDict.values())
     print(eventDict)
     print(eventDict.items())
@@ -75,14 +75,21 @@ def queryDB():
     
     
     
-    dbRequests.editStudyEvent(1,'this is a test plan')
-    value = dbRequests.viewStudyPlan(1)
-    print(value)
+    #result = dbRequests.editStudyEvent(1,'this is a test plan')
+    result = dbRequests.editEvent(eventDict['EventID'], eventDict)
+    print(result)
+    print(type(result))
+    if(type(result) == sqlite3.OperationalError):
+        print("uh-oh")
+    else:
+        print("yay!")
+
+    # value = dbRequests.viewStudyPlan(1)
+    # print(value)
     
     #dbRequests.deleteEvent(4)
     #Editing Event Here
-    #dbRequests.editEvent(eventDict['EventID'], eventDict)
-
+    
     '''values = dbRequests.checkLogin('abc123@case.edu','hashed')
     print('Here are the events for the user')
     
