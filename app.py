@@ -37,11 +37,12 @@ def login():
 @app.route('/welcome')
 def welcome():
     return render_template('welcome.html')
-    
+
 @app.route('/newLogin', methods=['POST'])
 def newLogin():
-    if request.form['password'] == 'pass' and request.form['username'] == 'user':
+    if checkLogin(request.form['email'], request.form['password']):
         session['logged_in'] = True
+        session['email'] = request.form['email']
     else:
         flash('wrong password!')
     return redirect('/welcome')
@@ -100,10 +101,10 @@ def requestEvent():
                 'End' : form['end']
             }
             return addNewEvent(eventDict)
-            
-    
-     
-#request to get or set a study plan for a given event Put eventID in the URL. 
+
+
+
+#request to get or set a study plan for a given event Put eventID in the URL.
 @app.route('/request/studyplan',methods=['GET','POST'])
 def setStudyPlan():
     if request.method == 'POST':
