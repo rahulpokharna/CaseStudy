@@ -2,11 +2,12 @@
 <!-- Full Calendar Imports -->
 {% block head %}
 <link rel="stylesheet" href="static/fullCalendar/fullcalendar.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
 <script src="static/fullCalendar/lib/moment.min.js"></script>
 <script src="static/fullCalendar/lib/jquery.min.js"></script>
 <script src="static/fullCalendar/lib/jquery-ui.min.js"></script>
 <script src="static/fullCalendar/fullcalendar.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script src="static/kianCalendar.js"></script>
 <script>
 url = window.location.href
 url = new URL(url)
@@ -18,6 +19,11 @@ function studyPlan(eventID, studyplan){
   }
 };
 </script>
+<style>
+    a {
+        font-family: 'Open Sans', sans-serif;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
@@ -56,14 +62,47 @@ button {
   margin-left: .5em;
 }
 </style>
-   
-
-<b><font size = "6">Study Page</font></b>
-<br>
-<br>
-<a href="https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU"> Link to Google Drive </a>
-<br>
-<br>
+<style type="text/css">
+  button {
+      background-color: #41aff4;
+      border: none;
+      color: #F0F0F0;
+      padding: 0.5em 0.5em;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 1em;
+      cursor:pointer;
+  }
+</style>
+<nav id="menu" style="padding: 1em; background-color: #2b1d4f; display: flex; justify-content: space-between;">
+    <style type = "text/css">
+      .content a {
+          background-color: #41aff4;
+          width: 150px;
+          border: none;
+          color: #F0F0F0;
+          padding: 0.5em 0.5em;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 1em;
+          font-family: 'Open Sans', sans-serif;
+          cursor:pointer;
+      }
+    </style>
+    <div class="content">
+        <a href="study">Study Plan</a>
+    </div>
+    <div class="content">
+        <a href="https://drive.google.com/drive/folders/0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU">Google Drive</a>
+    </div>
+    <div class="content">
+        <a href="calendar">Cancel</a>
+    </div>
+</nav>    
+<nav style="padding: 1em;">
+</nav>
 <form>
 <div>
         <label for="msg">
@@ -71,9 +110,9 @@ button {
         </label>
         <textarea id="msg" name="user_message">
         </textarea>
-    </div>
+</div>
 <div class="button">
-  <button type="submit", id = "studyPlan", onclick="studyPlan()">
+  <button type="submit", id = "studyPlan", onclick="addStudyPlan()">
   Done
   </button> 
 </div>
