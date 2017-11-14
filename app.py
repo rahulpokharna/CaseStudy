@@ -1,7 +1,9 @@
-from flask import Flask, render_template, request, redirect, make_response, jsonify
+from flask import Flask, render_template, request, redirect, make_response, jsonify, session
 from login import LoginForm
 from dbRequests import *
+import os
 app = Flask(__name__)
+app.secret_key = os.urandom(12)
 
 @app.route('/')
 def index():
@@ -31,6 +33,24 @@ def login():
             # print(str(request.form['email']))
             # print(str(request.form['password']))
             return redirect('/')
+
+@app.route('/welcome')
+def welcome():
+    return render_template('welcome.html')
+    
+@app.route('/newLogin', methods=['POST'])
+def newLogin():
+    if request.form['password'] == 'pass' and request.form['username'] == 'user':
+        session['logged_in'] = True
+    else:
+        flash('wrong password!')
+    return redirect('/welcome')
+
+@app.route('/newLogout')
+def newLogout():
+    session['logged_in'] = False
+    return redirect('/welcome')
+
 # This method is to either get event(s) or to create a new one or edit them.
 # for get request request with userId or eventId as url parameters (put it after the url like:
 # localhost://5000/requests/events?userID=1

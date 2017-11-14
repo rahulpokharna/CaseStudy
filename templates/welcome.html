@@ -1,0 +1,18 @@
+<!doctype HTML>
+<html>
+<head>
+</head>
+
+<body>
+	{% if session['logged_in'] %}
+	<p>You have successfully logged in!</p>
+	<a href='/newLogout'>Logout</a>
+	{% else %}
+	<form action="/newLogin" method="POST">
+		<input type="username" name="username" placeholder="Username">
+		<input type="password" name="password" placeholder="Password">
+		<input type="submit" value="Log In">
+	</form>
+	{% endif %}
+</body>
+</html>
