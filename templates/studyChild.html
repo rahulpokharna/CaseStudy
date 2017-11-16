@@ -29,12 +29,6 @@ function studyPlan(eventID, studyplan){
 {% block content %}
 <style>
 
-label {
-  display: inline-block;
-  width: 90px;
-  text-align: right;
-}
-
 input, textarea {
   font: 1em sans-serif;
 
@@ -54,25 +48,21 @@ textarea {
   height: 5em;
 }
 
-.button {
-  padding-left: 90px; /* same size as the label elements */
-}
-
-button {
-  margin-left: .5em;
-}
 </style>
 <style type="text/css">
   button {
-      background-color: #41aff4;
-      border: none;
-      color: #F0F0F0;
-      padding: 0.5em 0.5em;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 1em;
-      cursor:pointer;
+    background-color: #41aff4;
+    width: 150px;
+    margin-left: 160px;
+    border: none;
+    color: #F0F0F0;
+    padding: .5em .5em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+    font-family: 'Open Sans', sans-serif;
+    cursor:pointer;
   }
 </style>
 <nav id="menu" style="padding: 1em; background-color: #2b1d4f; display: flex; justify-content: space-between;">
@@ -103,18 +93,39 @@ button {
 </nav>    
 <nav style="padding: 1em;">
 </nav>
-<form>
-<div>
-        <label for="msg">
-        Study Goals:
-        </label>
-        <textarea id="msg" name="user_message">
-        </textarea>
-</div>
-<div class="button">
-  <button type="submit", id = "studyPlan", onclick="addStudyPlan()">
-  Done
-  </button> 
-</div>
+<style> 
+  textarea {
+      width: 50%;
+      height: 150px;
+      padding: 12px 20px;
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      background-color: #f8f8f8;
+      font-size: 100%;
+      resize: none;
+      font-family: 'Open Sans', sans-serif;
+  }
+  label {
+    display: inline-block;
+    font-size:small;
+    margin-left:5px;
+    width:150px;
+    font-size: 200%;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+  }
+</style>
+<form action="{{ url_for('setStudyPlan') }}" method="post">
+  <div>
+    <label>Study Goals</label>
+    <textarea placeholder="Enter goals here..."></textarea>
+  </div>
+  <div class="button">
+    <button type="submit", id = "studyPlan", onclick="addStudyPlan()">
+    Done
+    </button> 
+  </div>
 </form>
 {% endblock %}
