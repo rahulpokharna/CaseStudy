@@ -47,6 +47,7 @@ def getUserEvents(userID):
         if(type(rowList) != None):
             return rowList
         return ['Failed']
+
 # Edits an event based on the given ID and the dictionary passed in
 def editEvent(eventID,obj):
     
@@ -166,23 +167,41 @@ def canvasConnect(email):
     conn.close()
     return r[0]
     
-
-'''This method is when we implement multiple users'''
 # not implemented for this demo
 def addNewUser(obj):
     # make sure all information is in the correct formats. Date and Time processing can be done here
     #format can be copied for all tables
 
+    #Make sure email is not already in the database
+
+    print('Adding new user')
+
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
     try:
-        c.execute('"INSERT INTO user VALUES({}, {}, {}, {}, {}, {}, {}, {}))'.format(obj['UserID'], obj['Email'], obj['FirstName'], obj ['LastName'], obj['Password'], obj['GoogleID'], obj['CanvasID'], obj['DriveLink']))
+        #Takes default user and replaces values of the default with the input
+        tempUser = defaultUser
+        print(tempUser)
+        for col in obj:
+            tempUser[col] = obj[col]
+        
+        #determines the userID for the new user
+        c.execute('SELECT MAX(userID) FROM user')
+        r = c.fetchone()
+        tempUser['UserID'] = r[0] + 1
+        print(tempUser)
+        c.execute('INSERT INTO user aa VALUES(:UserID, :email, :FirstName, :LastName, :HashedPassword, :GoogleID, :CanvasID, :DriveLink)', tempUser)
+
         conn.commit()
     except Error as e:
         print(e)
+        print(type(e))
+        writeToLog(e)
         conn.rollback()
     finally:
         conn.close()
+        return tempUser['UserID']
+    
 
 # not implemented for demo
 def getProgram(programID):
@@ -193,7 +212,7 @@ def getProgram(programID):
     conn.close()
     return ret
 
-# not implemented for demo
+# Add functionality for programs
 def getStudyLength(StudyType):
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
@@ -240,6 +259,7 @@ def viewStudyPlan(eventID):
         if(type(r) != None):
             return r[0]
         return 'Something went wrong'
+
 # Not implemented for Demo 1
 def addNewProgram(obj): 
     # make sure all information is in the correct formats. Date and Time processing can be done here.
@@ -282,3 +302,13 @@ def makeProgramDict(row):
         tempProgram[name] = row[x]
         x += 1
     return tempProgram
+
+#Preliminary Log file, save the traceback using logging
+def writeToLog(inputError):
+
+    file = open("logfile.txt","w") 
+    file.write(str(inputError))  
+    file.close() 
+    print('Hellooo')
+    print(inputError.with_traceback())
+    

@@ -62,20 +62,35 @@ def queryDB():
     #nameTuple = ()
     #c.execute("SELECT count(*) FROM event")
     #r = c.fetchone()
+
+
     eventDict = {
        'EventID' :3,
        'Title' : 'No Longer a Test',
        'Start' : '2017-10-26T22:53:08Z',
        'End' : '2017-10-26T18:53:08Z'
     }
+
+    userDict = {
+        'email': 'rkp43@case.edu',
+        'FirstName': 'Rahul',
+        'LastName': 'Pokharna', 
+        'HashedPassword': 'password', 
+        'GoogleID': -1, 
+        'CanvasID': -1, 
+        'DriveLink': 'https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU'
+    }
+    
+
     '''nameTuple = tuple(eventDict.values())
     print(eventDict)
     print(eventDict.items())
     print(nameTuple)'''
     
-    
+    dbRequests.addNewUser(userDict)
     
     #result = dbRequests.editStudyEvent(1,'this is a test plan')
+    '''
     result = dbRequests.editEvent(eventDict['EventID'], eventDict)
     print(result)
     print(type(result))
@@ -83,6 +98,7 @@ def queryDB():
         print("uh-oh")
     else:
         print("yay!")
+    '''
 
     # value = dbRequests.viewStudyPlan(1)
     # print(value)
