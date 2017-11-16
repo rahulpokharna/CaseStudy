@@ -4,7 +4,8 @@
 </head>
 <script src="static/formValidation.js"></script>
 <body>
-	{% if session['logged_in'] %}
+    {%  include 'flasher.html' %}
+    {% if session['logged_in'] %}
 	<p>You have successfully logged in!</p>
 	<a href='/logout'>Logout</a>
 	{% else %}

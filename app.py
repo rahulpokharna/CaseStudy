@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, make_response, jsonify, session
+from flask import Flask, render_template, request, redirect, make_response, jsonify, session, flash
 from login import LoginForm
 from dbRequests import *
 import os
@@ -48,6 +48,7 @@ def login():
         session['email'] = request.form['email']
         return redirect('/calendar')
     else:
+        flash('Username or password is incorrect')
         return redirect('/welcome')
 
 @app.route('/logout')
@@ -118,6 +119,14 @@ def setStudyPlan():
     if request.method == 'GET':
         id = request.args.get('eventID')
         return viewStudyPlan('eventID')
+
+@app.route('/register', methods=['POST'])
+def register():
+    if getUser(request.form['email']) is None:
+        addNewUser(request.form)
+        return redirect('/calendar')
+    else:
+        flash('email already taken')
 
 
 @app.route('/home')
