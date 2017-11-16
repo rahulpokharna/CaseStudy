@@ -7,8 +7,11 @@ app.secret_key = os.urandom(12)
 
 @app.route('/')
 def index():
-     form = LoginForm(request.form)
-     return render_template('index.html', form = form)
+    if 'logged_in' in  session and session['logged_in'] == True and session['email'] != None:
+        return redirect('/calendar')
+    else:
+        session['logged_in'] = False
+        return redirect('/welcome')
 
 @app.route('/calendar')
 def calendar():
@@ -18,37 +21,37 @@ def calendar():
 def study():
     return render_template('studyChild.html')
 
-@app.route('/login', methods=['GET','POST'])
-def login():
-    form = LoginForm(request.form)
-    # print('Email: %s' % request.form['email'])
-    # print('Password: %s' % request.form['password'])
-
-    # print('REQUEST: %s' % request.form)
-    if request.method == 'POST' and form.validate():
-        # print('REQUEST: %s' % request.data)
-        if str(request.form['email']) == 'email' and str(request.form['password']) == 'password':
-            return redirect('/calendar')
-        else:
-            # print(str(request.form['email']))
-            # print(str(request.form['password']))
-            return redirect('/')
+# @app.route('/login', methods=['GET','POST'])
+# def login():
+#     form = LoginForm(request.form)
+#     # print('Email: %s' % request.form['email'])
+#     # print('Password: %s' % request.form['password'])
+#
+#     # print('REQUEST: %s' % request.form)
+#     if request.method == 'POST' and form.validate():
+#         # print('REQUEST: %s' % request.data)
+#         if str(request.form['email']) == 'email' and str(request.form['password']) == 'password':
+#             return redirect('/calendar')
+#         else:
+#             # print(str(request.form['email']))
+#             # print(str(request.form['password']))
+#             return redirect('/')
 
 @app.route('/welcome')
 def welcome():
     return render_template('welcome.html')
 
-@app.route('/newLogin', methods=['POST'])
-def newLogin():
+@app.route('/login', methods=['POST'])
+def login():
     if checkLogin(request.form['email'], request.form['password']):
         session['logged_in'] = True
         session['email'] = request.form['email']
+        return redirect('/calendar')
     else:
-        flash('wrong password!')
-    return redirect('/welcome')
+        return redirect('/welcome')
 
-@app.route('/newLogout')
-def newLogout():
+@app.route('/logout')
+def logout():
     session['logged_in'] = False
     return redirect('/welcome')
 

@@ -2,15 +2,15 @@
 <html>
 <head>
 </head>
-
+<script src="static/formValidation.js"></script>
 <body>
 	{% if session['logged_in'] %}
 	<p>You have successfully logged in!</p>
-	<a href='/newLogout'>Logout</a>
+	<a href='/logout'>Logout</a>
 	{% else %}
-	<form action="/newLogin" method="POST">
+	<form action="/login" method="POST">
 		<input type="email" name="email" placeholder="Email">
-		<input type="password" name="password" placeholder="Password">
+		<input type="password" name="password" required>
 		<input type="submit" value="Log In">
 	</form>
 	{% endif %}
