@@ -136,6 +136,8 @@ def checkLogin(email, password):
     c.execute("SELECT hashedpassword FROM user WHERE email = ?", t) 
 
     r = c.fetchone()
+    if r is None:
+        return False
     conn.close()
     if password == r[0]:
         return True
