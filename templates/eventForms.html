@@ -1,32 +1,24 @@
+<script src="static/jquery.validate.js"></script>
+<script src="static/eventForms.js"></script>
+
 <div id="divFormEventNew">
-	<form id="formEventNew" action="/calendar">
-		<div class="inputText">
-			<input type="text" placeholder="Event Title">
-		</div>
-		<div class="inputDateTime">
-			{% include "dateTime.html" %}
-		</div>
-		<div class="inputDateTime">
-			{% include "dateTime.html" %}
-		</div>
-		<div class="inputStudyType">
-			<select>
-				<option>none</option>
-				<option>exam</option>
-				<option>assignment</option>
-				<option>quiz</option>
-			</select>
-		</div>
+	<form id="formEventNew" name="newEventForm" action="/calendar">
+		<label></label>
+		<input type="text" name="newEventTitle" placeholder="Event Title"><br>
+		<input type="text" name="newStartDateTime" placeholder="2017-11-17T12:00:00"><br>
+		<input type="text" name="newEndDateTime" placeholder="2017-11-17T12:00:00"><br>
+		<select name="newStudyType">
+			<option value="none">None</option>
+			<option value="exam">Exam</option>
+			<option value="quiz">Quiz</option>
+			<option value="assignment">Assignment</option>
+		</select><br>
 		<input type="submit" value="Submit">
 		<a href="#" onclick="cancelNewEventForm()">CANCEL</a>
 	</form>
 </div>
 
 <style>
-	a {
-		padding: 1em;
-	}
-
 	#divFormEventNew {
 		border: 2px;
 		border-color: #0000FF;
@@ -38,18 +30,6 @@
 	#formEventNew {
 		position: absolute;
 		right: 0px;
-	}
-
-	.inputText {
-		padding: 1em;
-	}
-
-	.inputDateTime {
-		padding: 1em;
-	}
-
-	.inputStudyType {
-		padding: 1em;
 	}
 </style>
 

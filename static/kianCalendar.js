@@ -26,6 +26,10 @@ $(document).ready(function() {
             var moment = $('#calendar').fullCalendar('getDate');
             $('#date').html(moment.format("MMM D YYYY"));
         },
+        eventClick: function(event, element) {
+            alert(event.title + "CLICKED!");
+            $('#calendar').fullCalendar('updateEvent', event);
+        },
         header: false,
         navLinks: true,
         editable: true
@@ -45,6 +49,14 @@ $(document).ready(function() {
     }
     */
 });
+
+function buttonEventAdd() {
+    $("#inputForm").css("display", "initial");
+}
+
+function closeInputForm() {
+    $("#inputForm").css("display", "none");
+}
 
 function renderEvents() {
     var events = $.ajax({
