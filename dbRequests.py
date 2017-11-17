@@ -23,7 +23,8 @@ def getEvent(eventID):
     
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
-    ret = c.execute("SELECT * FROM event WHERE eventID = {}".format(eventID))
+    t = eventID,
+    ret = c.execute("SELECT * FROM event WHERE eventID = ?",t)
     rowList = []
     for row in ret:
         rowList.append({'EventID':row[0],'Title':row[6],'Start':row[2],'End':row[3], 'StudyType':row[10]})
@@ -35,14 +36,15 @@ def getEvent(eventID):
 def getUserEvents(userID):
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
-    rowList = []
     try:
-        ret = c.execute("SELECT * FROM event WHERE userID = {}".format(userID))
+        t = userID,
+        ret = c.execute("SELECT * FROM event WHERE userID = ?",t)
+        rowList = []
         for row in ret:
             rowList.append({'EventID':row[0],'Title':row[6],'Start':row[2],'End':row[3], 'StudyType':row[10]})
     except Error as e:
         print(e)
-    finally:
+    finally:       
         conn.close()
         if(type(rowList) != None):
             return rowList
@@ -169,18 +171,18 @@ def canvasConnect(email):
     conn.close()
     return r[0]
     
-# not implemented for this demo
+
 def addNewUser(obj):
     # make sure all information is in the correct formats. Date and Time processing can be done here
     #format can be copied for all tables
 
-    #Make sure email is not already in the database
-
-    print('Adding new user')
-
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
     try:
+        
+        #this checks for the email already existing in the database
+
+        
         #Takes default user and replaces values of the default with the input
         tempUser = defaultUser
         print(tempUser)
@@ -192,7 +194,7 @@ def addNewUser(obj):
         r = c.fetchone()
         tempUser['UserID'] = r[0] + 1
         print(tempUser)
-        c.execute('INSERT INTO user aa VALUES(:UserID, :email, :FirstName, :LastName, :HashedPassword, :GoogleID, :CanvasID, :DriveLink)', tempUser)
+        c.execute('INSERT INTO user VALUES(:UserID, :email, :FirstName, :LastName, :HashedPassword, :GoogleID, :CanvasID, :DriveLink)', tempUser)
 
         conn.commit()
     except Error as e:
@@ -233,7 +235,7 @@ def getStudyLength(StudyType):
         return 1
 
 # Returns the tuple of dicts for all events for study events of a user
-
+#define get study events
 
 # Edits the event of the specified ID adding a study plan to it
 def editStudyEvent(eventID, StudyPlan):
