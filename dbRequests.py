@@ -129,13 +129,12 @@ def getUser(email):
     conn.close()
     return r
 
-# Not implemented for demo
+# checks the username and passord sent to the database against what is stored.
 def checkLogin(email, password):
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
 
     t = email,
-    print(t)
     c.execute("SELECT HashedPassword, UserID FROM user WHERE email = ?", t) 
 
     r = c.fetchone()
@@ -147,7 +146,7 @@ def checkLogin(email, password):
     
     return -1
 
-# Not implemented with front end
+# Not implemented for this demo
 # Returns the drive link for a specified user
 def getDriveLink(email):
     conn = sqlite3.connect(DATABASE)
@@ -159,7 +158,7 @@ def getDriveLink(email):
     conn.close()
     return r[0]
     
-# Not implemented in front end
+# Not implemented for this demo
 # Returns an auth key for canvas
 def canvasConnect(email):
     conn = sqlite3.connect(DATABASE)
@@ -185,7 +184,7 @@ def addNewUser(obj):
         
         #Takes default user and replaces values of the default with the input
         tempUser = defaultUser
-        print(tempUser)
+        
         for col in obj:
             tempUser[col] = obj[col]
         
@@ -193,7 +192,6 @@ def addNewUser(obj):
         c.execute('SELECT MAX(userID) FROM user')
         r = c.fetchone()
         tempUser['UserID'] = r[0] + 1
-        print(tempUser)
         c.execute('INSERT INTO user VALUES(:UserID, :email, :FirstName, :LastName, :HashedPassword, :GoogleID, :CanvasID, :DriveLink)', tempUser)
 
         conn.commit()
@@ -216,6 +214,7 @@ def getProgram(programID):
     conn.close()
     return ret
 
+# not implemented for this demo
 # Add functionality for programs
 def getStudyLength(StudyType):
     conn = sqlite3.connect(DATABASE)
@@ -237,6 +236,7 @@ def getStudyLength(StudyType):
 # Returns the tuple of dicts for all events for study events of a user
 #define get study events
 
+#not implemented for testing demo
 # Edits the event of the specified ID adding a study plan to it
 def editStudyEvent(eventID, StudyPlan):
     conn = sqlite3.connect(DATABASE)
@@ -250,6 +250,7 @@ def editStudyEvent(eventID, StudyPlan):
     finally:
         conn.close()
         return eventID
+
 
 # Returns the value of the study plan stored in the DB
 def viewStudyPlan(eventID):
@@ -267,7 +268,7 @@ def viewStudyPlan(eventID):
             return r[0]
         return 'Something went wrong'
 
-# Not implemented for Demo 1
+# Not implemented for this demo
 def addNewProgram(obj): 
     # make sure all information is in the correct formats. Date and Time processing can be done here.
     #format can be copied for all tables
@@ -296,7 +297,7 @@ def makeEventDict(row):
 def makeUserDict(row):
     tempUser = defaultUser
     x = 0
-    for name in eventTable:
+    for name in userTable:
         tempUser[name] = row[x]
         x += 1
     return tempUser
@@ -305,7 +306,7 @@ def makeUserDict(row):
 def makeProgramDict(row):
     tempProgram = defaultProgram
     x = 0
-    for name in eventTable:
+    for name in programTable:
         tempProgram[name] = row[x]
         x += 1
     return tempProgram
