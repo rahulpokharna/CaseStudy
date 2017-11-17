@@ -131,6 +131,7 @@ def register():
         return redirect('/calendar')
     else:
         flash('email already taken')
+        return redirect('/register')
 
 
 @app.route('/home')

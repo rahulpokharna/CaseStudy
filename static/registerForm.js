@@ -2,7 +2,7 @@
 $(function() {
     // Initialize form validation on the registration form.
     // It has the name attribute "registration"
-    $("form[name='registration']").validate({
+    $("#registration").validate({
       // Specify validation rules
       rules: {
         // The key name on the left side is the name attribute
@@ -27,7 +27,7 @@ $(function() {
           minlength: 6
         },
         confirmpassword: {
-          confirmpassword = password
+          equalTo: "#password"
         }
       },
       // Specify validation error messages
