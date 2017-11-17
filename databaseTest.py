@@ -87,7 +87,7 @@ def queryDB():
     print(eventDict.items())
     print(nameTuple)'''
     
-    dbRequests.addNewUser(userDict)
+    #dbRequests.addNewUser(userDict)
     
     #result = dbRequests.editStudyEvent(1,'this is a test plan')
     '''

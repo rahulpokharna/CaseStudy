@@ -134,16 +134,16 @@ def checkLogin(email, password):
 
     t = email,
     print(t)
-    c.execute("SELECT hashedpassword FROM user WHERE email = ?", t) 
+    c.execute("SELECT HashedPassword, UserID FROM user WHERE email = ?", t) 
 
     r = c.fetchone()
     if r is None:
-        return False
+        return -1
     conn.close()
     if password == r[0]:
-        return True
+        return r[1]
     
-    return False
+    return -1
 
 # Not implemented with front end
 # Returns the drive link for a specified user
