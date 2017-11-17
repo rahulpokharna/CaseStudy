@@ -1,0 +1,104 @@
+<div id="divFormEventNew">
+	<form id="formEventNew" action="/calendar">
+		<div class="inputText">
+			<input type="text" placeholder="Event Title">
+		</div>
+		<div class="inputDateTime">
+			{% include "dateTime.html" %}
+		</div>
+		<div class="inputDateTime">
+			{% include "dateTime.html" %}
+		</div>
+		<div class="inputStudyType">
+			<select>
+				<option>none</option>
+				<option>exam</option>
+				<option>assignment</option>
+				<option>quiz</option>
+			</select>
+		</div>
+		<input type="submit" value="Submit">
+		<a href="#" onclick="cancelNewEventForm()">CANCEL</a>
+	</form>
+</div>
+
+<style>
+	a {
+		padding: 1em;
+	}
+
+	#divFormEventNew {
+		border: 2px;
+		border-color: #0000FF;
+		display: none;
+		background-color: #FFFFFF;
+		z-index: 2;
+	}
+
+	#formEventNew {
+		position: absolute;
+		right: 0px;
+	}
+
+	.inputText {
+		padding: 1em;
+	}
+
+	.inputDateTime {
+		padding: 1em;
+	}
+
+	.inputStudyType {
+		padding: 1em;
+	}
+</style>
+
+<div id="divFormEventEdit">
+	<form id="formEventEdit">
+		<div class="inputText"></div>
+		<div class="inputDateTime"></div>
+		<div class="inputDateTime"></div>
+		<div class="inputStudyType">
+			<a>none</a>
+			<a>exam</a>
+			<a>assignment</a>
+			<a>quiz</a>
+		</div>
+		<a href="#" onclick="">SUBMIT BUTTON</a>
+	</form>
+</div>
+
+<style>
+	#divFormEventEdit {
+		display: none;
+	}
+
+	#formEventEdit {
+	}
+</style>
+
+<div id="divButtonEventNew">
+	<button id="buttonEventNew" onclick="buttonEventNew()">(<)</button>
+</div>
+
+<style>
+	#divButtonEventNew {
+	}
+
+	#buttonEventNew {
+	}
+</style>
+
+<script>
+
+</script>
+
+<!--
+JS code for edit event after click
+
+eventClick: function(event, element) {
+	event.title = "CLICKED!";
+	$('#calendar').fullCalendar('updateEvent', event);
+}
+
+-->
