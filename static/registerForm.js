@@ -33,11 +33,11 @@ $(function() {
       // Specify validation error messages
       messages: {
         FirstName: {
-          required: true,
+          required: "Please provide a first name",
           maxlength: "First name must be less than 30 characters"
         },
         LastName: {
-          required: true,
+          required: "Please provide a last name",
           maxlength: "Last name must be less than 30 characters"
         },
         password: {
