@@ -23,16 +23,6 @@ $("#formEventNew").submit(function() {
 	}
 });
 
-function addFormEvent(formId) {
-	
-}
-
-function validateNewFormInputs() {
-	var title = $("#newEventTitle").val();
-	alert(title);
-	return true;
-}
-
 function dateTimetoMoment(day, month, year, hour, minute, ampm) {
 	//2017-12-25T15:00:00
 	return year + "-" + month + "-" + day + "T" + hour + ":" + minute + ":00"
@@ -41,16 +31,16 @@ function dateTimetoMoment(day, month, year, hour, minute, ampm) {
 $(function() {
 	$("form[name='newEventForm']").validate({
     	rules: {
-      		newEventTitle: {
+      		title: {
       			required: true,
       			maxlength: 12
       		},
-  			newStartDateTime: {
+  			start: {
   				required: true,
   				minlength: 19,
   				maxlength: 19
   			},
-  			newEndDateTime: {
+  			end: {
   				required: true,
   				minlength: 19,
   				maxlength: 19

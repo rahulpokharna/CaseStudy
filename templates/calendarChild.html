@@ -1,7 +1,7 @@
 {% extends "calendarDesign.html" %}
 {% block title %}Test{% endblock %}
 {% block head %}
-<!-- Full Calendar Imports -->
+    <!-- Full Calendar Imports -->
     <link rel="stylesheet" href="static/fullCalendar/fullcalendar.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     <script src="static/fullCalendar/lib/moment.min.js"></script>
@@ -14,6 +14,12 @@
             font-family: 'Open Sans', sans-serif;
         }
     </style>
+    <script>
+        function setUserId(){
+            var userId =  {{  session['userId'] }}
+            localStorage.userId = userId.valueOf()
+        }
+    </script>
 {% endblock %}
 {% block header %}
     <style type="text/css">
@@ -51,6 +57,7 @@
             z-index: 2;
         }
     </style>
+    
     <nav id="menu" style="padding: 1em; background-color: #2b1d4f; display: flex; justify-content: space-between;">
         <div id="navigation">
             <button id="prev" type="button" class="dateChange" onclick="$('#calendar').fullCalendar('prev');"><</button>
@@ -80,6 +87,6 @@
         </div>
     </div>
     <button id="buttonEventAdd" type="button" onclick="buttonEventAdd()">Add Event</button-->
-    <div id="calendar"></div>
     {% include "eventForms.html" %}
+    <div id="calendar"></div>
 {% endblock %}

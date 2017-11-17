@@ -4,10 +4,10 @@
 <div id="divFormEventNew">
 	<form id="formEventNew" name="newEventForm" action="/calendar">
 		<label></label>
-		<input type="text" name="newEventTitle" placeholder="Event Title"><br>
-		<input type="text" name="newStartDateTime" placeholder="2017-11-17T12:00:00"><br>
-		<input type="text" name="newEndDateTime" placeholder="2017-11-17T12:00:00"><br>
-		<select name="newStudyType">
+		<input type="text" name="title" placeholder="Event Title"><br>
+		<input type="text" name="start" placeholder="2017-11-17T12:00:00"><br>
+		<input type="text" name="end" placeholder="2017-11-17T12:00:00"><br>
+		<select name="type">
 			<option value="none">None</option>
 			<option value="exam">Exam</option>
 			<option value="quiz">Quiz</option>
@@ -20,31 +20,36 @@
 
 <style>
 	#divFormEventNew {
-		border: 2px;
-		border-color: #0000FF;
 		display: none;
 		background-color: #FFFFFF;
-		z-index: 2;
+		z-index: 3;
 	}
 
 	#formEventNew {
+		border-style: solid;
+		border-color: #0000FF;
 		position: absolute;
+		background-color: #FFFFFF;
 		right: 0px;
+		z-index: 3;
 	}
 </style>
 
 <div id="divFormEventEdit">
-	<form id="formEventEdit">
-		<div class="inputText"></div>
-		<div class="inputDateTime"></div>
-		<div class="inputDateTime"></div>
-		<div class="inputStudyType">
-			<a>none</a>
-			<a>exam</a>
-			<a>assignment</a>
-			<a>quiz</a>
+	<form id="formEventEdit" name="editEventForm" action="/calendar">
+		<label></label>
+		<input type="text" id="editTitle" name="title" placeholder="Event Title"><br>
+		<input type="text" id="editStart" name="start" placeholder="2017-11-17T12:00:00"><br>
+		<input type="text" id="editEnd"  name="end" placeholder="2017-11-17T12:00:00"><br>
+		<select name="type">
+			<option value="none">None</option>
+			<option value="exam">Exam</option>
+			<option value="quiz">Quiz</option>
+			<option value="assignment">Assignment</option>
+		</select><br>
+		<input type="submit" value="Submit">
+		<a href="#" onclick="hideEventEdit()">CANCEL</a>
 		</div>
-		<a href="#" onclick="">SUBMIT BUTTON</a>
 	</form>
 </div>
 
@@ -63,9 +68,14 @@
 
 <style>
 	#divButtonEventNew {
+		position: relative;
+		z-index: 2;
 	}
 
 	#buttonEventNew {
+		position: absolute;
+		right: 0px;
+		z-index: 2;	
 	}
 </style>
 

@@ -27,7 +27,9 @@ $(document).ready(function() {
             $('#date').html(moment.format("MMM D YYYY"));
         },
         eventClick: function(event, element) {
-            alert(event.title + "CLICKED!");
+            alert(event.title)
+            showEventEdit();
+            $("#editEventForm input.editTitle").val(event.title);
             $('#calendar').fullCalendar('updateEvent', event);
         },
         header: false,
@@ -59,10 +61,11 @@ function closeInputForm() {
 }
 
 function renderEvents() {
+    setUserId()
     var events = $.ajax({
         type: "GET",
         url: "request/events",
-        data: {userID: 1},
+        data: {userID: localStorage.userId},
         async: false});
 
     var parsedEvents = JSON.parse(events.responseText);
@@ -102,7 +105,8 @@ function addAnEvent(title, start, end) {
         type: 'POST',
         url: "request/events",
         data: {title: title, start: start, end: end},
-        async: false});
+        async: false}
+    );
     var event = makeEvent(title, start, end, eventID);
     $('#calendar').fullCalendar('renderEvent', event);
 }
@@ -125,7 +129,10 @@ function editEvent(id, title, start, end) {
         type: 'POST',
         url: "request/events",
         data: {title: title, start: start, end: end, id: id},
-        async: false});
+        async: false
+    });
+    var event = makeEvent(title, start, end, id);
+    $('#calendar').fullCalendar('renderEvent', event);
 }
 
 function notifyEvent() {
@@ -156,3 +163,36 @@ function removeEvent() {
         idnum--;
     }
 }
+
+function showEventEdit() {
+    $("#divFormEventEdit").css("display", "initial");
+}
+
+function hideEventEdit() {
+    $("#divFormEventEdit").css("display", "none");
+}
+
+$(function() {
+    $("form[name='editEventForm']").validate({
+        rules: {
+            title: {
+                required: true,
+                maxlength: 12
+            },
+            start: {
+                required: true,
+                minlength: 19,
+                maxlength: 19
+            },
+            end: {
+                required: true,
+                minlength: 19,
+                maxlength: 19
+            }
+        },
+        submitHandler: function(form) {
+            form.submit();
+        }
+    });
+});
+
