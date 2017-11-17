@@ -1,0 +1,25 @@
+
+<!doctype HTML>
+<html>
+<head>
+</head>
+<script src="static/formValidation.js"></script>
+<body>
+    {%  include 'flasher.html' %}
+    {% if session['logged_in'] %}
+	<p>You have successfully logged in!</p>
+	<a href='/logout'>Logout</a>
+	{% else %}
+	<form action="/login" method="POST">
+		<input type="email" name="email" placeholder="Email">
+		<input type="First Name" name="First Name" placeholder="First Name">
+		<input type="Last Name" name="First Name" placeholder="Last Name">
+		<input type="password" name="password" required placeholder="password">
+		<input type="confirm password" name="confirm password" required placeholder="confirm password">
+		<input type="submit" value="Log In">
+		
+	</form>
+	{% endif %}
+</body>
+</html>
+

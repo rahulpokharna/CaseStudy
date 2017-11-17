@@ -232,6 +232,9 @@ def getStudyLength(StudyType):
     else:
         return 1
 
+# Returns the tuple of dicts for all events for study events of a user
+
+
 # Edits the event of the specified ID adding a study plan to it
 def editStudyEvent(eventID, StudyPlan):
     conn = sqlite3.connect(DATABASE)
