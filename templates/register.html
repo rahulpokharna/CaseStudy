@@ -3,23 +3,20 @@
 <html>
 <head>
 </head>
-<script src="jquery.validate.js"></script>
+<script src="static/fullCalendar/lib/jquery.min.js"></script>
+<script src="static/jquery.validate.js"></script>
+<script src="static/registerForm.js"></script>
 <body>
     {%  include 'flasher.html' %}
-    {% if session['logged_in'] %}
-	<p>You have successfully logged in!</p>
-	<a href='/logout'>Logout</a>
-	{% else %}
-	<form name="registration" action="/register" method="POST">
+    <form id="registration" name="registration" action="/register" method="POST">
 		<input type="email" name="email" placeholder="Email">
 		<input type="FirstName" name="FirstName" placeholder="First Name">
 		<input type="LastName" name="LastName" placeholder="Last Name">
 		<input type="password" name="HashedPassword" required placeholder="password">
-		<input type="password" name="confirmpassword" required placeholder="confirm password">
+		<input id="password" type="password" name="confirmpassword" required placeholder="confirm password">
 		<input type="submit" value="Log In">
 		
 	</form>
-	{% endif %}
 </body>
 </html>
 

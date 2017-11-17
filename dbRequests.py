@@ -171,7 +171,7 @@ def canvasConnect(email):
     return r[0]
     
 
-def addNewUser(obj):
+def     addNewUser(obj):
     # make sure all information is in the correct formats. Date and Time processing can be done here
     #format can be copied for all tables
 

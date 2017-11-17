@@ -7,7 +7,7 @@ app.secret_key = os.urandom(12)
 
 @app.route('/')
 def index():
-    if 'logged_in' in  session and session['logged_in'] == True and session['email'] != None:
+    if validateSession():
         return redirect('/calendar')
     else:
         session['logged_in'] = False
@@ -15,7 +15,10 @@ def index():
 
 @app.route('/calendar')
 def calendar():
-    return render_template('calendarChild.html')
+    if validateSession():
+        return render_template('calendarChild.html')
+    else:
+        return redirect('/welcome')
 
 @app.route('/study')
 def study():
@@ -128,14 +131,23 @@ def register():
         return render_template('register.html')
     if getUser(request.form['email']) is None:
         addNewUser(request.form)
-        return redirect('/calendar')
+        return redirect('/welcome')
     else:
         flash('email already taken')
+        return redirect('/register')
 
 
-@app.route('/home')
-def home():
-    return render_template('home.html')
+# @app.route('/home')
+# def home():
+#     return render_template('home.html')
+
+def validateSession():
+    if 'logged_in' in session and session['logged_in'] == True and session['email'] != None:
+        return True
+    else:
+        session['logged_in'] = False
+        return False
+
 
 if __name__ == "__main__":
     app.run()
