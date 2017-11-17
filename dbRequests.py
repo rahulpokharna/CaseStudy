@@ -172,7 +172,7 @@ def canvasConnect(email):
     return r[0]
     
 
-def addNewUser(obj):
+def     addNewUser(obj):
     # make sure all information is in the correct formats. Date and Time processing can be done here
     #format can be copied for all tables
 
@@ -185,7 +185,7 @@ def addNewUser(obj):
         
         #Takes default user and replaces values of the default with the input
         tempUser = defaultUser
-        print(tempUser)
+        # print(tempUser)
         for col in obj:
             tempUser[col] = obj[col]
         
@@ -193,7 +193,7 @@ def addNewUser(obj):
         c.execute('SELECT MAX(userID) FROM user')
         r = c.fetchone()
         tempUser['UserID'] = r[0] + 1
-        print(tempUser)
+        # print(tempUser)
         c.execute('INSERT INTO user VALUES(:UserID, :email, :FirstName, :LastName, :HashedPassword, :GoogleID, :CanvasID, :DriveLink)', tempUser)
 
         conn.commit()
