@@ -59,10 +59,11 @@ function closeInputForm() {
 }
 
 function renderEvents() {
+    setUserId()
     var events = $.ajax({
         type: "GET",
         url: "request/events",
-        data: {userID: 1},
+        data: {userID: localStorage.userId},
         async: false});
 
     var parsedEvents = JSON.parse(events.responseText);

@@ -2,14 +2,15 @@
 <html>
 <head>
 </head>
-<script src="static/formValidation.js"></script>
+<script src="static/sessionControl.js"></script>
 <body>
     {%  include 'flasher.html' %}
     {% if session['logged_in'] %}
 	<p>You have successfully logged in!</p>
 	<a href='/logout'>Logout</a>
 	{% else %}
-	<form action="/login" method="POST">
+	<a href="/register">Sign Up</a>
+    <form action="/login" method="POST">
 		<input type="email" name="email" placeholder="Email">
 		<input type="password" name="password" required>
 		<input type="submit" value="Log In">

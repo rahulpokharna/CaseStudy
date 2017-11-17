@@ -35,14 +35,14 @@ def getEvent(eventID):
 def getUserEvents(userID):
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
+    rowList = []
     try:
         ret = c.execute("SELECT * FROM event WHERE userID = {}".format(userID))
-        rowList = []
         for row in ret:
             rowList.append({'EventID':row[0],'Title':row[6],'Start':row[2],'End':row[3], 'StudyType':row[10]})
     except Error as e:
         print(e)
-    finally:       
+    finally:
         conn.close()
         if(type(rowList) != None):
             return rowList
