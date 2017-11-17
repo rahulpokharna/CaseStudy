@@ -25,6 +25,9 @@ $(function() {
         password: {
           required: true,
           minlength: 6
+        },
+        confirmpassword: {
+          confirmpassword = password
         }
       },
       // Specify validation error messages
@@ -35,7 +38,8 @@ $(function() {
           required: "Please provide a password",
           minlength: "Your password must be at least 5 characters long"
         },
-        email: "Please enter a valid email address"
+        email: "Please enter a valid email address",
+        confirmpassword: "Must be the same as password"
       },
       // Make sure the form is submitted to the destination defined
       // in the "action" attribute of the form when valid
