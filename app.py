@@ -43,9 +43,11 @@ def welcome():
 
 @app.route('/login', methods=['POST'])
 def login():
-    if checkLogin(request.form['email'], request.form['password']):
+    userId = checkLogin(request.form['email'], request.form['password'])
+    if userId != -1:
         session['logged_in'] = True
         session['email'] = request.form['email']
+        session['userId'] = userId
         return redirect('/calendar')
     else:
         flash('Username or password is incorrect')
@@ -120,8 +122,10 @@ def setStudyPlan():
         id = request.args.get('eventID')
         return viewStudyPlan('eventID')
 
-@app.route('/register', methods=['POST'])
+@app.route('/register', methods=['GET','POST'])
 def register():
+    if request.method == 'GET':
+        return render_template('register.html')
     if getUser(request.form['email']) is None:
         addNewUser(request.form)
         return redirect('/calendar')
