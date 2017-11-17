@@ -32,8 +32,14 @@ $(function() {
       },
       // Specify validation error messages
       messages: {
-        FirstName: "First name must be less than 30 characters",
-        LastName: "Last name must be less than 30 characters",
+        FirstName: {
+          required: true,
+          maxlength: "First name must be less than 30 characters"
+        },
+        LastName: {
+          required: true,
+          maxlength: "Last name must be less than 30 characters"
+        },
         password: {
           required: "Please provide a password",
           minlength: "Your password must be at least 5 characters long"
