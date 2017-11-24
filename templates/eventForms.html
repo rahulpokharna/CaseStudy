@@ -2,17 +2,18 @@
 <script src="static/eventForms.js"></script>
 
 <div id="divFormEventNew">
-	<form id="formEventNew" name="newEventForm" action="/calendar">
+	<form id="formEventNew" name="newEventForm" method="post" action="/request/events">
 		<label></label>
-		<input type="text" name="title" placeholder="Event Title"><br>
-		<input type="text" name="start" placeholder="2017-11-17T12:00:00"><br>
-		<input type="text" name="end" placeholder="2017-11-17T12:00:00"><br>
-		<select name="type">
-			<option value="none">None</option>
+		<input type="hidden" name="UserID" value={{  session['userId'] }}>
+        <input type="text" name="Title" placeholder="Event Title"><br>
+		<input type="datetime-local" class="myCurrentDate" name="Start"><br>
+		<input type="datetime-local" class="myCurrentDate" name="End"><br>
+        <select name="StudyType">
 			<option value="exam">Exam</option>
-			<option value="quiz">Quiz</option>
-			<option value="assignment">Assignment</option>
-		</select><br>
+            <option value="quiz">Quiz</option>
+            <option value="assignment">Assignment</option>
+            <option value="other">Other</option>
+        </select><br>
 		<input type="submit" value="Submit">
 		<a href="#" onclick="cancelNewEventForm()">CANCEL</a>
 	</form>

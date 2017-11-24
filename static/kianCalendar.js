@@ -37,6 +37,12 @@ $(document).ready(function() {
         editable: true
     });
 
+    //store the current time for default form values
+    var now = new Date();
+    localStorage.currentTime = [[now.getFullYear(), AddZero(now.getMonth()+1), AddZero(now.getDate())].join("-"),[AddZero(now.getHours()),
+        AddZero(now.getMinutes())].join(":")].join("T");
+
+
     // GET DISPLAY TYPE AND CHANGE DATE ACCORDINGLY
 
     //console.log(parsedEvents);
@@ -51,6 +57,11 @@ $(document).ready(function() {
     }
     */
 });
+
+//Pad given value to the left with "0"
+function AddZero(num) {
+    return (num >= 0 && num < 10) ? "0" + num : num + "";
+}
 
 function buttonEventAdd() {
     $("#inputForm").css("display", "initial");

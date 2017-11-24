@@ -1,6 +1,10 @@
 function buttonEventNew() {
 	$("#divFormEventNew").css("display", "initial");
 	$("#buttonEventNew").text("(>)");
+	datetimes = document.getElementsByClassName("myCurrentDate")
+	for(var i = 0; i < datetimes.length; i++){
+		datetimes[i].value = localStorage.currentTime
+	}
 }
 
 function submitNewEventForm() {

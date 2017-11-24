@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, make_response, jsonify, session, flash
 from login import LoginForm
 from dbRequests import *
+from requestHelpers import *
 import os
 app = Flask(__name__)
 app.secret_key = os.urandom(12)
@@ -104,12 +105,8 @@ def requestEvent():
             return editEvent(form['id'],eventDict)
         else:
             #adding an event, not editting one.
-            eventDict = {
-                'Title' : form['title'],
-                'Start' : form['start'],
-                'End' : form['end']
-            }
-            return addNewEvent(eventDict)
+            print(form)
+            return addEventRequest(form)
 
 
 
