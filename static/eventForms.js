@@ -18,6 +18,17 @@ function cancelNewEventForm() {
 	$("#buttonEventNew").text("(<)");
 }
 
+function deleteEvent() {
+    var eventID = $("#eventToDelete")[0].value
+	console.log(eventID)
+	$.ajax({
+        type: 'GET',
+        url: "request/events",
+        data: {eventID: eventID, delete: true},
+        async: false});
+    $('#calendar').fullCalendar( 'refetchEvents' );
+}
+
 $("#formEventNew").submit(function() {
 	if (validateNewFormInputs()) {
 		//addFormEvent();

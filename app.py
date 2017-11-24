@@ -66,15 +66,13 @@ def logout():
 # for get request request with userId or eventId as url parameters (put it after the url like:
 # localhost://5000/requests/events?userID=1
 # for post request put the event object as the form. so form.title is the event's title, etc.
-@app.route('/request/events', methods=['GET','POST','DELETE'])
+@app.route('/request/events', methods=['GET','POST'])
 def requestEvent():
     #request with userID or eventID given as url parameters. If eventId is not given, this will return all events for this user.
     if request.method == 'GET':
         delete = request.args.get('delete')
         if delete == 'true':
-            #delete this event.
-            eventID = request.args.get('eventID')
-            return deleteEvent(eventID)
+            return deleteEvent(request.args.get('eventID')  )
         else:
             userID = request.args.get('userID')
             eventID = request.args.get('eventID')

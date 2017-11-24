@@ -27,7 +27,7 @@ $(document).ready(function() {
             $('#date').html(moment.format("MMM D YYYY"));
         },
         eventClick: function(event, element) {
-            alert(event.title)
+            // alert(event.title)
             showEventEdit();
             //set default values for edit event form
             var start = event.start.format()
