@@ -57,6 +57,7 @@ $(document).ready(function() {
     localStorage.currentTime = [[now.getFullYear(), AddZero(now.getMonth()+1), AddZero(now.getDate())].join("-"),[AddZero(now.getHours()),
         AddZero(now.getMinutes())].join(":")].join("T");
 
+    notificationLoop();
 
     // GET DISPLAY TYPE AND CHANGE DATE ACCORDINGLY
 
@@ -86,8 +87,49 @@ function closeInputForm() {
     $("#inputForm").css("display", "none");
 }
 
+//this looop keeps running in the backgroudn of the clients browser, and will send a notification when an envent is happeninging.
+function notificationLoop(){
+    var allEvents = JSON.parse(localStorage.allEvents);
+
+    allEvents.sort(function(a,b){
+        a = new Date(a.start);
+        b = new Date(b.start);
+
+        if(a>b){
+            return 1;
+        }else if(b>a){
+            return -1;
+        }else{
+            return 0;
+        }
+    });
+    var now = new Date();
+    var allFutureEvents=[];
+    for(i in allEvents){
+        var event = allEvents[i];
+        var eventDate = new Date(event.start);
+        if(now < eventDate){
+            allFutureEvents.push(event)
+        }
+    }
+    function loopy(){
+        now = new Date();
+        console.log(allFutureEvents.length)
+        while(allFutureEvents.length != 0 && new Date(allFutureEvents[0].start) < now){
+            alert(allFutureEvents.shift().title);
+        }
+
+    }
+    setInterval(loopy,30000);
+
+
+
+}
+
+
+
 function renderEvents() {
-    setUserId()
+    setUserId();
     var events = $.ajax({
         type: "GET",
         url: "request/events",
@@ -95,12 +137,15 @@ function renderEvents() {
         async: false});
 
     var parsedEvents = JSON.parse(events.responseText);
-
+    var allEvents = []
     for (parsedEvent in parsedEvents) {
         var event = parsedEvents[parsedEvent];
         var parsedEvent = makeEvent(event['Title'], event['Start'], event['End'], event['EventID']);
+        allEvents.push(parsedEvent)
         $('#calendar').fullCalendar('renderEvent', parsedEvent);
     }
+    //add all the events to local storage so i can access them for notifications
+    localStorage.allEvents = JSON.stringify(allEvents);
 }
 
 function makeEvent(title, start, end, id) {
