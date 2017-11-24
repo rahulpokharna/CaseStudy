@@ -29,6 +29,21 @@ $(document).ready(function() {
         eventClick: function(event, element) {
             alert(event.title)
             showEventEdit();
+            //set default values for edit event form
+            var start = event.start.format()
+            if(start.endsWith("Z")){
+                start = start.substr(0,start.length-1)
+            }
+
+            var end = event.end.format()
+            if(end.endsWith("Z")){
+                end = end.substr(0,end.length-1)
+            }
+
+            $("#formEventEdit input[name=Start]").val(start)
+            $("#formEventEdit input[name=End]").val(end)
+            $("#formEventEdit input[name=Title]").val(event.title)
+            $("#formEventEdit input[name=EventID]").val(event.id)
             $("#editEventForm input.editTitle").val(event.title);
             $('#calendar').fullCalendar('updateEvent', event);
         },

@@ -95,14 +95,7 @@ def requestEvent():
         form = request.form
         #make a dictionary that can be put into the db. https://fullcalendar.io/docs/event_data/Event_Object/
         if 'id' in form:
-            #trying to edit an event, not add one.
-            eventDict ={
-                'EventID' : form['id'],
-                'Title' : form['title'],
-                'Start' : form['start'],
-                'End' : form['end']
-            }
-            return editEvent(form['id'],eventDict)
+            return editEventRequest(form)
         else:
             #adding an event, not editting one.
             print(form)
