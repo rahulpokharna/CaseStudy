@@ -46,7 +46,7 @@ def getUserEvents(userID):
         print(e)
     finally:       
         conn.close()
-        if(type(rowList) != None):
+        if(type(rowList) is not None):
             return rowList
         return ['Failed']
 
@@ -122,29 +122,34 @@ def getUser(email):
     
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
-
-    t = email,
-    c.execute("SELECT * FROM user WHERE email = ?", t)
-    r = c.fetchone()
-    conn.close()
-    return r
+    try:
+        t = email,
+        c.execute("SELECT * FROM user WHERE email = ?", t)
+        r = c.fetchone()
+    except Error as e:
+        print(e)
+    finally:
+        conn.close()
+        return r
 
 # checks the username and passord sent to the database against what is stored.
 def checkLogin(email, password):
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
+    try:
+        t = email,
+        c.execute("SELECT HashedPassword, UserID FROM user WHERE email = ?", t) 
 
-    t = email,
-    c.execute("SELECT HashedPassword, UserID FROM user WHERE email = ?", t) 
-
-    r = c.fetchone()
-    if r is None:
+        r = c.fetchone()
+        if r is None:
+            return -1
+    except Error as e:
+        print(e)
+    finally:
+        conn.close()
+        if password == r[0]:
+            return r[1]        
         return -1
-    conn.close()
-    if password == r[0]:
-        return r[1]
-    
-    return -1
 
 # Not implemented for this demo
 # Returns the drive link for a specified user
@@ -161,6 +166,9 @@ def getDriveLink(email):
 # Not implemented for this demo
 # Returns an auth key for canvas
 def canvasConnect(email):
+    
+    # https://canvas.instructure.com/doc/api/calendar_events.html
+    # https://canvas.instructure.com/doc/api/file.oauth.html
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
     
@@ -171,7 +179,7 @@ def canvasConnect(email):
     return r[0]
     
 
-def     addNewUser(obj):
+def addNewUser(obj):
     # make sure all information is in the correct formats. Date and Time processing can be done here
     #format can be copied for all tables
 
@@ -203,38 +211,107 @@ def     addNewUser(obj):
     finally:
         conn.close()
         return tempUser['UserID']
-    
 
-# not implemented for demo
-def getProgram(programID):
+#delete a user
+def deleteUser(UserID):
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
-    #need to edit later, perhaps create a 'global' c value, as defined above
-    ret = c.execute("SELECT * FROM program WHERE programID = {}".format(programID))
-    conn.close()
-    return ret
+
+    try:
+        t = UserID,
+        c.execute('DELETE FROM user WHERE userID = ?',t)
+        c.execute('DELETE FROM program WHERE userID = ?',t)
+        c.execute('DELETE FROM event WHERE userID = ?',t)
+        
+        conn.commit()
+    except Error as e:
+        print(e)
+        conn.rollback()
+    finally:
+        conn.close()
+        return ProgramID
+#Edit a user
+def editUser(userID,obj):
+    
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+
+    try:
+        t = userID,
+        c.execute('SELECT * FROM user WHERE userID =?',t)
+        r = c.fetchone()
+        tempUser = makeUserDict(r)
+        for col in obj:
+            tempUser[col] = obj[col]
+        c.execute('DELETE FROM user WHERE userID=?',t)
+        c.execute('INSERT INTO user VALUES(:UserID, :email, :FirstName, :LastName, :HashedPassword, :GoogleID, :CanvasID, :DriveLink)', tempUser)
+        conn.commit()
+        retVal = userID
+    except Error as e:
+        print(e)
+        conn.rollback()
+        retVal = e
+    finally:
+        conn.close()
+        return retVal
+
+# not implemented for demo
+def getProgram(ProgramID):
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+    try:
+        t = ProgramID,
+        c.execute("SELECT * FROM program WHERE ProgramID = ?",t)
+        r = c.fetchone()
+        ret = makeProgramDict(r)
+    except Error as e:
+        print(e)
+    finally:
+        conn.close()
+        if type(ret) is not None:
+            return ret
+        else:
+            return 'Failed'
 
 # not implemented for this demo
 # Add functionality for programs
-def getStudyLength(StudyType):
+def getStudyLength(StudyType, ProgramID):
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
-    #need to edit later, perhaps create a 'global' c value, as defined above
-    c.execute("SELECT * FROM program WHERE programID = 1")
-    r = c.fetchone()
-    conn.close()
-
-    if StudyType.lower() == 'exam':
-        return r[4]
-    elif StudyType.lower() == 'assignment':
-        return r[5]
-    elif StudyType.lower() == 'quiz':
-        return r[6]
-    else:
-        return 1
+    try:
+        t = ProgramID,
+        c.execute("SELECT * FROM program WHERE ProgramID = ?", t)
+        r = c.fetchone()
+    except Error as e:
+        print(e)
+    finally:
+        conn.close()       
+        if StudyType.lower() == 'exam':
+            return r[4]
+        elif StudyType.lower() == 'assignment':
+            return r[5]
+        elif StudyType.lower() == 'quiz':
+            return r[6]
+        else:
+            return 1
 
 # Returns the tuple of dicts for all events for study events of a user
 #define get study events
+def getStudyEvents(userID):
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+    try:
+        ret = c.execute("SELECT * FROM event WHERE StudyType = 'exam' OR StudyType = 'quiz' or StudyType = 'assignment'")
+        rowList = []
+        for row in ret:
+            rowList.append({'EventID':row[0],'Title':row[6],'Start':row[2],'End':row[3], 'StudyType':row[10]})
+    except Error as e:
+        print(e)
+    finally:       
+        conn.close()
+        if(type(rowList) is not None):
+            return rowList
+        return ['Failed']
 
 #not implemented for testing demo
 # Edits the event of the specified ID adding a study plan to it
@@ -264,25 +341,75 @@ def viewStudyPlan(eventID):
         print(e)
     finally:
         conn.close()
-        if(type(r) != None):
+        if(type(r) is not None):
             return r[0]
         return 'Something went wrong'
 
 # Not implemented for this demo
 def addNewProgram(obj): 
-    # make sure all information is in the correct formats. Date and Time processing can be done here.
-    #format can be copied for all tables
-
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
     try:
-        c.execute('"INSERT INTO program VALUES({}, {}, {}, {}, {}, {}, {}))'.format(obj['ProgramID'], obj['UserID'], obj['Description'], obj['Notes'], obj['ExamLength'], obj['AssignmentLength'], obj['QuizLength']))
+        tempProgram = defaultProgram
+        
+        for col in obj:
+            tempProgram[col] = obj[col]
+        
+        c.execute('SELECT MAX(ProgramID) FROM program')
+        r = c.fetchone()
+        tempProgram['ProgramID'] = r[0] + 1
+        c.execute('INSERT INTO user VALUES(:ProgramID, :UserID, :Description, :Notes, :ExamLength, :AssignmentLength, :QuizLength)', tempProgram)
+
+        conn.commit()
+    except Error as e:
+        print(e)
+        writeToLog(e)
+        conn.rollback()
+    finally:
+        conn.close()
+        return tempProgram['ProgramID']
+
+#Delete an existing program
+def deleteProgram(ProgramID):
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+
+    try:
+        t = ProgramID,
+        c.execute('DELETE FROM program WHERE programID = ?',t)
+        
         conn.commit()
     except Error as e:
         print(e)
         conn.rollback()
     finally:
         conn.close()
+        return ProgramID
+
+#Edit a program
+def editProgram(ProgramID,obj):
+    
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+
+    try:
+        t = ProgramID,
+        c.execute('SELECT * FROM program WHERE programID =?',t)
+        r = c.fetchone()
+        tempProgram = makeProgramDict(r)
+        for col in obj:
+            tempProgram[col] = obj[col]
+        c.execute('DELETE FROM program WHERE programID=?',t)
+        c.execute('INSERT INTO user VALUES(:ProgramID, :UserID, :Description, :Notes, :ExamLength, :AssignmentLength, :QuizLength)', tempProgram)
+        conn.commit()
+        retVal = ProgramID
+    except Error as e:
+        print(e)
+        conn.rollback()
+        retVal = e
+    finally:
+        conn.close()
+        return retVal
 
 # Helper Method for converting tuple rows into dictionaries for events
 def makeEventDict(row):
