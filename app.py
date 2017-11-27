@@ -23,7 +23,10 @@ def calendar():
 
 @app.route('/study')
 def study():
-    return render_template('studyChild.html')
+    if validateSession():
+        return render_template('studyChild.html')
+    else:
+        return redirect('/welcome')
 
 # @app.route('/login', methods=['GET','POST'])
 # def login():
@@ -108,7 +111,8 @@ def setStudyPlan():
         form = request.form
         id = form['eventID']
         studyplan = form['studyplan']
-        return editStudyEvent(id, studyplan)
+        editStudyEvent(id, studyplan)
+        return redirect('/calendar')
     if request.method == 'GET':
         id = request.args.get('eventID')
         return viewStudyPlan('eventID')
