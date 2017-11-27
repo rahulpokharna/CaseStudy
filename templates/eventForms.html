@@ -5,10 +5,10 @@
 	<form id="formEventNew" name="newEventForm" method="post" action="/request/events">
 		<label></label>
 		<input type="hidden" name="UserID" value={{  session['userId'] }}>
-        <input type="text" name="Title" placeholder="Event Title"><br>
-		<input type="datetime-local" class="myCurrentDate" name="Start"><br>
-		<input type="datetime-local" class="myCurrentDate" name="End"><br>
-        <select name="StudyType">
+        <input type="text" name="Title" placeholder="Event Title" pattern="[a-zA-Z0-9]" required /><br>
+		<input type="datetime-local" class="myCurrentDate" name="Start" required /><br>
+		<input type="datetime-local" class="myCurrentDate" name="End" required /><br>
+        <select name="StudyType" required>
 			<option value="exam">Exam</option>
             <option value="quiz">Quiz</option>
             <option value="assignment">Assignment</option>
@@ -40,8 +40,8 @@
 	<form id="formEventEdit" name="editEventForm" method="post" action="/request/events">
 		<label></label>
 		<input type="hidden" name="UserID" value={{  session['userId'] }}>
-		<input type="hidden" id = eventToDelete name="EventID">
-        <input type="text" name="Title" placeholder="Event Title"><br>
+		<input type="hidden" id="eventToDelete" name="EventID">
+        <input type="text" name="Title" placeholder="Event Title" pattern="[a-zA-Z0-9]"><br>
 		<input type="datetime-local" name="Start"><br>
 		<input type="datetime-local" name="End"><br>
         <select name="StudyType">

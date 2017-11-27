@@ -43,6 +43,7 @@ function dateTimetoMoment(day, month, year, hour, minute, ampm) {
 	return year + "-" + month + "-" + day + "T" + hour + ":" + minute + ":00"
 }
 
+/*
 $(function() {
 	$("form[name='newEventForm']").validate({
     	rules: {
@@ -66,4 +67,4 @@ $(function() {
 	    }
 	});
 });
-
+*/
