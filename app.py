@@ -4,6 +4,7 @@ from dbRequests import *
 from requestHelpers import *
 import google_stuff.google_stuff as google_stuff
 import os
+import pickle
 app = Flask(__name__)
 app.secret_key = os.urandom(12)
 
@@ -132,22 +133,38 @@ def register():
 @app.route('/add_google')
 def add_google():
     flow = google_stuff.get_flow()
-    session['flow'] = flow
-    redirect(google_stuff.get_step1(flow))
+    session['flow'] = pickle.dumps(flow)
+    return redirect(google_stuff.get_step1(flow))
 
 @app.route('/google_auth_code')
 def google_auth_code():
-    code = request.args.get('userID')
+    code = request.args.get('code')
     if not code:
         flash('unsuccessful adding google')
-        redirect('/calendar')
+        return redirect('/calendar')
 
-    google_stuff.set_credentials(code, session['userId'],session['flow'])
+    google_stuff.set_credentials(code, session['userId'],pickle.loads(session['flow']))
     flash('successfully added google account')
-    redirect('/calendar')
+    return redirect('/calendar')
 # @app.route('/home')
 # def home():
 #     return render_template('home.html')
+
+@app.route('/sync_google')
+def sync_google_events():
+    user = makeUserDict(getUser(session['email']))
+    googleID = user['GoogleID']
+    if googleID and googleID != -1:
+        num_events = google_stuff.add_events(googleID, session['userId'])
+        flash('added {} events from google'.format(num_events))
+        return redirect('/calendar')
+    else:
+        flash('no associated google account')
+        return redirect('/calendar')
+
+
+
+
 
 def validateSession():
     if 'logged_in' in session and session['logged_in'] == True and session['email'] != None:

@@ -42,7 +42,6 @@ def getUserEvents(userID):
         rowList = []
         for row in ret:
             rowList.append(makeEventDict(row))
-        print(rowList)
     except Error as e:
         print(e)
     finally:
