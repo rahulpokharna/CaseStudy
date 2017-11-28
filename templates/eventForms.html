@@ -2,27 +2,87 @@
 <script src="static/eventForms.js"></script>
 
 <div id="divFormEventNew">
-	<form id="formEventNew" name="newEventForm" method="post" action="/request/events">
+	<form id="formEventNew" name="newEventForm" method="" action="">
 		<label></label>
 		<input type="hidden" name="UserID" value={{  session['userId'] }}>
-        <input type="text" name="Title" placeholder="Event Title" pattern="[a-zA-Z0-9\s]+" required /><br>
+        <input type="text" name="Title" placeholder="Event Title" pattern="[a-zA-Z0-9]+" required /><br>
 		<input type="datetime-local" class="myCurrentDate" name="Start" required /><br>
 		<input type="datetime-local" class="myCurrentDate" name="End" required /><br>
+		<select name="EventType" id="ET">
+			<option value="Study">Study</option>
+            <option value="Quiz">Quiz</option>
+			<option value="Exam">Exam</option>
+			<option value="Assignment Due Date">Assignment Due Date</option>
+		</select><br>
         <select name="StudyType" required>
 			<option value="exam">Exam</option>
             <option value="quiz">Quiz</option>
             <option value="assignment">Assignment</option>
-            <option value="other">Other</option>
+            <option value="N/A">N/A</option>
 		</select><br>
-		<select name="ImportanceRanking">
+		<select name="ImportanceRanking" id="IR">
 			<option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
-            <option value="4">4</option>
+			<option value="4">4</option>
+			<option value="N/A">N/A</option>
         </select><br>
-		<input type="submit" value="Submit">
+		<input type="button" value="Study" name="study" onclick= "ifStudy()" />
+		<input type="button" value="Finished" name="finished" onclick="postToDB(); message();" />
 		<a href="#" onclick="cancelNewEventForm()">CANCEL</a>
 	</form>
+	<script>
+		form=document.getElementById("formEventNew");
+		function postToDB() {
+				form.method="POST";
+				form.action="/request/events";
+				form.submit();
+		}
+		function ifStudy() {
+				form.method="POST";
+				form.action="/request/events";
+				window.location.assign("http://localhost:5000/study");
+				form.submit();
+		}		 
+		function message() {
+			var s = document.getElementById('IR');
+			var IR = s.options[s.selectedIndex].value;
+			var t = document.getElementById('ET');
+			var ET = t.options[t.selectedIndex].value;
+
+			if(IR == '1' && ET=='Exam' ) {
+				alert("It is recommended that you plan study sessions totalling __ hours")
+			} else if(IR == '2' && ET=='Exam' ) {
+				alert("It is recommended that you plan study sessions totalling __ hours")
+			} else if(IR == '3' && ET=='Exam' ) {
+				alert("It is recommended that you plan study sessions totalling __ hours")
+			}
+			else if(IR == '4' && ET=='Exam' ) {
+				alert("It is recommended that you plan study sessions totalling __ hours")
+			}
+			else if(IR == '1' && ET=='Quiz' ) {
+				alert("It is recommended that you plan study sessions totalling __ hours")
+			} else if(IR == '2' && ET=='Quiz' ) {
+				alert("It is recommended that you plan study sessions totalling __ hours")
+			} else if(IR == '3' && ET=='Quiz' ) {
+				alert("It is recommended that you plan study sessions totalling __ hours")
+			}
+			else if(IR == '4' && ET=='Quiz' ) {
+				alert("It is recommended that you plan study sessions totalling __ hours")
+			}
+			else if(IR == '1' && ET=='Assignment Due Date' ) {
+				alert("It is recommended that you plan study sessions totalling __ hours")
+			} else if(IR == '2' && ET=='Assignment Due Date' ) {
+				alert("It is recommended that you plan study sessions totalling __ hours")
+			} else if(IR == '3' && ET=='Assignment Due Date' ) {
+				alert("It is recommended that you plan study sessions totalling __ hours")
+			}
+			else if(IR == '4' && ET=='Assignment Due Date' ) {
+				alert("It is recommended that you plan study sessions totalling __ hours")
+			}
+			
+		}
+	</script>
 </div>
 
 <style>
@@ -47,20 +107,27 @@
 		<label></label>
 		<input type="hidden" name="UserID" value={{  session['userId'] }}>
 		<input type="hidden" id="eventToDelete" name="EventID">
-        <input type="text" name="Title" placeholder="Event Title" pattern="[a-zA-Z0-9]"><br>
+        <input type="text" name="Title" placeholder="Event Title" pattern="[a-zA-Z0-9]+"><br>
 		<input type="datetime-local" name="Start"><br>
 		<input type="datetime-local" name="End"><br>
+		<select name="EventType">
+			<option value="Study">Study</option>
+            <option value="Quiz">Quiz</option>
+			<option value="Exam">Exam</option>
+			<option value="Assignment Due Date">Assignment Due Date</option>
+		</select><br>
         <select name="StudyType">
 			<option value="exam">Exam</option>
             <option value="quiz">Quiz</option>
             <option value="assignment">Assignment</option>
-            <option value="other">Other</option>
+            <option value="N/A">Other</option>
 		</select><br>
 		<select name="ImportanceRanking">
 			<option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
-            <option value="4">4</option>
+			<option value="4">4</option>
+			<option value="N/A">N/A</option>
         </select><br>
 		<input type="submit" value="Submit">
 		<a href="#" onclick="hideEventEdit()">CANCEL</a>
