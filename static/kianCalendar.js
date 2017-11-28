@@ -120,7 +120,7 @@ function notificationLoop(){
         }
 
     }
-    setInterval(loopy,30000);
+    setInterval(loopy,30000);//check for notifications every 30 seconds.
 
 
 
