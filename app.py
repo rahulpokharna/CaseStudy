@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, make_response, json
 from login import LoginForm
 from dbRequests import *
 from requestHelpers import *
+import google_stuff.google_stuff as google_stuff
 import os
 app = Flask(__name__)
 app.secret_key = os.urandom(12)
@@ -128,7 +129,22 @@ def register():
         flash('email already taken')
         return redirect('/register')
 
+@app.route('/add_google')
+def add_google():
+    flow = google_stuff.get_flow()
+    session['flow'] = flow
+    redirect(google_stuff.get_step1(flow))
 
+@app.route('/google_auth_code')
+def google_auth_code():
+    code = request.args.get('userID')
+    if not code:
+        flash('unsuccessful adding google')
+        redirect('/calendar')
+
+    google_stuff.set_credentials(code, session['userId'],session['flow'])
+    flash('successfully added google account')
+    redirect('/calendar')
 # @app.route('/home')
 # def home():
 #     return render_template('home.html')
