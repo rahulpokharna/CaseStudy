@@ -5,7 +5,7 @@
 	<form id="formEventNew" name="newEventForm" method="post" action="/request/events">
 		<label></label>
 		<input type="hidden" name="UserID" value={{  session['userId'] }}>
-        <input type="text" name="Title" placeholder="Event Title" pattern="[a-zA-Z0-9]" required /><br>
+        <input type="text" name="Title" placeholder="Event Title" pattern="[a-zA-Z0-9\s]+" required /><br>
 		<input type="datetime-local" class="myCurrentDate" name="Start" required /><br>
 		<input type="datetime-local" class="myCurrentDate" name="End" required /><br>
         <select name="StudyType" required>
