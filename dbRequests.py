@@ -5,17 +5,17 @@ import json
 #Name/path of the database
 DATABASE = 'test.db'
 # Helper variable for events
-defaultEvent = {'EventID': -1, 'UserID': 1, 'Start': '2017-10-26T18:53:08Z', 'End': '2017-10-26T19:53:08Z', 'Description': 'An Event', 'ImportanceRanking': 1, 'Title': 'Default Event', 'ProgramID': 1, 'EventType': '', 'StudyPlan': '', 'StudyType': ''}
+defaultEvent = {'EventID': -1, 'UserID': 1, 'Start': '2017-10-26T18:53:08Z', 'End': '2017-10-26T19:53:08Z', 'Description': 'An Event', 'ImportanceRanking': 1, 'Title': 'Default Event', 'ProgramID': 1, 'EventType': '', 'StudyPlan': '', 'StudyType': '', 'Color': 'blue', 'Recurring': NULL}
 # Helper variable for events
-eventTable = ['EventID', 'UserID', 'Start', 'End', 'Description', 'ImportanceRanking', 'Title', 'ProgramID', 'EventType', 'StudyPlan', 'StudyType']
+eventTable = ['EventID', 'UserID', 'Start', 'End', 'Description', 'ImportanceRanking', 'Title', 'ProgramID', 'EventType', 'StudyPlan', 'StudyType', 'Color', 'Recurring']
 #Helpervariable for users
 defaultUser = {'UserID': 1 , 'email': 'abc123@case.edu', 'FirstName': 'Alpha', 'LastName': 'Cavern', 'HashedPassword': 'hashed', 'GoogleID': -1, 'CanvasID': -1, 'DriveLink': 'https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU'}
 #Helpervariable for users
 userTable = ['UserID', 'email', 'FirstName', 'LastName', 'HashedPassword', 'GoogleID', 'CanvasID', 'DriveLink']
 #Helpervariable for program
-defaultProgram = {'ProgramID': 1, 'UserID': 1, 'Description': '', 'Notes': 'https://docs.google.com/document/d/1Aeaj_uiwTcv5IFS2tH7vJcaj2LbMJOO-0dad8l7x98I/edit', 'ExamLength': 3, 'AssignmentLength': 1, 'QuizLength': 2}
+defaultProgram = {'ProgramID': 1, 'UserID': 1, 'Description': '', 'Notes': 'https://docs.google.com/document/d/1Aeaj_uiwTcv5IFS2tH7vJcaj2LbMJOO-0dad8l7x98I/edit', 'ExamLength': 3, 'AssignmentLength': 1, 'QuizLength': 2, 'Color': 'blue', 'Title': 'Default Title'}
 #Helpervariable for program
-programTable = ['ProgramID', 'UserID', 'Description', 'Notes', 'ExamLength', 'AssignmentLength', 'QuizLength']
+programTable = ['ProgramID', 'UserID', 'Description', 'Notes', 'ExamLength', 'AssignmentLength', 'QuizLength', 'Color', 'Title']
 
 
 #not used in demo
@@ -27,7 +27,7 @@ def getEvent(eventID):
     ret = c.execute("SELECT * FROM event WHERE eventID = ?",t)
     rowList = []
     for row in ret:
-        rowList.append({'EventID':row[0],'Title':row[6],'Start':row[2],'End':row[3], 'StudyType':row[10]})
+        rowList.append(makeEventDict(row))
     
     conn.close()
     return rowList
@@ -41,7 +41,7 @@ def getUserEvents(userID):
         ret = c.execute("SELECT * FROM event WHERE userID = ?",t)
         rowList = []
         for row in ret:
-            rowList.append({'EventID':row[0],'Title':row[6],'Start':row[2],'End':row[3], 'StudyType':row[10]})
+            rowList.append(makeEventDict(row))
     except Error as e:
         print(e)
     finally:       
@@ -49,6 +49,59 @@ def getUserEvents(userID):
         if(type(rowList) is not None):
             return rowList
         return ['Failed']
+
+#Returns all programs for a user
+def getUserPrograms(userID):
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+    try:
+        t = userID,
+        ret = c.execute("SELECT * FROM program WHERE userID = ?",t)
+        rowList = []
+        for row in ret:
+            rowList.append(makeProgramDict(row))
+    except Error as e:
+        print(e)
+    finally:       
+        conn.close()
+        if(type(rowList) is not None):
+            return rowList
+        return ['Failed']
+
+#Returns all events for a program and a user
+def getProgramEvents(userID, programID):
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+    try:
+        t = userID, programID
+        ret = c.execute("SELECT * FROM event WHERE userID = ?, programID =?",t)
+        rowList = []
+        for row in ret:
+            rowList.append(makeEventDict(row))
+        
+        #manually adds the default program for events to this list
+        ret = c.execute("SELECT * FROM event WHERE programID = 1")
+        for row in ret:
+            rowList.append(makeEventDict(row))
+    except Error as e:
+        print(e)
+    finally:       
+        conn.close()
+        if(type(rowList) is not None):
+            return rowList
+        return ['Failed']
+
+#returns a list of dictionaries, values of Program, Events for every program and every event for a user
+def getGroupedUserEvents(userID):
+    returnList = []
+    programList = getUserPrograms(userID)
+    for program in programList:
+        groupDict = {
+            'Program': program,
+            'Events': getProgramEvents(userID, program['ProgramID'])
+        }
+        returnList.append(groupDict)
+    return returnList
 
 # Edits an event based on the given ID and the dictionary passed in
 def editEvent(eventID,obj):
@@ -64,7 +117,7 @@ def editEvent(eventID,obj):
         for col in obj:
             tempEvent[col] = obj[col]
         c.execute('DELETE FROM event WHERE eventID=?',t)
-        c.execute('INSERT INTO event VALUES(:EventID, :UserID, :Start, :End, :Description, :ImportanceRanking, :Title, :ProgramID, :EventType, :StudyPlan, :StudyType)',tempEvent)
+        c.execute('INSERT INTO event VALUES(:EventID, :UserID, :Start, :End, :Description, :ImportanceRanking, :Title, :ProgramID, :EventType, :StudyPlan, :StudyType, :Color, :Recurring)',tempEvent)
         conn.commit()
         retVal = eventID
     except Error as e:
@@ -91,7 +144,7 @@ def addNewEvent(obj):     # make sure all information is in the correct formats.
         tempEvent['EventID'] = r[0] + 1
 
         
-        c.execute('INSERT INTO event VALUES(:EventID, :UserID, :Start, :End, :Description, :ImportanceRanking, :Title, :ProgramID, :EventType, :StudyPlan, :StudyType)', tempEvent)
+        c.execute('INSERT INTO event VALUES(:EventID, :UserID, :Start, :End, :Description, :ImportanceRanking, :Title, :ProgramID, :EventType, :StudyPlan, :StudyType, :Color, :Recurring)', tempEvent)
         
         conn.commit()
     except Error as e:
@@ -163,12 +216,45 @@ def getDriveLink(email):
     conn.close()
     return r[0]
     
+def setGoogleCredentials(userID, key):
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+    try:
+        c.execute('UPDATE user SET GoogleID = ? WHERE userID = ?', (key,userID))
+        conn.commit()
+    except Error as e:
+        print(e)
+        writeToLog(e)
+        conn.rollback()
+    finally:
+        conn.close()
+        return userID
+
+def getGoogleCredentials(userID):
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+    try:
+        t = userID,
+        c.execute('SELECT GoogleID FROM user WHERE userID = ?', t)
+        r = c.fetchone()
+    except Error as e:
+        print(e)
+        writeToLog(e)
+    finally:
+        conn.close()
+        if r is not None:
+            return r[0]
+        else:
+            return -1
+        
+
 # Not implemented for this demo
 # Returns an auth key for canvas
 def canvasConnect(email):
     
     # https://canvas.instructure.com/doc/api/calendar_events.html
     # https://canvas.instructure.com/doc/api/file.oauth.html
+    # UTech has denied a canvas developer key
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
     
@@ -304,7 +390,7 @@ def getStudyEvents(userID):
         ret = c.execute("SELECT * FROM event WHERE StudyType = 'exam' OR StudyType = 'quiz' or StudyType = 'assignment'")
         rowList = []
         for row in ret:
-            rowList.append({'EventID':row[0],'Title':row[6],'Start':row[2],'End':row[3], 'StudyType':row[10]})
+            rowList.append(makeEventDict(row))
     except Error as e:
         print(e)
     finally:       
@@ -358,7 +444,7 @@ def addNewProgram(obj):
         c.execute('SELECT MAX(ProgramID) FROM program')
         r = c.fetchone()
         tempProgram['ProgramID'] = r[0] + 1
-        c.execute('INSERT INTO user VALUES(:ProgramID, :UserID, :Description, :Notes, :ExamLength, :AssignmentLength, :QuizLength)', tempProgram)
+        c.execute('INSERT INTO program VALUES(:ProgramID, :UserID, :Description, :Notes, :ExamLength, :AssignmentLength, :QuizLength, :Color, :Title)', tempProgram)
 
         conn.commit()
     except Error as e:
@@ -400,7 +486,7 @@ def editProgram(ProgramID,obj):
         for col in obj:
             tempProgram[col] = obj[col]
         c.execute('DELETE FROM program WHERE programID=?',t)
-        c.execute('INSERT INTO user VALUES(:ProgramID, :UserID, :Description, :Notes, :ExamLength, :AssignmentLength, :QuizLength)', tempProgram)
+        c.execute('INSERT INTO program VALUES(:ProgramID, :UserID, :Description, :Notes, :ExamLength, :AssignmentLength, :QuizLength, :Color, :Title)', tempProgram)
         conn.commit()
         retVal = ProgramID
     except Error as e:
@@ -444,6 +530,6 @@ def writeToLog(inputError):
     file = open("logfile.txt","w") 
     file.write(str(inputError))  
     file.close() 
-    print('Hellooo')
+    print('An error has been written to the log')
     print(inputError.with_traceback())
     

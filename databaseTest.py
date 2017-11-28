@@ -80,8 +80,33 @@ def queryDB():
         'CanvasID': -1, 
         'DriveLink': 'https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU'
     }
-    
+    #Helpervariable for program
+    defaultProgram = {
+        'ProgramID': 1,
+        'UserID': 1,
+        'Description': '',
+        'Notes': 'https://docs.google.com/document/d/1Aeaj_uiwTcv5IFS2tH7vJcaj2LbMJOO-0dad8l7x98I/edit', 
+        'ExamLength': 3, 
+        'AssignmentLength': 1, 
+        'QuizLength': 2
+    }
 
+    testProgram = {
+        'ProgramID': 2,
+        'UserID': 1,
+        'Description': 'Testing',
+        'Notes': 'tester', 
+        'ExamLength': 3, 
+        'AssignmentLength': 1, 
+        'QuizLength': 2
+    }
+    #Helpervariable for program
+    programTable = ['ProgramID', 'UserID', 'Description', 'Notes', 'ExamLength', 'AssignmentLength', 'QuizLength']
+
+    dbRequests.addNewProgram(testProgram)
+    dbRequests.deleteProgram(2)
+    dbRequests.deleteProgram(3)
+    
     '''nameTuple = tuple(eventDict.values())
     print(eventDict)
     print(eventDict.items())
