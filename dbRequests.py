@@ -5,7 +5,7 @@ import json
 #Name/path of the database
 DATABASE = 'test.db'
 # Helper variable for events
-defaultEvent = {'EventID': -1, 'UserID': 1, 'Start': '2017-10-26T18:53:08Z', 'End': '2017-10-26T19:53:08Z', 'Description': 'An Event', 'ImportanceRanking': 1, 'Title': 'Default Event', 'ProgramID': 1, 'EventType': '', 'StudyPlan': '', 'StudyType': '', 'Color': 'blue', 'Recurring': NULL}
+defaultEvent = {'EventID': -1, 'UserID': 1, 'Start': '2017-10-26T18:53:08Z', 'End': '2017-10-26T19:53:08Z', 'Description': 'An Event', 'ImportanceRanking': 1, 'Title': 'Default Event', 'ProgramID': 1, 'EventType': '', 'StudyPlan': '', 'StudyType': '', 'Color': 'blue', 'Recurring': 0}
 # Helper variable for events
 eventTable = ['EventID', 'UserID', 'Start', 'End', 'Description', 'ImportanceRanking', 'Title', 'ProgramID', 'EventType', 'StudyPlan', 'StudyType', 'Color', 'Recurring']
 #Helpervariable for users
@@ -42,9 +42,10 @@ def getUserEvents(userID):
         rowList = []
         for row in ret:
             rowList.append(makeEventDict(row))
+        print(rowList)
     except Error as e:
         print(e)
-    finally:       
+    finally:
         conn.close()
         if(type(rowList) is not None):
             return rowList
@@ -200,7 +201,7 @@ def checkLogin(email, password):
         print(e)
     finally:
         conn.close()
-        if password == r[0]:
+        if r is not None and password == r[0]:
             return r[1]        
         return -1
 
@@ -499,7 +500,7 @@ def editProgram(ProgramID,obj):
 
 # Helper Method for converting tuple rows into dictionaries for events
 def makeEventDict(row):
-    tempEvent = defaultEvent
+    tempEvent = defaultEvent.copy()
     x = 0
     for name in eventTable:
         tempEvent[name] = row[x]
@@ -508,7 +509,7 @@ def makeEventDict(row):
 
 # Helper Method for converting tuple rows into dictionaries
 def makeUserDict(row):
-    tempUser = defaultUser
+    tempUser = defaultUser.copy()
     x = 0
     for name in userTable:
         tempUser[name] = row[x]
@@ -517,7 +518,7 @@ def makeUserDict(row):
 
 # Helper Method for converting tuple rows into dictionaries
 def makeProgramDict(row):
-    tempProgram = defaultProgram
+    tempProgram = defaultProgram.copy()
     x = 0
     for name in programTable:
         tempProgram[name] = row[x]
