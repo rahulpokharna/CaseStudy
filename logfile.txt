@@ -1,1 +1,1 @@
-near "aa": syntax error
+table user has 8 columns but 7 values were supplied
