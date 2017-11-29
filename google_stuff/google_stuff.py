@@ -6,9 +6,9 @@ from apiclient import discovery
 import datetime
 SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
 CLIENT_SECRET_FILE = 'client_secret.json'
-
+REDIRECT_URI = 'http://localhost:5000/google_auth_code'
 def get_flow():
-    flow = flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES, redirect_uri='http://localhost:5000/google_auth_code')
+    flow = flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES, redirect_uri=REDIRECT_URI)
     return flow
 
 def get_step1(flow):

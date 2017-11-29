@@ -35,7 +35,7 @@ $(document).ready(function() {
                 start = start.substr(0,start.length-1)
             }
 
-            var end = event.end.format()
+            var end = event.end.format();
             if(end.endsWith("Z")){
                 end = end.substr(0,end.length-1)
             }
@@ -212,16 +212,16 @@ function notifyEvent() {
     window.location = "/study?eventID=" + id;
 }
 
-function deleteEvent() {
-    var eventToDelete = Number(prompt("Which Event ID would you like to delete?", "Event ID"));
-    console.log(eventToDelete);
-    $.ajax({
-        type: 'GET',
-        url: "request/events",
-        data: {eventID: eventToDelete, delete: true},
-        async: false});
-    $('#calendar').fullCalendar( 'refetchEvents' );
-}
+// function deleteEvent() {
+//     var eventToDelete = Number(prompt("Which Event ID would you like to delete?", "Event ID"));
+//     console.log(eventToDelete);
+//     $.ajax({
+//         type: 'GET',
+//         url: "request/events",
+//         data: {eventID: eventToDelete, delete: true},
+//         async: false});
+//     $('#calendar').fullCalendar( 'refetchEvents' );
+// }
 
 function removeEvent() {
     var eventToDelete = Number(prompt("Which Event ID would you like to delete?", "Event ID"));

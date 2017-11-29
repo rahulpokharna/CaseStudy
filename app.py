@@ -81,6 +81,7 @@ def logout():
 @app.route('/request/events', methods=['GET','POST'])
 def requestEvent():
     #request with userID or eventID given as url parameters. If eventId is not given, this will return all events for this user.
+    print(request.method)
     if request.method == 'GET':
         delete = request.args.get('delete')
         if delete == 'true':
@@ -104,11 +105,12 @@ def requestEvent():
     if request.method == 'POST':
         form = request.form
         #make a dictionary that can be put into the db. https://fullcalendar.io/docs/event_data/Event_Object/
-        if 'id' in form:
+        if 'EventID' in form:
+            print('eddddditing')
             return editEventRequest(form)
         else:
             #adding an event, not editting one.
-            print(form)
+            print('addding')
             return addEventRequest(form)
 
 
@@ -169,6 +171,9 @@ def sync_google_events():
         flash('no associated google account')
         return redirect('/calendar')
 
+@app.route('/study_dashboard')
+def study_dashboard():
+    return render_template('studyDashboard.html')
 
 
 
