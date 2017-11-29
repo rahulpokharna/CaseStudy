@@ -5,7 +5,7 @@ import json
 #Name/path of the database
 DATABASE = 'test.db'
 # Helper variable for events
-defaultEvent = {'EventID': -1, 'UserID': 1, 'Start': '2017-10-26T18:53:08Z', 'End': '2017-10-26T19:53:08Z', 'Description': 'An Event', 'ImportanceRanking': 1, 'Title': 'Default Event', 'ProgramID': 1, 'EventType': '', 'StudyPlan': '', 'StudyType': '', 'Color': 'blue', 'Recurring': 0}
+defaultEvent = {'EventID': -1, 'UserID': 1, 'Start': '2017-10-26T18:53:08Z', 'End': '2017-10-26T19:53:08Z', 'Description': 'An Event', 'ImportanceRanking': 1, 'Title': 'Default Event', 'ProgramID': 1, 'EventType': '', 'StudyPlan': 'Plan not set', 'StudyType': '', 'Color': 'blue', 'Recurring': 0}
 # Helper variable for events
 eventTable = ['EventID', 'UserID', 'Start', 'End', 'Description', 'ImportanceRanking', 'Title', 'ProgramID', 'EventType', 'StudyPlan', 'StudyType', 'Color', 'Recurring']
 #Helpervariable for users
