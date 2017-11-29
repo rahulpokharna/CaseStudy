@@ -19,6 +19,8 @@ def editEventRequest(form):
     # trying to edit an event, not add one.
     # add :00 for the seconds
     form = form.to_dict()
-    form['Start'] = '{}:00'.format(form['Start'])
-    form['End'] = '{}:00'.format(form['End'])
-    return editEvent(form['id'], form)
+    print(form['EventID'])
+    form['Start'] = '{}'.format(form['Start'])
+    form['End'] = '{}'.format(form['End'])
+    editEvent(form['EventID'], form)
+    return redirect('/calendar')
