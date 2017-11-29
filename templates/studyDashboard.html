@@ -1,0 +1,175 @@
+{% extends "calendarDesign.html" %}
+<!-- Full Calendar Imports -->
+{% block head %}
+<link rel="stylesheet" href="static/fullCalendar/fullcalendar.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+<script src="static/fullCalendar/lib/moment.min.js"></script>
+<script src="static/fullCalendar/lib/jquery.min.js"></script>
+<script src="static/fullCalendar/lib/jquery-ui.min.js"></script>
+<script src="static/fullCalendar/fullcalendar.min.js"></script>
+<script src="static/kianCalendar.js"></script>
+<script>
+url = window.location.href
+url = new URL(url)
+eventID = url.searchParams.get('eventID')
+function studyPlan(eventID, studyplan){
+  var studyToAdd = {
+    eventID: eventID,
+    studyplan: studyplan
+  }
+};
+</script>
+<style>
+    a {
+        font-family: 'Open Sans', sans-serif;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<style>
+
+input, textarea {
+  font: 1em sans-serif;
+
+  width: 300px;
+  box-sizing: border-box;
+
+  border: 1px solid #999;
+}
+
+input:focus, textarea:focus {
+  border-color: #000;
+}
+
+textarea {
+  vertical-align: top;
+
+  height: 5em;
+}
+
+</style>
+<style type="text/css">
+  button {
+    background-color: #41aff4;
+    width: 150px;
+    margin-left: 160px;
+    border: none;
+    color: #F0F0F0;
+    padding: .5em .5em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+    font-family: 'Open Sans', sans-serif;
+    cursor:pointer;
+  }
+</style>
+<nav id="menu" style="padding: 1em; background-color: #2b1d4f; display: flex; justify-content: space-between;">
+    <style type = "text/css">
+      .content a {
+          background-color: #41aff4;
+          width: 150px;
+          border: none;
+          color: #F0F0F0;
+          padding: 0.5em 0.5em;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 1em;
+          font-family: 'Open Sans', sans-serif;
+          cursor:pointer;
+      }
+    </style>
+    <div class="content">
+        <a href="study">Study Plan</a>
+    </div>
+    <div class="content">
+        <a href="https://drive.google.com/drive/folders/0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU">Google Drive</a>
+    </div>
+    <div class="content">
+        <a href="calendar">Cancel</a>
+    </div>
+</nav>    
+<nav style="padding: 1em;">
+</nav>
+<style> 
+  textarea {
+      width: 50%;
+      height: 150px;
+      padding: 12px 20px;
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      background-color: #f8f8f8;
+      font-size: 100%;
+      resize: none;
+      font-family: 'Open Sans', sans-serif;
+  }
+  label {
+    display: inline-block;
+    font-size:small;
+    margin-left:5px;
+    width:200px;
+    font-size: 200%;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+  }
+</style>
+<form action="request/studyplan" method="POST"> 
+  <div>
+    <label>Study Dashboard</label>
+    <body>
+      <div id="ss"></div>
+      <ul id="ct"></ul>
+    </body>
+    
+    <script>
+    
+      function getStudyEvents() {
+
+        var events = $.ajax({
+          type: "GET",
+          url: "request/studyevents",
+          data: {userID: localStorage.userId},
+          async: false});
+
+        var parsedEvents = JSON.parse(events.responseText);
+        var eventList = [];
+        for (parsedEvent in parsedEvents) {
+            var event = parsedEvents[parsedEvent];
+            eventList.push(event);
+
+        }
+        return eventList;
+
+      }
+
+      function displayEvents(){
+       
+        var niceText = "";
+        events = getStudyEvents();
+        
+        for(var i = 0; i < events.length; i++){
+          item = events[i];
+          niceText = niceText + "\n" + item['Title'] + "-" +  item['StudyPlan'];
+        }
+        $("#ss").text(niceText);
+      }
+
+       
+
+      function studyDashboard(title, studyPlan) {
+        $("#titleInner").append("<p>" + title + "</p>");
+        $("#studyPlanInner").append("<p>" + studyPlan + "</p>");
+      
+      }
+      
+      document.getElementById("ct").innerHTML = window.displayEvents();
+    </script>
+    </textarea>
+  </div>
+  
+</form>
+{% endblock %}

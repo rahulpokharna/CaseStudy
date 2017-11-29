@@ -50,6 +50,13 @@ def study():
 def welcome():
     return render_template('welcome.html')
 
+@app.route('/studyDashboard')
+def studyDashboard():
+    if validateSession():
+        return render_template('studyDashboard.html')
+    else:
+        return redirect('/welcome')
+
 @app.route('/login', methods=['POST'])
 def login():
     userId = checkLogin(request.form['email'], request.form['password'])
@@ -172,6 +179,22 @@ def validateSession():
     else:
         session['logged_in'] = False
         return False
+
+
+@app.route('/request/studyevents', methods=['GET','POST'])
+def requestStudyEvent():
+    #request with userID or eventID given as url parameters. If eventId is not given, this will return all events for this user.
+    delete = request.args.get('delete')
+    if delete == 'true':
+        return deleteEvent(request.args.get('eventID')  )
+    else:
+        userID = request.args.get('userID')
+        try:
+            res = jsonify(getStudyEvents(userID))
+        except TypeError as e:
+            res = 'couldnt jsonify the event'
+            return res
+        return res
 
 
 if __name__ == "__main__":
