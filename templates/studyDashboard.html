@@ -120,9 +120,27 @@ textarea {
 <form action="request/studyplan" method="POST"> 
   <div>
     <label>Study Dashboard</label>
-    <body>
-      <div id="ss"></div>
-      <ul id="ct"></ul>
+    <style>
+		table, th, td {
+   		 border: 1px solid black;
+			}
+			
+		p {
+   		 text-indent: 50px;
+		}
+		</style>
+   <body>
+    	<table>
+			<tr>
+  			<td>
+     		 <p id="ss"></p>
+      		</td>
+     		</tr>
+     		</table>
+     		
+     		 <!-- <ul id="ct"></ul> -->
+      		
+      
     </body>
     
     <script>
@@ -152,8 +170,9 @@ textarea {
         events = getStudyEvents();
         
         for(var i = 0; i < events.length; i++){
-          item = events[i];
-          niceText = niceText + "\n" + item['Title'] + "-" +  item['StudyPlan'];
+        item = events[i];
+          niceText = niceText + "\n" + item['Title'] + "-" +  item['StudyPlan'] ;
+         	
         }
         $("#ss").text(niceText);
       }
@@ -161,8 +180,10 @@ textarea {
        
 
       function studyDashboard(title, studyPlan) {
-        $("#titleInner").append("<p>" + title + "</p>");
-        $("#studyPlanInner").append("<p>" + studyPlan + "</p>");
+      
+        $("#titleInner").append("<p>" + title + "</p>")
+        $("#studyPlanInner").append("<p>" + studyPlan + "</p>")
+      
       
       }
       
