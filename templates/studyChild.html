@@ -19,6 +19,17 @@ function studyPlan(eventID, studyplan){
   }
 };
 </script>
+<script>
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+</script>
 <style>
     a {
         font-family: 'Open Sans', sans-serif;
@@ -117,13 +128,40 @@ textarea {
     font-family: 'Open Sans', sans-serif;
   }
 </style>
-<form action="{{ url_for('setStudyPlan') }}" method="post">
+<form action="request/events" method="POST"> 
+  <input type="hidden" id="userID" name="UserID" value={{  session['userId'] }}>
+  <input type="hidden" id="title" name="Title" placeholder="Event Title" pattern="[a-zA-Z0-9]+" value=""/><br>
+  <input type="hidden" id="start" class="myCurrentDate" name="Start" value="" /><br>
+  <input type="hidden" id="end" class="myCurrentDate" name="End" value="" /><br>
+  <input type="hidden" name="EventType" id="ET" value="">
+  <input type="hidden" id="studyType" name="StudyType" value=""/>
+  <input type="hidden" name="ImportanceRanking" id="IR" value=""/>
+  <script type="text/javascript">
+    var user = document.getElementById("userID");
+    user.value = getParameterByName("UserID",window.location)
+    var ttl = document.getElementById("title");
+    ttl.value = getParameterByName("Title",window.location)
+    var startTime = document.getElementById("start");
+    startTime.value = getParameterByName("Start",window.location)
+    var endTime = document.getElementById("end");
+    endTime.value = getParameterByName("End",window.location)
+    var eventType = document.getElementById("ET");
+    eventType.value = getParameterByName("EventType",window.location)
+    var study = document.getElementById("studyType");
+    study.value = getParameterByName("StudyType",window.location)
+    var importanceRanking = document.getElementById("IR");
+    importanceRanking.value = getParameterByName("ImportanceRanking",window.location)
+   </script>
   <div>
     <label>Study Goals</label>
-    <textarea placeholder="Enter goals here..."></textarea>
+    <textarea type="text" name="StudyPlan" placeholder="Enter goals here..."></textarea>
   </div>
+  <!-- <div>
+    <label>Event ID</label>
+    <textarea type="text" name="eventID" placeholder="Enter Event ID Here..."></textarea>
+  </div> -->
   <div class="button">
-    <button type="submit", id = "studyPlan", onclick="addStudyPlan()">
+    <button type="submit">
     Done
     </button> 
   </div>

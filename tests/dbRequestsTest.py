@@ -84,10 +84,7 @@ class TestAppMethods(unittest.TestCase):
         c = conn.cursor()
         c.execute('SELECT * FROM user WHERE userID = 21')
         r = c.fetchone()
-        print(r)
         userDict = dbRequests.makeUserDict(r)
-        print(userDict)
-        print(newUser)
         self.assertTrue(userDict.items() <= newUser.items())
 
     #to be run after completion of setup

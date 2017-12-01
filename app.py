@@ -2,7 +2,9 @@ from flask import Flask, render_template, request, redirect, make_response, json
 from login import LoginForm
 from dbRequests import *
 from requestHelpers import *
+import google_stuff.google_stuff as google_stuff
 import os
+import pickle
 app = Flask(__name__)
 app.secret_key = os.urandom(12)
 
@@ -23,7 +25,10 @@ def calendar():
 
 @app.route('/study')
 def study():
-    return render_template('studyChild.html')
+    if validateSession():
+        return render_template('studyChild.html')
+    else:
+        return redirect('/welcome')
 
 # @app.route('/login', methods=['GET','POST'])
 # def login():
@@ -44,6 +49,13 @@ def study():
 @app.route('/welcome')
 def welcome():
     return render_template('welcome.html')
+
+@app.route('/studyDashboard')
+def studyDashboard():
+    if validateSession():
+        return render_template('studyDashboard.html')
+    else:
+        return redirect('/welcome')
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -69,6 +81,7 @@ def logout():
 @app.route('/request/events', methods=['GET','POST'])
 def requestEvent():
     #request with userID or eventID given as url parameters. If eventId is not given, this will return all events for this user.
+    print(request.method)
     if request.method == 'GET':
         delete = request.args.get('delete')
         if delete == 'true':
@@ -92,11 +105,12 @@ def requestEvent():
     if request.method == 'POST':
         form = request.form
         #make a dictionary that can be put into the db. https://fullcalendar.io/docs/event_data/Event_Object/
-        if 'id' in form:
+        if 'EventID' in form:
+            print('eddddditing')
             return editEventRequest(form)
         else:
             #adding an event, not editting one.
-            print(form)
+            print('addding')
             return addEventRequest(form)
 
 
@@ -108,7 +122,8 @@ def setStudyPlan():
         form = request.form
         id = form['eventID']
         studyplan = form['studyplan']
-        return editStudyEvent(id, studyplan)
+        editStudyEvent(id, studyplan)
+        return redirect('/calendar')
     if request.method == 'GET':
         id = request.args.get('eventID')
         return viewStudyPlan('eventID')
@@ -124,10 +139,44 @@ def register():
         flash('email already taken')
         return redirect('/register')
 
+@app.route('/add_google')
+def add_google():
+    flow = google_stuff.get_flow()
+    session['flow'] = pickle.dumps(flow)
+    return redirect(google_stuff.get_step1(flow))
 
+@app.route('/google_auth_code')
+def google_auth_code():
+    code = request.args.get('code')
+    if not code:
+        flash('unsuccessful adding google')
+        return redirect('/calendar')
+
+    google_stuff.set_credentials(code, session['userId'],pickle.loads(session['flow']))
+    flash('successfully added google account')
+    return redirect('/calendar')
 # @app.route('/home')
 # def home():
 #     return render_template('home.html')
+
+@app.route('/sync_google')
+def sync_google_events():
+    user = makeUserDict(getUser(session['email']))
+    googleID = user['GoogleID']
+    if googleID and googleID != -1:
+        num_events = google_stuff.add_events(googleID, session['userId'])
+        flash('added {} events from google'.format(num_events))
+        return redirect('/calendar')
+    else:
+        flash('no associated google account')
+        return redirect('/calendar')
+
+@app.route('/study_dashboard')
+def study_dashboard():
+    return render_template('studyDashboard.html')
+
+
+
 
 def validateSession():
     if 'logged_in' in session and session['logged_in'] == True and session['email'] != None:
@@ -135,6 +184,22 @@ def validateSession():
     else:
         session['logged_in'] = False
         return False
+
+
+@app.route('/request/studyevents', methods=['GET','POST'])
+def requestStudyEvent():
+    #request with userID or eventID given as url parameters. If eventId is not given, this will return all events for this user.
+    delete = request.args.get('delete')
+    if delete == 'true':
+        return deleteEvent(request.args.get('eventID')  )
+    else:
+        userID = request.args.get('userID')
+        try:
+            res = jsonify(getStudyEvents(userID))
+        except TypeError as e:
+            res = 'couldnt jsonify the event'
+            return res
+        return res
 
 
 if __name__ == "__main__":

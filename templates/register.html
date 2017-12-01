@@ -7,16 +7,37 @@
 <script src="static/jquery.validate.js"></script>
 <script src="static/registerForm.js"></script>
 <body>
+	<style type="text/css">
+		#registerDiv {
+			margin: auto;
+			width: 50%;
+		}
+
+	     button {
+	         background-color: #41aff4;
+	         border: none;
+	         color: #F0F0F0;
+	         padding: 0.5em 0.5em;
+	         text-align: center;
+	         text-decoration: none;
+	         display: inline-block;
+	         font-size: 1em;
+	         cursor:pointer;
+	     }
+	 </style>
     {%  include 'flasher.html' %}
-    <form id="registration" name="registration" action="/register" method="POST">
-		<input type="email" name="email" placeholder="Email">
-		<input type="FirstName" name="FirstName" placeholder="First Name">
-		<input type="LastName" name="LastName" placeholder="Last Name">
-		<input type="password" name="HashedPassword" required placeholder="password">
-		<input id="password" type="password" name="confirmpassword" required placeholder="confirm password">
-		<input type="submit" value="Log In">
-		
-	</form>
+    <div id="registerDiv">
+	    <h1>Register a new account</h1>
+	    <form id="registration" name="registration" action="/register" method="POST">
+			<input type="email" name="email" placeholder="Email" required style="margin: 1em; padding: 1em;"/><br>
+			<input type="FirstName" name="FirstName" placeholder="First Name" pattern="[a-zA-Z-\s]+" required style="margin: 1em; padding: 1em;"/><br>
+			<input type="LastName" name="LastName" placeholder="Last Name" pattern="[a-zA-Z-\s]+" required style="margin: 1em; padding: 1em;"/><br>
+			<input type="password" name="HashedPassword" required placeholder="password" pattern=".{6,}" required style="margin: 1em; padding: 1em;"/><br>
+			<input id="password" type="password" name="confirmpassword" required placeholder="confirm password" pattern=".{6,}" required style="margin: 1em; padding: 1em;"/><br>
+			<input type="submit" value="Sign Up" style="margin: 1em; padding: 1em;">	
+			<a href="/">Cancel</a>
+		</form>
+	</div>
 </body>
 </html>
 
