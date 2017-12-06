@@ -103,9 +103,9 @@ def queryDB():
     #Helpervariable for program
     programTable = ['ProgramID', 'UserID', 'Description', 'Notes', 'ExamLength', 'AssignmentLength', 'QuizLength']
 
-    dbRequests.addNewProgram(testProgram)
+    # dbRequests.addNewProgram(testProgram)
     dbRequests.deleteProgram(2)
-    dbRequests.deleteProgram(3)
+    # dbRequests.deleteProgram(3)
     
     '''nameTuple = tuple(eventDict.values())
     print(eventDict)
