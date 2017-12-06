@@ -170,6 +170,26 @@ def deleteEvent(eventID):
         conn.close()
         return eventID
 
+def addRecurringEvents(listOfEvents):
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+    success = True
+    try:
+        c.execute('SELECT max(recurring) FROM event')
+        r = c.fetchone()
+        for event in listOfEvents:
+            event['Recurring'] = r[0] + 1
+            addNewEvent(event)
+        conn.commit()
+    except Error as e:
+        print(e)
+        writeToLog(e)
+        conn.rollback()
+        success = False
+    finally:
+        conn.close()
+        return success
+
 # Not implemented demo
 def getUser(email):
     
@@ -527,7 +547,7 @@ def makeProgramDict(row):
 #Preliminary Log file, save the traceback using logging
 def writeToLog(inputError):
 
-    file = open("logfile.txt","w") 
+    file = open("logfile.txt","a") 
     file.write(str(inputError))  
     file.close() 
     print('An error has been written to the log')

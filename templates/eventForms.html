@@ -1,35 +1,46 @@
 <script src="static/jquery.validate.js"></script>
 <script src="static/eventForms.js"></script>
 
-<div id="divFormEventNew">
-	<form id="formEventNew" name="newEventForm" method="" action="">
-		<label></label>
-		<input type="hidden" name="UserID" value={{  session['userId'] }}>
-        <input type="text" name="Title" placeholder="Event Title" pattern="[a-zA-Z0-9]+" required /><br>
-		<input type="datetime-local" class="myCurrentDate" name="Start" required /><br>
-		<input type="datetime-local" class="myCurrentDate" name="End" required /><br>
-		<select name="EventType" id="ET">
-			<option value="Study">Study</option>
-            <option value="Quiz">Quiz</option>
-			<option value="Exam">Exam</option>
-			<option value="Assignment Due Date">Assignment Due Date</option>
-		</select><br>
-        <select name="StudyType" required>
-			<option value="exam">Exam</option>
-            <option value="quiz">Quiz</option>
-            <option value="assignment">Assignment</option>
-            <option value="N/A">N/A</option>
-		</select><br>
-		<select name="ImportanceRanking" id="IR">
-			<option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-			<option value="4">4</option>
-			<option value="N/A">N/A</option>
-        </select><br>
-		<input type="button" value="Study" name="study" onclick= "ifStudy()" />
-		<input type="button" value="Finished" name="finished" onclick="postToDB(); message();" />
-		<input type="button" value="Cancel" name="Cancel" onclick="cancelNewEventForm()" />
+<div id="divFormEventNew" class="modal">
+	<form id="formEventNew" name="newEventForm" method="" action="" class="modal-content animate">
+        <label></label>
+        <div class="imgcontainer">
+                <span onclick="document.getElementById('divFormEventNew').style.display='none'" class="close" title="Close Modal">&times;</span>
+        </div>
+        <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Add An Event!</h2>
+        </div>
+        <div class="container">
+            <input type="hidden" name="UserID" value={{  session['userId'] }}>
+            <input type="text" name="Title" placeholder="Event Title" pattern="[a-zA-Z0-9]+" required /><br>
+            <input type="datetime-local" class="myCurrentDate" name="Start" required /><br>
+            <input type="datetime-local" class="myCurrentDate" name="End" required /><br>
+            <select name="EventType" id="ET">
+                <option value="Study">Study</option>
+                <option value="Quiz">Quiz</option>
+                <option value="Exam">Exam</option>
+                <option value="Assignment Due Date">Assignment Due Date</option>
+            </select><br>
+            <select name="StudyType" required>
+                <option value="exam">Exam</option>
+                <option value="quiz">Quiz</option>
+                <option value="assignment">Assignment</option>
+                <option value="N/A">N/A</option>
+            </select><br>
+            <select name="ImportanceRanking" id="IR">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="N/A">N/A</option>
+            </select><br>
+            <input type="button" value="Study" name="study" onclick= "ifStudy()" />
+            <input type="button" value="Finished" name="finished" onclick="postToDB(); message();" />
+        </div>
+		<div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="cancelNewEventForm()" class="cancelbtn">Cancel</button>
+        </div>
 	</form>
 	<script>
         console.log('im a strawberry')
@@ -82,12 +93,19 @@
             alert("It is recommended that you plan study sessions totalling 2 hours")
         }
     }
+    var modal = document.getElementById('divFormEventNew');
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 	</script>
 </div>
-<style>
+<!-- <style>
 	#divFormEventNew {
 		display: none;
-		background-color: #FFFFFF;
 		z-index: 3;
 	}
 
@@ -95,11 +113,10 @@
 		border-style: solid;
 		border-color: #0000FF;
 		position: absolute;
-		background-color: #FFFFFF;
 		right: 0px;
 		z-index: 3;
 	}
-</style>
+</style> -->
 
 
 <div id="divFormEventEdit">
@@ -129,29 +146,113 @@
 </div>
 
 <style>
-	#divFormEventEdit {
-		display: none;
-	}
+    .container {
+        padding: 16px;
+    }
 
-	#formEventEdit {
-	}
-</style>
+    span.psw {
+        float: right;
+        padding-top: 16px;
+    }
 
-<div id="divButtonEventNew">
-	<button id="buttonEventNew" onclick="buttonEventNew()">(<)</button>
-</div>
+    button:hover {
+        opacity: 0.8;
+    }
 
-<style>
-	#divButtonEventNew {
-		position: relative;
-		z-index: 2;
-	}
+    .cancelbtn {
+        width: auto;
+        padding: 10px 18px;
+        background-color: #f44336;
+    }
+    
+    .imgcontainer {
+        text-align: center;
+        margin: 24px 0 12px 0;
+        position: relative;
+    }
+    .modal {
+        display: none;
+        position: fixed; 
+        z-index: 3;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%; 
+        overflow: auto; 
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+        padding-top: 60px;
+    }
 
-	#buttonEventNew {
-		position: absolute;
-		right: 0px;
-		z-index: 2;	
-	}
+    .modal-header {
+        padding: 2px 16px;
+        background-color: #41aff4;
+        color: white;
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto 15% auto; 
+        border: 1px solid #888;
+        width: 50%;
+    }
+
+    .close {
+        position: absolute;
+        right: 25px;
+        top: 0;
+        color: #000;
+        font-size: 35px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: red;
+        cursor: pointer;
+    }
+
+    .animate {
+        -webkit-animation: animatezoom 0.6s;
+        animation: animatezoom 0.6s
+    }
+
+    @-webkit-keyframes animatezoom {
+        from {-webkit-transform: scale(0)} 
+        to {-webkit-transform: scale(1)}
+    }
+        
+    @keyframes animatezoom {
+        from {transform: scale(0)} 
+        to {transform: scale(1)}
+    }
+
+    @media screen and (max-width: 300px) {
+        span.psw {
+        display: block;
+        float: none;
+        }
+        .cancelbtn {
+        width: 100%;
+        }
+    }
+    #divFormEventEdit {
+        display: none;
+    }
+
+    #formEventEdit {
+    }
+    
+    #divButtonEventNew {
+        position: relative;
+        z-index: 2;
+    }
+
+    #buttonEventNew {
+        position: absolute;
+        right: 0px;
+        z-index: 2;	
+    }
 </style>
 
 <script>

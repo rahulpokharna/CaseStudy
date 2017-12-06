@@ -10,6 +10,7 @@
     <script src="static/fullCalendar/lib/jquery-ui.min.js"></script>
     <script src="static/fullCalendar/fullcalendar.min.js"></script>
     <script src="static/kianCalendar.js"></script>
+    <script src="static/eventForms.js"></script>
     <style>
         a {
             font-family: 'Open Sans', sans-serif;
@@ -73,9 +74,7 @@
             <button id="day" type="button" class="viewChange" onclick="$('#calendar').fullCalendar('changeView', 'agendaDay');">Day</button>1
         </div>
         <div id="eventManipulation">
-            <button id="addEvent" type="button" onclick="addEventButton()">Add Event</button>
-            <button id="notifyEvent" type="button" onclick="notifyEvent(3)">Notify Event</button>
-            <button id="removeEvent" type="button" onclick="deleteEvent()">Delete Event</button>
+            <button id="addEvent" type="button" onclick="buttonEventNew()">Add Event</button>
         </div>
     </nav>
     <nav style="padding: 1em;">

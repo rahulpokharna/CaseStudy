@@ -7,15 +7,15 @@ import dbRequests
 class TestAppMethods(unittest.TestCase):
 
     testUser = {'UserID': 20 , 'email': 'ext23@case.edu', 'FirstName': 'Eeeeeeee', 'LastName': 'Teeeeee', 'HashedPassword': 'hashed', 'GoogleID': -1, 'CanvasID': -1, 'DriveLink': 'https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU'}
-    testEvent = {'EventID': -1, 'UserID': 20, 'Start': '2017-10-26T18:53:08Z', 'End': '2017-10-26T19:53:08Z', 'Description': 'An Event', 'ImportanceRanking': 1, 'Title': 'Default Event', 'ProgramID': 1, 'EventType': '', 'StudyPlan': '', 'StudyType': ''}
-    testEvent2 = {'EventID': -2, 'UserID': 20, 'Start': '2017-11-26T18:53:08Z', 'End': '2017-11-26T19:53:08Z', 'Description': 'An Event 2', 'ImportanceRanking': 1, 'Title': 'Default Event', 'ProgramID': 1, 'EventType': '', 'StudyPlan': '', 'StudyType': ''}
+    testEvent = {'EventID': -1, 'UserID': 20, 'Start': '2017-10-26T18:53:08Z', 'End': '2017-10-26T19:53:08Z', 'Description': 'An Event', 'ImportanceRanking': 1, 'Title': 'Default Event', 'ProgramID': 1, 'EventType': '', 'StudyPlan': 'Not Set', 'StudyType': '', 'Color': 'blue', 'Recurring': 0}
+    testEvent2 = {'EventID': -2, 'UserID': 20, 'Start': '2017-11-26T18:53:08Z', 'End': '2017-11-26T19:53:08Z', 'Description': 'An Event 2', 'ImportanceRanking': 1, 'Title': 'Default Event', 'ProgramID': 1, 'EventType': '', 'StudyPlan': 'Not Set', 'StudyType': '', 'Color': 'blue', 'Recurring': 0}
 
     def setUp(self):
         conn = sqlite3.connect('test.db')
         c = conn.cursor()
         c.execute('INSERT INTO user VALUES(:UserID, :email, :FirstName, :LastName, :HashedPassword, :GoogleID, :CanvasID, :DriveLink)', self.testUser)
-        c.execute('INSERT INTO event VALUES(:EventID, :UserID, :Start, :End, :Description, :ImportanceRanking, :Title, :ProgramID, :EventType, :StudyPlan, :StudyType)', self.testEvent)
-        c.execute('INSERT INTO event VALUES(:EventID, :UserID, :Start, :End, :Description, :ImportanceRanking, :Title, :ProgramID, :EventType, :StudyPlan, :StudyType)', self.testEvent2)
+        c.execute('INSERT INTO event VALUES(:EventID, :UserID, :Start, :End, :Description, :ImportanceRanking, :Title, :ProgramID, :EventType, :StudyPlan, :StudyType, :Color, :Recurring)', self.testEvent)
+        c.execute('INSERT INTO event VALUES(:EventID, :UserID, :Start, :End, :Description, :ImportanceRanking, :Title, :ProgramID, :EventType, :StudyPlan, :StudyType, :Color, :Recurring)', self.testEvent2)
         conn.commit()
         conn.close()
 
@@ -35,14 +35,14 @@ class TestAppMethods(unittest.TestCase):
 
     #unit test for edit event
     def testEditEvent(self):
-        editedEvent = {'EventID': -1, 'UserID': 20, 'Start': '2017-10-26T20:53:08Z', 'End': '2017-10-26T23:53:08Z', 'Description': 'An Event', 'ImportanceRanking': 1, 'Title': 'Edited Event', 'ProgramID': 1, 'EventType': '', 'StudyPlan': '', 'StudyType': ''}
+        editedEvent = {'EventID': -1, 'UserID': 20, 'Start': '2017-10-26T20:53:08Z', 'End': '2017-10-26T23:53:08Z', 'Description': 'An Event', 'ImportanceRanking': 1, 'Title': 'Edited Event', 'ProgramID': 1, 'EventType': '', 'StudyPlan': '', 'StudyType': '', 'Color': 'blue', 'Recurring': 0}
         dbRequests.editEvent(-1,editedEvent)
         response = dbRequests.getEvent(-1)
         assert response[0].items() <= editedEvent.items()
         self.assertFalse(response[0].items() <= self.testEvent.items())
 
     def testAddNewEvent(self):
-        newEvent = {'EventID': 23, 'UserID': 12, 'Start': '2017-11-28T20:53:08Z', 'End': '2017-11-28T23:53:08Z', 'Description': 'An Event', 'ImportanceRanking': 1, 'Title': 'New Added Event', 'ProgramID': 1, 'EventType': '', 'StudyPlan': '', 'StudyType': ''}
+        newEvent = {'EventID': 23, 'UserID': 12, 'Start': '2017-11-28T20:53:08Z', 'End': '2017-11-28T23:53:08Z', 'Description': 'An Event', 'ImportanceRanking': 1, 'Title': 'New Added Event', 'ProgramID': 1, 'EventType': '', 'StudyPlan': '', 'StudyType': '', 'Color': 'blue', 'Recurring': 0}
         dbRequests.addNewEvent(newEvent)
         #since we already tested get event, we can use it again here
         validate = dbRequests.getEvent(23) #23 because I manually checked the DB
@@ -102,3 +102,29 @@ class TestAppMethods(unittest.TestCase):
 if __name__ == '__main__':
     unittest.main()
     
+
+
+
+'''Add Test Values to Tables'''
+def fillDB():
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+    try:
+        
+        c.execute("SELECT count(*) FROM user")
+        r = c.fetchone()
+        c.execute("INSERT INTO user VALUES ({},'abc123@case.edu','Alpha', 'Cavern','hashed','','','https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU')".format(r[0] + 1))
+        c.execute("INSERT INTO user VALUES ({},'axc1223@case.edu','Andrew', 'Clark','hashed','','','https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU')".format(r[0] + 2))
+        c.execute("INSERT INTO user VALUES ({},'yxs123@case.edu','Yongju', 'Sui','hashed','','','https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU')".format(r[0] + 3))
+
+        c.execute("SELECT count(*) FROM user")
+        r = c.fetchone()
+        c.execute("INSERT INTO event VALUES ({}, 0001,'Start Time', 'End Time','this is annoying',4,'Test Event 2', -1,'One Time', '','')".format(r[0] + 1))
+        c.execute("INSERT INTO event VALUES ({}, 0001,'1 Time', '1 Time','this is great',4,'Test Event a2', -1,'One Time', '','')".format(r[0] + 2))
+        c.execute("INSERT INTO event VALUES ({}, 0001,'Start 1', 'End 1','this is sad',4,'Test Event 2aa', -1,'One Time', '','')".format(r[0] + 3))
+
+        conn.commit()
+    except Error as e:
+        print(e)
+    finally:
+        conn.close()
