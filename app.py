@@ -60,7 +60,7 @@ def studyDashboard():
 
 @app.route('/login', methods=['POST'])
 def login():
-    userId = checkLogin(request.form['email'], request.form['password'])
+    userId = checkLogin(request.form['email'], hashString(request.form['password']))
     if userId != -1:
         session['logged_in'] = True
         session['email'] = request.form['email']

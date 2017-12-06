@@ -1,7 +1,7 @@
 import sqlite3
 from sqlite3 import Error
 import json
-
+from requestHelpers import *
 #Name/path of the database
 DATABASE = 'test.db'
 # Helper variable for events
@@ -292,16 +292,20 @@ def addNewUser(obj):
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
     try:
-        
+
         #this checks for the email already existing in the database
 
-        
+
         #Takes default user and replaces values of the default with the input
         tempUser = defaultUser
-        
+
         for col in obj:
             tempUser[col] = obj[col]
-        
+        if 'HashedPassword' in tempUser:
+            tempUser['HashedPassword'] = hashString(tempUser['HashedPassword'])
+        else:
+            print(tempUser.keys())
+        print('hi')
         #determines the userID for the new user
         c.execute('SELECT MAX(userID) FROM user')
         r = c.fetchone()

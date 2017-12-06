@@ -1,5 +1,6 @@
 from dbRequests import *
 from flask import redirect
+import hashlib
 
 def addEventRequest(form):
     # :EventID, :UserID, :Start, :End, :Description, :ImportanceRanking, :Title, :ProgramID, :EventType, :StudyPlan, :StudyType
@@ -24,3 +25,7 @@ def editEventRequest(form):
     form['End'] = '{}'.format(form['End'])
     editEvent(form['EventID'], form)
     return redirect('/calendar')
+def hashString(string):
+    m = hashlib.sha256()
+    m.update(string.encode('utf-8'))
+    return m.digest()
