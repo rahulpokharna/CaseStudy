@@ -1,7 +1,7 @@
 import sqlite3
 from sqlite3 import Error
 import json
-from requestHelpers import *
+import hashlib
 #Name/path of the database
 DATABASE = 'test.db'
 # Helper variable for events
@@ -339,7 +339,7 @@ def deleteUser(UserID):
         conn.rollback()
     finally:
         conn.close()
-        return ProgramID
+        return UserID
 #Edit a user
 def editUser(userID,obj):
     
@@ -556,4 +556,8 @@ def writeToLog(inputError):
     file.close() 
     print('An error has been written to the log')
     print(inputError.with_traceback())
-    
+
+def hashString(string):
+    m = hashlib.sha256()
+    m.update(string.encode('utf-8'))
+    return m.digest()
