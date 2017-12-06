@@ -1,4 +1,4 @@
 *.pyc
 **.idea**
 **.vscode**
-**.idea/workspace.xml
+.idea/workspace.xml
