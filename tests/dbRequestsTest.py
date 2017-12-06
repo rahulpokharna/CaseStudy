@@ -102,3 +102,29 @@ class TestAppMethods(unittest.TestCase):
 if __name__ == '__main__':
     unittest.main()
     
+
+
+
+'''Add Test Values to Tables'''
+def fillDB():
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+    try:
+        
+        c.execute("SELECT count(*) FROM user")
+        r = c.fetchone()
+        c.execute("INSERT INTO user VALUES ({},'abc123@case.edu','Alpha', 'Cavern','hashed','','','https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU')".format(r[0] + 1))
+        c.execute("INSERT INTO user VALUES ({},'axc1223@case.edu','Andrew', 'Clark','hashed','','','https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU')".format(r[0] + 2))
+        c.execute("INSERT INTO user VALUES ({},'yxs123@case.edu','Yongju', 'Sui','hashed','','','https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU')".format(r[0] + 3))
+
+        c.execute("SELECT count(*) FROM user")
+        r = c.fetchone()
+        c.execute("INSERT INTO event VALUES ({}, 0001,'Start Time', 'End Time','this is annoying',4,'Test Event 2', -1,'One Time', '','')".format(r[0] + 1))
+        c.execute("INSERT INTO event VALUES ({}, 0001,'1 Time', '1 Time','this is great',4,'Test Event a2', -1,'One Time', '','')".format(r[0] + 2))
+        c.execute("INSERT INTO event VALUES ({}, 0001,'Start 1', 'End 1','this is sad',4,'Test Event 2aa', -1,'One Time', '','')".format(r[0] + 3))
+
+        conn.commit()
+    except Error as e:
+        print(e)
+    finally:
+        conn.close()
