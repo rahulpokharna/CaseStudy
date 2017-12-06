@@ -21,13 +21,16 @@ function cancelNewEventForm() {
 function deleteEvent() {
     var eventID = $("#eventToDelete")[0].value;
 	console.log(eventID);
-	$.get("request/events?eventID"+eventID+"delete=true");
+	$.get("request/events?eventID="+eventID+"&delete=true");
+	$.get("/calendar", function(data){
+		location.reload();
+	})
 	// $.ajax({
      //    type: 'GET',
      //    url: "request/events",
      //    data: {eventID: eventID, delete: true},
      //    async: false});
-    $('#calendar').fullCalendar( 'refetchEvents' );
+    // $('#calendar').fullCalendar( 'refetchEvents' );
 }
 
 $("#formEventNew").submit(function() {
