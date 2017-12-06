@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9c5eb785-369c-4570-af81-4bb4471c7856" name="Default" comment="notifications are working now. i did it through the frontend.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.db" afterPath="$PROJECT_DIR$/test.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/CaseStudy.iml" afterPath="$PROJECT_DIR$/.idea/CaseStudy.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="9c5eb785-369c-4570-af81-4bb4471c7856" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.py" afterPath="$PROJECT_DIR$/app.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/eventForms.js" afterPath="$PROJECT_DIR$/static/eventForms.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -48,45 +43,22 @@
         <entry file="file://$PROJECT_DIR$/dbRequests.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="398">
-              <caret line="534" column="4" lean-forward="false" selection-start-line="534" selection-start-column="4" selection-end-line="534" selection-end-column="4" />
+              <caret line="554" column="4" lean-forward="false" selection-start-line="554" selection-start-column="4" selection-end-line="554" selection-end-column="4" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
-                <marker date="1512520006440" expanded="true" signature="1623:1660" ph="SELECT * FRO... event" />
-                <marker date="1512520006440" expanded="true" signature="1997:2033" ph="SELECT * FRO... event" />
-                <marker date="1512520006440" expanded="true" signature="2472:2510" ph="SELECT * FRO... program" />
-                <marker date="1512520006440" expanded="true" signature="2992:3042" ph="SELECT * FRO... event" />
-                <marker date="1512520006440" expanded="true" signature="3240:3279" ph="SELECT * FRO... event" />
-                <marker date="1512520006440" expanded="true" signature="4162:4198" ph="SELECT * FRO... event" />
-                <marker date="1512520006440" expanded="true" signature="4346:4379" ph="DELETE FROM " />
-                <marker date="1512520006440" expanded="true" signature="4403:4570" ph="INSERT INTO event... " />
-                <marker date="1512520006440" expanded="true" signature="5186:5216" ph="SELECT MAX(e... event" />
-                <marker date="1512520006440" expanded="true" signature="5313:5480" ph="INSERT INTO event... " />
-                <marker date="1512520006440" expanded="true" signature="5841:5876" ph="DELETE FROM " />
-                <marker date="1512520006440" expanded="true" signature="6188:6222" ph="SELECT * FRO... user" />
-                <marker date="1512520006440" expanded="true" signature="6563:6618" ph="SELECT Hashe... user" />
-                <marker date="1512520006440" expanded="true" signature="7070:7112" ph="SELECT Drive... user" />
-                <marker date="1512520006440" expanded="true" signature="7303:7348" ph="UPDATE user " />
-                <marker date="1512520006440" expanded="true" signature="7671:7713" ph="SELECT Googl... user" />
-                <marker date="1512520006440" expanded="true" signature="8305:8346" ph="SELECT Canva... user" />
-                <marker date="1512520006440" expanded="true" signature="8986:9014" ph="SELECT MAX(u... user" />
-                <marker date="1512520006440" expanded="true" signature="9099:9213" ph="INSERT INTO user... " />
-                <marker date="1512520006440" expanded="true" signature="9574:9607" ph="DELETE FROM " />
-                <marker date="1512520006440" expanded="true" signature="9631:9667" ph="DELETE FROM " />
-                <marker date="1512520006440" expanded="true" signature="9691:9725" ph="DELETE FROM " />
-                <marker date="1512520006440" expanded="true" signature="10036:10070" ph="SELECT * FRO... user" />
-                <marker date="1512520006440" expanded="true" signature="10215:10246" ph="DELETE FROM " />
-                <marker date="1512520006440" expanded="true" signature="10270:10384" ph="INSERT INTO user... " />
-                <marker date="1512520006440" expanded="true" signature="10747:10788" ph="SELECT * FRO... program" />
-                <marker date="1512520006440" expanded="true" signature="11242:11283" ph="SELECT * FRO... program" />
-                <marker date="1512520006440" expanded="true" signature="11850:11944" ph="SELECT * FRO... event" />
-                <marker date="1512520006440" expanded="true" signature="12438:12486" ph="UPDATE event... " />
-                <marker date="1512520006440" expanded="true" signature="12846:12891" ph="SELECT Study... event" />
-                <marker date="1512520006440" expanded="true" signature="13354:13388" ph="SELECT MAX(P... program" />
-                <marker date="1512520006440" expanded="true" signature="13479:13609" ph="INSERT INTO program... " />
-                <marker date="1512520006440" expanded="true" signature="13978:14017" ph="DELETE FROM " />
-                <marker date="1512520006440" expanded="true" signature="14341:14381" ph="SELECT * FRO... program" />
-                <marker date="1512520006440" expanded="true" signature="14535:14572" ph="DELETE FROM " />
-                <marker date="1512520006440" expanded="true" signature="14596:14726" ph="INSERT INTO program... " />
+                <marker date="1512520248225" expanded="true" signature="1623:1660" ph="SELECT * FRO... event" />
+                <marker date="1512520248225" expanded="true" signature="1997:2033" ph="SELECT * FRO... event" />
+                <marker date="1512520248225" expanded="true" signature="2472:2510" ph="SELECT * FRO... program" />
+                <marker date="1512520248225" expanded="true" signature="2992:3042" ph="SELECT * FRO... event" />
+                <marker date="1512520248225" expanded="true" signature="3240:3279" ph="SELECT * FRO... event" />
+                <marker date="1512520248225" expanded="true" signature="4162:4198" ph="SELECT * FRO... event" />
+                <marker date="1512520248225" expanded="true" signature="4346:4379" ph="DELETE FROM " />
+                <marker date="1512520248225" expanded="true" signature="4403:4570" ph="INSERT INTO event... " />
+                <marker date="1512520248225" expanded="true" signature="5186:5216" ph="SELECT MAX(e... event" />
+                <marker date="1512520248225" expanded="true" signature="5313:5480" ph="INSERT INTO event... " />
+                <marker date="1512520248225" expanded="true" signature="5732:6032" ph="..." />
+                <marker date="1512520248225" expanded="true" signature="5841:5876" ph="DELETE FROM " />
+                <marker date="1512520248225" expanded="true" signature="16251:16395" ph="..." />
               </folding>
             </state>
           </provider>
@@ -104,9 +76,11 @@
       <file leaf-file-name="eventForms.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/eventForms.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="114" column="25" lean-forward="false" selection-start-line="114" selection-start-column="20" selection-end-line="114" selection-end-column="25" />
-              <folding />
+            <state relative-caret-position="255">
+              <caret line="131" column="25" lean-forward="false" selection-start-line="131" selection-start-column="25" selection-end-line="131" selection-end-column="25" />
+              <folding>
+                <marker date="1512520248246" expanded="true" signature="8147:8156" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -115,8 +89,15 @@
         <entry file="file://$PROJECT_DIR$/static/eventForms.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="315">
-              <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
-              <folding />
+              <caret line="21" column="22" lean-forward="false" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+              <folding>
+                <marker date="1512520203490" expanded="true" signature="567:898" ph="{...}" />
+                <marker date="1512520203490" expanded="true" signature="848:896" ph="//..." />
+                <marker date="1512520203490" expanded="true" signature="937:1056" ph="{...}" />
+                <marker date="1512520203490" expanded="true" signature="969:1011" ph="{...}" />
+                <marker date="1512520203490" expanded="true" signature="1017:1054" ph="{...}" />
+                <marker date="1512520203490" expanded="true" signature="1227:1625" ph="/*...*/" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -147,8 +128,14 @@
         <entry file="file://$PROJECT_DIR$/templates/calendarChild.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1140">
-              <caret line="76" column="68" lean-forward="false" selection-start-line="76" selection-start-column="68" selection-end-line="76" selection-end-column="68" />
-              <folding />
+              <caret line="77" column="14" lean-forward="false" selection-start-line="77" selection-start-column="14" selection-end-line="77" selection-end-column="14" />
+              <folding>
+                <marker date="1512520248238" expanded="true" signature="3083:3112" ph="..." />
+                <marker date="1512520248238" expanded="true" signature="3083:3123" ph="..." />
+                <marker date="1512520248238" expanded="false" signature="3141:3154" ph="..." />
+                <marker date="1512520248238" expanded="true" signature="3155:3166" ph="..." />
+                <marker date="1512520248238" expanded="true" signature="3211:3471" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -156,8 +143,8 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="455">
-              <caret line="208" column="0" lean-forward="true" selection-start-line="208" selection-start-column="0" selection-end-line="208" selection-end-column="0" />
+            <state relative-caret-position="428">
+              <caret line="205" column="13" lean-forward="false" selection-start-line="205" selection-start-column="13" selection-end-line="205" selection-end-column="13" />
               <folding>
                 <element signature="e#0#99#0" expanded="true" />
               </folding>
@@ -169,7 +156,7 @@
         <entry file="file://$PROJECT_DIR$/templates/register.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
-              <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+              <caret line="15" column="17" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -329,6 +316,127 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="Sqlite (Xerial)" />
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/dbRequests.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/templates/calendarChild.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/templates/eventForms.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/test.db</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/tests/dbRequestsTest.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/tests/test.db</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/initializeDatabase.py</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.coverage</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/databaseTest.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hello.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/new.db</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/tests/test.db-journal</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -497,7 +605,14 @@
       <option name="project" value="LOCAL" />
       <updated>1511562955751</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="delete is working">
+      <created>1512520237543</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1512520237543</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -598,7 +713,8 @@
     <MESSAGE value="edit event form is wokring now." />
     <MESSAGE value="delete event form is wokring now." />
     <MESSAGE value="notifications are working now. i did it through the frontend." />
-    <option name="LAST_COMMIT_MESSAGE" value="notifications are working now. i did it through the frontend." />
+    <MESSAGE value="delete is working" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete is working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -861,8 +977,14 @@
     <entry file="file://$PROJECT_DIR$/templates/calendarChild.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1140">
-          <caret line="76" column="68" lean-forward="false" selection-start-line="76" selection-start-column="68" selection-end-line="76" selection-end-column="68" />
-          <folding />
+          <caret line="77" column="14" lean-forward="false" selection-start-line="77" selection-start-column="14" selection-end-line="77" selection-end-column="14" />
+          <folding>
+            <marker date="1512520248238" expanded="true" signature="3083:3112" ph="..." />
+            <marker date="1512520248238" expanded="true" signature="3083:3123" ph="..." />
+            <marker date="1512520248238" expanded="false" signature="3141:3154" ph="..." />
+            <marker date="1512520248238" expanded="true" signature="3155:3166" ph="..." />
+            <marker date="1512520248238" expanded="true" signature="3211:3471" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -877,23 +999,32 @@
     <entry file="file://$PROJECT_DIR$/static/eventForms.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
-          <folding />
+          <caret line="21" column="22" lean-forward="false" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+          <folding>
+            <marker date="1512520203490" expanded="true" signature="567:898" ph="{...}" />
+            <marker date="1512520203490" expanded="true" signature="848:896" ph="//..." />
+            <marker date="1512520203490" expanded="true" signature="937:1056" ph="{...}" />
+            <marker date="1512520203490" expanded="true" signature="969:1011" ph="{...}" />
+            <marker date="1512520203490" expanded="true" signature="1017:1054" ph="{...}" />
+            <marker date="1512520203490" expanded="true" signature="1227:1625" ph="/*...*/" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/eventForms.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="114" column="25" lean-forward="false" selection-start-line="114" selection-start-column="20" selection-end-line="114" selection-end-column="25" />
-          <folding />
+        <state relative-caret-position="255">
+          <caret line="131" column="25" lean-forward="false" selection-start-line="131" selection-start-column="25" selection-end-line="131" selection-end-column="25" />
+          <folding>
+            <marker date="1512520248246" expanded="true" signature="8147:8156" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/register.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
-          <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+          <caret line="15" column="17" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -908,53 +1039,30 @@
     <entry file="file://$PROJECT_DIR$/dbRequests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="398">
-          <caret line="534" column="4" lean-forward="false" selection-start-line="534" selection-start-column="4" selection-end-line="534" selection-end-column="4" />
+          <caret line="554" column="4" lean-forward="false" selection-start-line="554" selection-start-column="4" selection-end-line="554" selection-end-column="4" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <marker date="1512520006440" expanded="true" signature="1623:1660" ph="SELECT * FRO... event" />
-            <marker date="1512520006440" expanded="true" signature="1997:2033" ph="SELECT * FRO... event" />
-            <marker date="1512520006440" expanded="true" signature="2472:2510" ph="SELECT * FRO... program" />
-            <marker date="1512520006440" expanded="true" signature="2992:3042" ph="SELECT * FRO... event" />
-            <marker date="1512520006440" expanded="true" signature="3240:3279" ph="SELECT * FRO... event" />
-            <marker date="1512520006440" expanded="true" signature="4162:4198" ph="SELECT * FRO... event" />
-            <marker date="1512520006440" expanded="true" signature="4346:4379" ph="DELETE FROM " />
-            <marker date="1512520006440" expanded="true" signature="4403:4570" ph="INSERT INTO event... " />
-            <marker date="1512520006440" expanded="true" signature="5186:5216" ph="SELECT MAX(e... event" />
-            <marker date="1512520006440" expanded="true" signature="5313:5480" ph="INSERT INTO event... " />
-            <marker date="1512520006440" expanded="true" signature="5841:5876" ph="DELETE FROM " />
-            <marker date="1512520006440" expanded="true" signature="6188:6222" ph="SELECT * FRO... user" />
-            <marker date="1512520006440" expanded="true" signature="6563:6618" ph="SELECT Hashe... user" />
-            <marker date="1512520006440" expanded="true" signature="7070:7112" ph="SELECT Drive... user" />
-            <marker date="1512520006440" expanded="true" signature="7303:7348" ph="UPDATE user " />
-            <marker date="1512520006440" expanded="true" signature="7671:7713" ph="SELECT Googl... user" />
-            <marker date="1512520006440" expanded="true" signature="8305:8346" ph="SELECT Canva... user" />
-            <marker date="1512520006440" expanded="true" signature="8986:9014" ph="SELECT MAX(u... user" />
-            <marker date="1512520006440" expanded="true" signature="9099:9213" ph="INSERT INTO user... " />
-            <marker date="1512520006440" expanded="true" signature="9574:9607" ph="DELETE FROM " />
-            <marker date="1512520006440" expanded="true" signature="9631:9667" ph="DELETE FROM " />
-            <marker date="1512520006440" expanded="true" signature="9691:9725" ph="DELETE FROM " />
-            <marker date="1512520006440" expanded="true" signature="10036:10070" ph="SELECT * FRO... user" />
-            <marker date="1512520006440" expanded="true" signature="10215:10246" ph="DELETE FROM " />
-            <marker date="1512520006440" expanded="true" signature="10270:10384" ph="INSERT INTO user... " />
-            <marker date="1512520006440" expanded="true" signature="10747:10788" ph="SELECT * FRO... program" />
-            <marker date="1512520006440" expanded="true" signature="11242:11283" ph="SELECT * FRO... program" />
-            <marker date="1512520006440" expanded="true" signature="11850:11944" ph="SELECT * FRO... event" />
-            <marker date="1512520006440" expanded="true" signature="12438:12486" ph="UPDATE event... " />
-            <marker date="1512520006440" expanded="true" signature="12846:12891" ph="SELECT Study... event" />
-            <marker date="1512520006440" expanded="true" signature="13354:13388" ph="SELECT MAX(P... program" />
-            <marker date="1512520006440" expanded="true" signature="13479:13609" ph="INSERT INTO program... " />
-            <marker date="1512520006440" expanded="true" signature="13978:14017" ph="DELETE FROM " />
-            <marker date="1512520006440" expanded="true" signature="14341:14381" ph="SELECT * FRO... program" />
-            <marker date="1512520006440" expanded="true" signature="14535:14572" ph="DELETE FROM " />
-            <marker date="1512520006440" expanded="true" signature="14596:14726" ph="INSERT INTO program... " />
+            <marker date="1512520248225" expanded="true" signature="1623:1660" ph="SELECT * FRO... event" />
+            <marker date="1512520248225" expanded="true" signature="1997:2033" ph="SELECT * FRO... event" />
+            <marker date="1512520248225" expanded="true" signature="2472:2510" ph="SELECT * FRO... program" />
+            <marker date="1512520248225" expanded="true" signature="2992:3042" ph="SELECT * FRO... event" />
+            <marker date="1512520248225" expanded="true" signature="3240:3279" ph="SELECT * FRO... event" />
+            <marker date="1512520248225" expanded="true" signature="4162:4198" ph="SELECT * FRO... event" />
+            <marker date="1512520248225" expanded="true" signature="4346:4379" ph="DELETE FROM " />
+            <marker date="1512520248225" expanded="true" signature="4403:4570" ph="INSERT INTO event... " />
+            <marker date="1512520248225" expanded="true" signature="5186:5216" ph="SELECT MAX(e... event" />
+            <marker date="1512520248225" expanded="true" signature="5313:5480" ph="INSERT INTO event... " />
+            <marker date="1512520248225" expanded="true" signature="5732:6032" ph="..." />
+            <marker date="1512520248225" expanded="true" signature="5841:5876" ph="DELETE FROM " />
+            <marker date="1512520248225" expanded="true" signature="16251:16395" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="208" column="0" lean-forward="true" selection-start-line="208" selection-start-column="0" selection-end-line="208" selection-end-column="0" />
+        <state relative-caret-position="428">
+          <caret line="205" column="13" lean-forward="false" selection-start-line="205" selection-start-column="13" selection-end-line="205" selection-end-column="13" />
           <folding>
             <element signature="e#0#99#0" expanded="true" />
           </folding>
