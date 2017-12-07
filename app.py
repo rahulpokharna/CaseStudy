@@ -65,6 +65,14 @@ def login():
         session['logged_in'] = True
         session['email'] = request.form['email']
         session['userId'] = userId
+        user = makeUserDict(getUser(session['email']))
+        if 'GoogleID' in user:
+            googleID = user['GoogleID']
+            if googleID != -1:
+                session['image'] = google_stuff.profileImage(googleID)
+            else:
+                session['image'] = None
+
         return redirect('/calendar')
     else:
         flash('Username or password is incorrect')

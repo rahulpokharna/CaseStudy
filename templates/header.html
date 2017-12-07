@@ -4,8 +4,9 @@
     <a href="/studyDashboard" style="text-decoration: none; color: #FFFFFF; padding: 0em 0.5em;"><t>Study </a>
     <select  onChange="window.location.href=this.value">
         <option value="">Google</option>
-        <option value="/add_google"> Connect Google Calendar</option>
+        <option value="/add_google"> Connect Google Account</option>
         <option value="/sync_google">Sync Google Events</option>
     </select>
+    <img src={{ session['image'] }}>
     <a style="float: right; text-decoration: none; color: #FFFFFF; padding: 0em 0.5em;" href="/logout"> Log Out </a></li>
 </nav>

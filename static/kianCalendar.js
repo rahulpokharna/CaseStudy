@@ -57,9 +57,11 @@ $(document).ready(function() {
     localStorage.currentTime = [[now.getFullYear(), AddZero(now.getMonth()+1), AddZero(now.getDate())].join("-"),[AddZero(now.getHours()),
         AddZero(now.getMinutes())].join(":")].join("T");
 
-    notificationLoop();
-    endNotificationLoop()
-
+    //a method call for each type of notification we have.
+    var waitTime = 5000 //wait five seconds for each loop
+    notificationLoop(waitTime);
+    endNotificationLoop(waitTime)
+    fiveminutesbeforestartNotificationLoop(waitTime)
     // GET DISPLAY TYPE AND CHANGE DATE ACCORDINGLY
 
     //console.log(parsedEvents);
@@ -121,7 +123,7 @@ function notificationLoop(){
         }
 
     }
-    setInterval(loopy,30000);//check for notifications every 30 seconds.
+    setInterval(loopy,waitTime);//check for notifications every 5 seconds.
 
 
 
@@ -159,7 +161,7 @@ function endNotificationLoop(){
         }
 
     }
-    setInterval(loopy,5000);//check for notifications every 5 seconds.
+    setInterval(loopy,waitTime);//check for notifications every 5 seconds.
 
 
 
@@ -204,7 +206,7 @@ function fiveminutesbeforestartNotificationLoop(){
         }
 
     }
-    setInterval(loopy,5000);//check for notifications every 5 seconds.
+    setInterval(loopy,waitTime);//check for notifications every 5 seconds.
 
 
 
