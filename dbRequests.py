@@ -520,6 +520,23 @@ def editProgram(ProgramID,obj):
     finally:
         conn.close()
         return retVal
+#delete the events from google for a given user
+def deleteGoogleEvents(userID):
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+
+    try:
+        t = str(userID)
+        print(c.execute("DELETE FROM event Where UserID = ? AND Description = 'Google Event'",t))
+        conn.commit()
+        retVal = t
+    except Error as e:
+        print(e)
+        conn.rollback()
+        retVal = e
+    finally:
+        conn.close()
+        return retVal
 
 # Helper Method for converting tuple rows into dictionaries for events
 def makeEventDict(row):

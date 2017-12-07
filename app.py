@@ -165,6 +165,7 @@ def sync_google_events():
     user = makeUserDict(getUser(session['email']))
     googleID = user['GoogleID']
     if googleID and googleID != -1:
+        deleteGoogleEvents(session['userId'])
         num_events = google_stuff.add_events(googleID, session['userId'])
         flash('added {} events from google'.format(num_events))
         return redirect('/calendar')

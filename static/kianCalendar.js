@@ -58,6 +58,7 @@ $(document).ready(function() {
         AddZero(now.getMinutes())].join(":")].join("T");
 
     notificationLoop();
+    endNotificationLoop()
 
     // GET DISPLAY TYPE AND CHANGE DATE ACCORDINGLY
 
@@ -113,14 +114,97 @@ function notificationLoop(){
         }
     }
     function loopy(){
-        now = new Date();
+            now = new Date();
         console.log(allFutureEvents.length)
         while(allFutureEvents.length != 0 && new Date(allFutureEvents[0].start) < now){
-            alert(allFutureEvents.shift().title);
+            alert(allFutureEvents.shift().title + ' is starting');
         }
 
     }
     setInterval(loopy,30000);//check for notifications every 30 seconds.
+
+
+
+}
+
+function endNotificationLoop(){
+    var allEvents = JSON.parse(localStorage.allEvents);
+
+    allEvents.sort(function(a,b){
+        a = new Date(a.end);
+        b = new Date(b.end);
+
+        if(a>b){
+            return 1;
+        }else if(b>a){
+            return -1;
+        }else{
+            return 0;
+        }
+    });
+    var now = new Date();
+    var allFutureEvents=[];
+    for(i in allEvents){
+        var event = allEvents[i];
+        var eventDate = new Date(event.end);
+        if(now < eventDate){
+            allFutureEvents.push(event)
+        }
+    }
+    function loopy(){
+        now = new Date();
+        console.log(allFutureEvents.length)
+        while(allFutureEvents.length != 0 && new Date(allFutureEvents[0].end) < now){
+            alert(allFutureEvents.shift().title + ' is ending');
+        }
+
+    }
+    setInterval(loopy,5000);//check for notifications every 5 seconds.
+
+
+
+}
+
+function fiveminutesbeforestartNotificationLoop(){
+    var MS_PER_MINUTE = 60000;
+    var allEvents = JSON.parse(localStorage.allEvents);
+
+    allEvents.sort(function(a,b){
+        a = new Date(a.start);
+        b = new Date(b.start);
+
+        if(a>b){
+            return 1;
+        }else if(b>a){
+            return -1;
+        }else{
+            return 0;
+        }
+    });
+    var now = new Date();
+    var allFutureEvents=[];
+    for(i in allEvents){
+        var event = allEvents[i];
+        var eventValue = new Date(event.start).valueOf()- 5*MS_PER_MINUTE
+        var eventDate = new Date(eventValue)
+        if(now < eventDate){
+            allFutureEvents.push(event)
+        }
+    }
+    function loopy(){
+        now = new Date();
+        console.log(allFutureEvents.length)
+        //get the time for 5 minutes before
+        var eventValue = new Date(allFutureEvents[0].start).valueOf()- 5*MS_PER_MINUTE
+        var eventDate = new Date(eventValue)
+        while(allFutureEvents.length != 0 && eventDate < now){
+            alert(allFutureEvents.shift().title + ' will start in 5 minutes');
+            eventValue = new Date(allFutureEvents[0].start).valueOf()- 5*MS_PER_MINUTE
+            eventDate = new Date(eventValue)
+        }
+
+    }
+    setInterval(loopy,5000);//check for notifications every 5 seconds.
 
 
 
