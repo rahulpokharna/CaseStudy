@@ -68,7 +68,7 @@ def login():
         user = makeUserDict(getUser(session['email']))
         if 'GoogleID' in user:
             googleID = user['GoogleID']
-            if googleID != -1:
+            if googleID != '-1':
                 session['image'] = google_stuff.profileImage(googleID)
             else:
                 session['image'] = None
