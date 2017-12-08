@@ -54,14 +54,16 @@
 	</form>
 	<script>
         console.log('im a strawberry')
-        form=document.getElementById("formEventNew");
+        
         function postToDB() {
+            form=document.getElementById("formEventNew");
             console.log(form)
             form.method="POST";
             form.action="/request/events";
             form.submit();
         }
         function ifStudy() {
+            form=document.getElementById("formEventNew");
             form.method="GET";
             form.action="/study";
             form.submit();
@@ -187,7 +189,7 @@
             <label>End Time:&nbsp;&nbsp;&nbsp;</label>
             <input type="datetime-local" name="End"><br>
             <label>Event Type:</label>
-            <select name="EventType" id="ET">
+            <select name="EventType" id="eET">
                 <option value="Study Session">Study</option>
                 <option value="Quiz">Quiz</option>
                 <option value="Exam">Exam</option>
@@ -198,17 +200,17 @@
                 <option value="exam">Exam</option>
                 <option value="quiz">Quiz</option>
                 <option value="assignment">Assignment</option>
-                <option value="other">Other</option>
+                <option value="N/A">N/A</option>
             </select><br>
             <label>Importance:</label>
-            <select name="ImportanceRanking" id="IR">
+            <select name="ImportanceRanking" id="eIR">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="N/A">N/A</option>
             </select><br>
-            <input type="submit" value="Submit">
+            <input type="button" value="Finished" name="finished" onclick="editPostToDB(); editMessage();" />
             <input type="button" value="Delete" name="delete" onclick="deleteEvent()">
             <div class="container" style="background-color:#f1f1f1">
                     <button type="button" onclick="hideEventEdit()" class="cancelbtn">Cancel</button>
@@ -216,6 +218,51 @@
         </div>
     </form>
     <script>
+        function editPostToDB() {
+            form=document.getElementById("formEventEdit");
+            console.log(form)
+            form.method="POST";
+            form.action="/request/events";
+            form.submit();
+        }
+
+        function editMessage() {
+            var s = document.getElementById('eIR');
+            var IR = s.options[s.selectedIndex].value;
+            var t = document.getElementById('eET');
+            var ET = t.options[t.selectedIndex].value;
+
+            if(IR == '1' && ET=='Exam' ) {
+                alert("It is recommended that you plan study sessions totalling 2 hours")
+            } else if(IR == '2' && ET == 'Exam' ) {
+                alert("It is recommended that you plan study sessions totalling 4 hours")
+            } else if(IR == '3' && ET == 'Exam' ) {
+                alert("It is recommended that you plan study sessions totalling 6 hours")
+            }
+            else if(IR == '4' && ET == 'Exam' ) {
+                alert("It is recommended that you plan study sessions totalling 8 hours")
+            }
+            else if(IR == '1' && ET == 'Quiz' ) {
+                alert("It is recommended that you plan study sessions totalling 1 hours")
+            } else if(IR == '2' && ET == 'Quiz' ) {
+                alert("It is recommended that you plan study sessions totalling 2 hours")
+            } else if(IR == '3' && ET == 'Quiz' ) {
+                alert("It is recommended that you plan study sessions totalling 3 hours")
+            }
+            else if(IR == '4' && ET == 'Quiz' ) {
+                alert("It is recommended that you plan study sessions totalling 4 hours")
+            }
+            else if(IR == '1' && ET == 'Assignment Due Date' ) {
+                alert("It is recommended that you plan study sessions totalling .5 hours")
+            } else if(IR == '2' && ET == 'Assignment Due Date' ) {
+                alert("It is recommended that you plan study sessions totalling 1 hours")
+            } else if(IR == '3' && ET == 'Assignment Due Date' ) {
+                alert("It is recommended that you plan study sessions totalling 1.5 hours")
+            }
+            else if(IR == '4' && ET == 'Assignment Due Date' ) {
+                alert("It is recommended that you plan study sessions totalling 2 hours")
+            }
+        }
         var modal = document.getElementById('divFormEventEdit');
 
         window.onclick = function(event) {
