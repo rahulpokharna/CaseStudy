@@ -120,59 +120,43 @@ textarea {
 <form action="request/studyplan" method="POST"> 
   <div>
     <label>Study Dashboard</label>
-<<<<<<< HEAD
-    <script>
-    
-    function renderEvents() {
-   	 	setUserId();
-   		var events = $.ajax({
-       	type: "GET",
-       	url: "request/events",
-        	data: {userID: localStorage.userId},
-        	async: false});
-
-    	var parsedEvents = JSON.parse(events.responseText);
-    	for (parsedEvent in parsedEvents) {
-        	var event = parsedEvents[parsedEvent];
-        	var parsedEvent = studyDashboard(event['Title'], event['StudyPlan']);
-    	
-    
-    	}
-    
-	}
-	
-	function studyDashboard(title, studyPlan) {
-		$("#titleInner").append("<p>" + title "</p>");
-		$("#studyPlanInner").append("<p>" + studyPlan "</p>");
-	
-}
- 
-=======
     <style>
 		table, th, td {
    		 border: 1px solid black;
 			}
-			
+
 		p {
    		 text-indent: 50px;
 		}
 		</style>
    <body>
-    	<table>
-			<tr>
-  			<td>
-     		 <p id="ss"></p>
-      		</td>
-     		</tr>
-     		</table>
-     		
+    	<table id="myTable">
+            <tr>
+                <th>
+                    TITLE
+                </th>
+                <th>
+                    START
+                </th>
+                <th>
+                    END
+                </th>
+                <th>
+                    TYPE
+                </th>
+                <th>
+                    Study Plan
+                </th>
+            </tr>
+        </table>
+
      		 <!-- <ul id="ct"></ul> -->
-      		
-      
+
+
     </body>
-    
+
     <script>
-    
+
       function getStudyEvents() {
 
         var events = $.ajax({
@@ -191,32 +175,51 @@ textarea {
         return eventList;
 
       }
-
+{##}
+{#      function displayEvents(){#}
+{##}
+{#        var niceText = "";#}
+{#        events = getStudyEvents();#}
+{##}
+{#        for(var i = 0; i < events.length; i++){#}
+{#        item = events[i];#}
+{#          niceText = niceText + "\n" + item['Title'] + "-" +  item['StudyPlan'] ;#}
+{##}
+{#        }#}
+{#        $("#ss").text(niceText);#}
+{#      }#}
       function displayEvents(){
-       
+
         var niceText = "";
         events = getStudyEvents();
-        
+
         for(var i = 0; i < events.length; i++){
-        item = events[i];
-          niceText = niceText + "\n" + item['Title'] + "-" +  item['StudyPlan'] ;
-         	
+            item = events[i];
+            var row = '<tr>';
+            row = row + '<td>' + item['Title'] + '</td>';
+            row = row + '<td>' + item['Start'] + '</td>';
+            row = row + '<td>' + item['End'] + '</td>';
+            row = row + '<td>' + item['StudyType'] + '</td>';
+            row = row + '<td>' + item['StudyPlan'] + '</td>';
+            row = row + '</tr>';
+            $('#myTable').append(row);
+
         }
-        $("#ss").text(niceText);
+{#        $("#ss").text(niceText);#}
       }
 
-       
+
 
       function studyDashboard(title, studyPlan) {
-      
+
         $("#titleInner").append("<p>" + title + "</p>")
         $("#studyPlanInner").append("<p>" + studyPlan + "</p>")
-      
-      
+
+
       }
-      
-      document.getElementById("ct").innerHTML = window.displayEvents();
->>>>>>> 30dc5715f621c0c36a77451d5fa77db461ae7da8
+
+{#      document.getElementById("ct").innerHTML = window.displayEvents();#}
+        setTimeout(displayEvents(),500)
     </script>
     </textarea>
   </div>

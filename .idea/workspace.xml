@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9c5eb785-369c-4570-af81-4bb4471c7856" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.py" afterPath="$PROJECT_DIR$/app.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/studyDashboard.html" afterPath="$PROJECT_DIR$/templates/studyDashboard.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,6 +35,12 @@
         <item name="test.db" type="e3449647:DbNodeDescriptor" />
         <item name="main" type="e3449647:DbNodeDescriptor" />
       </path>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="test.db" type="e3449647:DbNodeDescriptor" />
+        <item name="main" type="e3449647:DbNodeDescriptor" />
+        <item name="program" type="e3449647:DbNodeDescriptor" />
+      </path>
     </expand>
     <select />
   </component>
@@ -43,99 +49,157 @@
       <file leaf-file-name="dbRequests.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dbRequests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="193" column="4" lean-forward="false" selection-start-line="193" selection-start-column="4" selection-end-line="193" selection-end-column="4" />
+            <state relative-caret-position="390">
+              <caret line="211" column="19" lean-forward="false" selection-start-line="211" selection-start-column="10" selection-end-line="211" selection-end-column="19" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
-                <marker date="1512683065179" expanded="true" signature="1637:1674" ph="SELECT * FRO... event" />
-                <marker date="1512683065179" expanded="true" signature="2011:2047" ph="SELECT * FRO... event" />
-                <marker date="1512683065179" expanded="true" signature="2486:2524" ph="SELECT * FRO... program" />
-                <marker date="1512683065179" expanded="true" signature="3006:3056" ph="SELECT * FRO... event" />
-                <marker date="1512683065179" expanded="true" signature="3254:3293" ph="SELECT * FRO... event" />
-                <marker date="1512683065179" expanded="true" signature="4176:4212" ph="SELECT * FRO... event" />
-                <marker date="1512683065179" expanded="true" signature="4360:4393" ph="DELETE FROM " />
-                <marker date="1512683065179" expanded="true" signature="4417:4584" ph="INSERT INTO event... " />
-                <marker date="1512683065179" expanded="true" signature="5200:5230" ph="SELECT MAX(e... event" />
-                <marker date="1512683065179" expanded="true" signature="5327:5494" ph="INSERT INTO event... " />
-                <marker date="1512683065179" expanded="true" signature="5855:5890" ph="DELETE FROM " />
-                <marker date="1512683065179" expanded="true" signature="6192:6224" ph="SELECT max(r... event" />
-                <marker date="1512683065179" expanded="true" signature="6704:6738" ph="SELECT * FRO... user" />
-                <marker date="1512683065179" expanded="true" signature="7079:7134" ph="SELECT Hashe... user" />
-                <marker date="1512683065179" expanded="true" signature="7586:7628" ph="SELECT Drive... user" />
-                <marker date="1512683065179" expanded="true" signature="7819:7864" ph="UPDATE user " />
-                <marker date="1512683065179" expanded="true" signature="8187:8229" ph="SELECT Googl... user" />
-                <marker date="1512683065179" expanded="true" signature="8821:8862" ph="SELECT Canva... user" />
-                <marker date="1512683065179" expanded="true" signature="9659:9687" ph="SELECT MAX(u... user" />
-                <marker date="1512683065179" expanded="true" signature="9772:9886" ph="INSERT INTO user... " />
-                <marker date="1512683065179" expanded="true" signature="10247:10280" ph="DELETE FROM " />
-                <marker date="1512683065179" expanded="true" signature="10304:10340" ph="DELETE FROM " />
-                <marker date="1512683065179" expanded="true" signature="10364:10398" ph="DELETE FROM " />
-                <marker date="1512683065179" expanded="true" signature="10706:10740" ph="SELECT * FRO... user" />
-                <marker date="1512683065179" expanded="true" signature="10885:10916" ph="DELETE FROM " />
-                <marker date="1512683065179" expanded="true" signature="10940:11054" ph="INSERT INTO user... " />
-                <marker date="1512683065179" expanded="true" signature="11417:11458" ph="SELECT * FRO... program" />
-                <marker date="1512683065179" expanded="true" signature="11912:11953" ph="SELECT * FRO... program" />
-                <marker date="1512683065179" expanded="true" signature="12520:12614" ph="SELECT * FRO... event" />
-                <marker date="1512683065179" expanded="true" signature="13108:13156" ph="UPDATE event... " />
-                <marker date="1512683065179" expanded="true" signature="13516:13561" ph="SELECT Study... event" />
-                <marker date="1512683065179" expanded="true" signature="14024:14058" ph="SELECT MAX(P... program" />
-                <marker date="1512683065179" expanded="true" signature="14149:14279" ph="INSERT INTO program... " />
-                <marker date="1512683065179" expanded="true" signature="14648:14687" ph="DELETE FROM " />
-                <marker date="1512683065179" expanded="true" signature="15011:15051" ph="SELECT * FRO... program" />
-                <marker date="1512683065179" expanded="true" signature="15205:15242" ph="DELETE FROM " />
-                <marker date="1512683065179" expanded="true" signature="15266:15396" ph="INSERT INTO program... " />
-                <marker date="1512683065179" expanded="true" signature="15798:15865" ph="DELETE FROM " />
+                <marker date="1512703579205" expanded="true" signature="1907:1944" ph="SELECT * FRO... event" />
+                <marker date="1512703579205" expanded="true" signature="2277:2313" ph="SELECT * FRO... event" />
+                <marker date="1512703579205" expanded="true" signature="2774:2829" ph="SELECT * FRO... program" />
+                <marker date="1512703579205" expanded="true" signature="3314:3364" ph="SELECT * FRO... event" />
+                <marker date="1512703579205" expanded="true" signature="4260:4296" ph="SELECT * FRO... event" />
+                <marker date="1512703579205" expanded="true" signature="4445:4478" ph="DELETE FROM " />
+                <marker date="1512703579205" expanded="true" signature="4503:4692" ph="INSERT INTO event... " />
+                <marker date="1512703579205" expanded="true" signature="5234:5264" ph="SELECT MAX(e... event" />
+                <marker date="1512703579205" expanded="true" signature="5361:5550" ph="INSERT INTO event... " />
+                <marker date="1512703579205" expanded="true" signature="5933:5968" ph="DELETE FROM " />
+                <marker date="1512703579205" expanded="true" signature="6292:6324" ph="SELECT max(r... event" />
+                <marker date="1512703579205" expanded="true" signature="6804:6838" ph="SELECT * FRO... user" />
+                <marker date="1512703579205" expanded="true" signature="7201:7256" ph="SELECT Hashe... user" />
+                <marker date="1512703579205" expanded="true" signature="7730:7772" ph="SELECT Drive... user" />
+                <marker date="1512703579205" expanded="true" signature="7963:8008" ph="UPDATE user " />
+                <marker date="1512703579205" expanded="true" signature="8331:8373" ph="SELECT Googl... user" />
+                <marker date="1512703579205" expanded="true" signature="8965:9006" ph="SELECT Canva... user" />
+                <marker date="1512703579205" expanded="true" signature="9803:9831" ph="SELECT MAX(u... user" />
+                <marker date="1512703579205" expanded="true" signature="9916:10041" ph="INSERT INTO user... " />
+                <marker date="1512703579205" expanded="true" signature="10402:10435" ph="DELETE FROM " />
+                <marker date="1512703579205" expanded="true" signature="10459:10495" ph="DELETE FROM " />
+                <marker date="1512703579205" expanded="true" signature="10519:10553" ph="DELETE FROM " />
+                <marker date="1512703579205" expanded="true" signature="10883:10917" ph="SELECT * FRO... user" />
+                <marker date="1512703579205" expanded="true" signature="11062:11093" ph="DELETE FROM " />
+                <marker date="1512703579205" expanded="true" signature="11117:11242" ph="INSERT INTO user... " />
+                <marker date="1512703579205" expanded="true" signature="11627:11668" ph="SELECT * FRO... program" />
+                <marker date="1512703579205" expanded="true" signature="12144:12185" ph="SELECT * FRO... program" />
+                <marker date="1512703579205" expanded="true" signature="12774:12868" ph="SELECT * FRO... event" />
+                <marker date="1512703579205" expanded="true" signature="13384:13432" ph="UPDATE event... " />
+                <marker date="1512703579205" expanded="true" signature="13814:13859" ph="SELECT Study... event" />
+                <marker date="1512703579205" expanded="true" signature="14311:14345" ph="SELECT MAX(P... program" />
+                <marker date="1512703579205" expanded="true" signature="14436:14577" ph="INSERT INTO program... " />
+                <marker date="1512703579205" expanded="true" signature="14946:14985" ph="DELETE FROM " />
+                <marker date="1512703579205" expanded="true" signature="15331:15371" ph="SELECT * FRO... program" />
+                <marker date="1512703579205" expanded="true" signature="15525:15562" ph="DELETE FROM " />
+                <marker date="1512703579205" expanded="true" signature="15586:15727" ph="INSERT INTO program... " />
+                <marker date="1512703579205" expanded="true" signature="16151:16218" ph="DELETE FROM " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="google_stuff.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/google_stuff/google_stuff.py">
+      <file leaf-file-name="eventForms.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/eventForms.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="9" column="41" lean-forward="true" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
-              <folding>
-                <element signature="e#0#55#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="client.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/conda/conda/envs/flaskenv/Lib/site-packages/oauth2client/client.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="37">
-              <caret line="2092" column="4" lean-forward="false" selection-start-line="2092" selection-start-column="4" selection-end-line="2092" selection-end-column="4" />
+            <state relative-caret-position="342">
+              <caret line="48" column="46" lean-forward="true" selection-start-line="48" selection-start-column="46" selection-end-line="48" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="client_secret.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client_secret.json">
+      <file leaf-file-name="studyDashboard.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/studyDashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="31" lean-forward="false" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
+            <state relative-caret-position="-912">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app.py">
+      <file leaf-file-name="studyDashboard.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/studyDashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="70" column="31" lean-forward="false" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
+            <state relative-caret-position="444">
+              <caret line="146" column="19" lean-forward="false" selection-start-line="146" selection-start-column="19" selection-end-line="146" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tables.rnc" pinned="false" current-in-tab="false">
+        <entry file="jar://$APPLICATION_HOME_DIR$/lib/pycharm.jar!/resources/html5-schema/html5/tables.rnc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="221" column="16" lean-forward="false" selection-start-line="221" selection-start-column="16" selection-end-line="221" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="eventForms.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/eventForms.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="44" column="52" lean-forward="false" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="52" />
               <folding>
-                <element signature="e#0#99#0" expanded="true" />
+                <marker date="1512719258746" expanded="true" signature="7664:7729" ph="..." />
+                <marker date="1512719258746" expanded="true" signature="7755:7946" ph="..." />
+                <marker date="1512719258746" expanded="true" signature="7992:11140" ph="..." />
+                <marker date="1512719258746" expanded="true" signature="8109:10577" ph="..." />
+                <marker date="1512719258746" expanded="true" signature="8168:8329" ph="..." />
+                <marker date="1512719258746" expanded="false" signature="8301:8308" ph="×" />
+                <marker date="1512719258746" expanded="false" signature="8372:8495" ph="..." />
+                <marker date="1512719258746" expanded="true" signature="8496:8602" ph="..." />
+                <marker date="1512719258746" expanded="false" signature="8534:8541" ph="×" />
+                <marker date="1512719258746" expanded="true" signature="8634:10565" ph="..." />
+                <marker date="1512719258746" expanded="false" signature="8808:8814" ph=" " />
+                <marker date="1512719258746" expanded="false" signature="8814:8820" ph=" " />
+                <marker date="1512719258746" expanded="false" signature="8820:8826" ph=" " />
+                <marker date="1512719258746" expanded="false" signature="8826:8832" ph=" " />
+                <marker date="1512719258746" expanded="false" signature="8832:8838" ph=" " />
+                <marker date="1512719258746" expanded="false" signature="8838:8844" ph=" " />
+                <marker date="1512719258746" expanded="false" signature="8844:8850" ph=" " />
+                <marker date="1512719258746" expanded="false" signature="8850:8856" ph=" " />
+                <marker date="1512719258746" expanded="false" signature="8856:8862" ph=" " />
+                <marker date="1512719258746" expanded="false" signature="8862:8868" ph=" " />
+                <marker date="1512719258746" expanded="false" signature="8868:8874" ph=" " />
+                <marker date="1512719258746" expanded="false" signature="9010:9016" ph=" " />
+                <marker date="1512719258746" expanded="false" signature="9016:9022" ph=" " />
+                <marker date="1512719258746" expanded="false" signature="9118:9124" ph=" " />
+                <marker date="1512719258746" expanded="false" signature="9124:9130" ph=" " />
+                <marker date="1512719258746" expanded="false" signature="9130:9136" ph=" " />
+                <marker date="1512719258746" expanded="true" signature="9285:9551" ph="..." />
+                <marker date="1512719258746" expanded="true" signature="9632:9872" ph="..." />
+                <marker date="1512719258746" expanded="true" signature="9969:10220" ph="..." />
+                <marker date="1512719258746" expanded="false" signature="10404:10428" ph="..." />
+                <marker date="1512719258746" expanded="true" signature="10429:10550" ph="..." />
+                <marker date="1512719258746" expanded="true" signature="10590:11133" ph="..." />
+                <marker date="1512719258746" expanded="true" signature="10699:10811" ph="{...}" />
+                <marker date="1512719258746" expanded="true" signature="10844:11111" ph="{...}" />
+                <marker date="1512719258746" expanded="true" signature="11149:13139" ph="..." />
+                <marker date="1512719258746" expanded="true" signature="11166:11196" ph="{...}" />
+                <marker date="1512719258746" expanded="true" signature="11211:11267" ph="{...}" />
+                <marker date="1512719258746" expanded="true" signature="11286:11315" ph="{...}" />
+                <marker date="1512719258746" expanded="true" signature="11332:11423" ph="{...}" />
+                <marker date="1512719258746" expanded="true" signature="11447:11541" ph="{...}" />
+                <marker date="1512719258746" expanded="true" signature="11553:11839" ph="{...}" />
+                <marker date="1512719258746" expanded="true" signature="11859:11950" ph="{...}" />
+                <marker date="1512719258746" expanded="true" signature="11971:12100" ph="{...}" />
+                <marker date="1512719258746" expanded="true" signature="12113:12258" ph="{...}" />
+                <marker date="1512719258746" expanded="true" signature="12295:12347" ph="{...}" />
+                <marker date="1512719258746" expanded="true" signature="12362:12450" ph="{...}" />
+                <marker date="1512719258746" expanded="true" signature="12487:12579" ph="..." />
+                <marker date="1512719258746" expanded="true" signature="12616:12692" ph="..." />
+                <marker date="1512719258746" expanded="true" signature="12735:12868" ph="{...}" />
+                <marker date="1512719258746" expanded="true" signature="12754:12810" ph="{...}" />
+                <marker date="1512719258746" expanded="true" signature="12830:12862" ph="{...}" />
+                <marker date="1512719258746" expanded="true" signature="12978:13033" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user" pinned="false" current-in-tab="false">
-        <entry file="das://table:/d9041ef9/61a4ae75-6e19-45ba-9f04-3374b9070af6/main.user">
+      <file leaf-file-name="program" pinned="false" current-in-tab="false">
+        <entry file="das://table:/d9041ef9/61a4ae75-6e19-45ba-9f04-3374b9070af6/main.program">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
               <filtering enabled="true" />
@@ -143,24 +207,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="header.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/header.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" column="36" lean-forward="true" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
-              <folding>
-                <element signature="n#style#0;n#a#3;n#nav#0;n#!!top" expanded="true" />
-              </folding>
+      <file leaf-file-name="event" pinned="false" current-in-tab="false">
+        <entry file="das://table:/d9041ef9/61a4ae75-6e19-45ba-9f04-3374b9070af6/main.event">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="register.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/register.html">
+      <file leaf-file-name="kianCalendar.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/kianCalendar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="15" column="17" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+            <state relative-caret-position="190">
+              <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1837">
+              <caret line="234" column="11" lean-forward="false" selection-start-line="234" selection-start-column="11" selection-end-line="234" selection-end-column="11" />
+              <folding>
+                <element signature="e#0#99#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -178,30 +251,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>login</find>
-      <find>socket</find>
-      <find>new</find>
-      <find>getuser</find>
-      <find>adding new</find>
-      <find>jquery</find>
-      <find>addnewUser</find>
-      <find>userID</find>
-      <find>user</find>
-      <find>id</find>
-      <find>makeEvent</find>
-      <find>make</find>
-      <find>idnum</find>
-      <find>POST</find>
-      <find>eventfo</find>
-      <find>butt</find>
-      <find>alert</find>
-      <find>formEventEdit</find>
-      <find>start</find>
-      <find>editevent</find>
-      <find>click</find>
-      <find>delete</find>
       <find>password</find>
+      <find>eventMani</find>
+      <find>buttonEventNew</find>
+      <find>divForm</find>
+      <find>program</find>
+      <find>color</find>
+      <find>wait</find>
+      <find>FF</find>
+      <find>addeven</find>
+      <find>divFormEventNew</find>
+      <find>.start</find>
+      <find>None</find>
+      <find>ajax</find>
+      <find>get</find>
+      <find>request</find>
+      <find>img</find>
+      <find>session['im</find>
+      <find>url</find>
+      <find>addnewp</find>
+      <find>local</find>
+      <find>group</find>
+      <find>gro</find>
+      <find>new</find>
+      <find>loopy</find>
+      <find>action</find>
       <find>add</find>
+      <find>head</find>
+      <find>render</find>
+      <find>study d</find>
+      <find>displayE</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -211,6 +290,9 @@
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
+    <push-targets>
+      <push-target-info target-remote="origin" target-branch="master" repo="$PROJECT_DIR$" source="master" />
+    </push-targets>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -228,14 +310,15 @@
         <option value="$PROJECT_DIR$/templates/welcome.html" />
         <option value="$PROJECT_DIR$/tests/apptest.py" />
         <option value="$PROJECT_DIR$/templates/register.html" />
-        <option value="$PROJECT_DIR$/templates/calendarChild.html" />
         <option value="$PROJECT_DIR$/requestHelpers.py" />
+        <option value="$PROJECT_DIR$/templates/header.html" />
+        <option value="$PROJECT_DIR$/templates/calendarChild.html" />
+        <option value="$PROJECT_DIR$/dbRequests.py" />
+        <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/templates/eventForms.html" />
         <option value="$PROJECT_DIR$/static/kianCalendar.js" />
         <option value="$PROJECT_DIR$/static/eventForms.js" />
-        <option value="$PROJECT_DIR$/dbRequests.py" />
-        <option value="$PROJECT_DIR$/templates/header.html" />
-        <option value="$PROJECT_DIR$/app.py" />
+        <option value="$PROJECT_DIR$/templates/studyDashboard.html" />
       </list>
     </option>
   </component>
@@ -246,8 +329,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="210" />
-    <option name="y" value="-8" />
+    <option name="x" value="263" />
+    <option name="y" value="-20" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
@@ -295,6 +378,11 @@
               <item name="CaseStudy" type="b2602c69:ProjectViewProjectNode" />
               <item name="CaseStudy" type="462c0819:PsiDirectoryNode" />
               <item name="google_stuff" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CaseStudy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CaseStudy" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CaseStudy" type="b2602c69:ProjectViewProjectNode" />
@@ -1329,7 +1417,21 @@
       <option name="project" value="LOCAL" />
       <updated>1512520237543</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="google stuff and notifciations">
+      <created>1512683198963</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1512683198963</updated>
+    </task>
+    <task id="LOCAL-00014" summary="program add and event integratification">
+      <created>1512706366029</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1512706366029</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1366,16 +1468,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29347825" sideWeight="0.5021322" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2173913" sideWeight="0.4978678" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2173913" sideWeight="0.4978678" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29347825" sideWeight="0.4978678" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29347825" sideWeight="0.4978678" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16151386" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14392324" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18928571" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1392,7 +1496,6 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29404762" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16013746" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18928571" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14432989" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1403,19 +1506,19 @@
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33152175" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29456523" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14658849" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2173913" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29404762" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16013746" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14552239" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14432989" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18928571" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1442,7 +1545,9 @@
     <MESSAGE value="delete event form is wokring now." />
     <MESSAGE value="notifications are working now. i did it through the frontend." />
     <MESSAGE value="delete is working" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete is working" />
+    <MESSAGE value="google stuff and notifciations" />
+    <MESSAGE value="program add and event integratification" />
+    <option name="LAST_COMMIT_MESSAGE" value="program add and event integratification" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1462,25 +1567,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2090">
-          <caret line="113" column="32" lean-forward="false" selection-start-line="113" selection-start-column="32" selection-end-line="113" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#99#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/notificationsTesting.html" />
-    <entry file="file://$PROJECT_DIR$/notificationtrial.py" />
     <entry file="file://$USER_HOME$/AppData/Local/conda/conda/envs/flaskenv/Lib/site-packages/flask/globals.py" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/61a4ae75-6e19-45ba-9f04-3374b9070af6/console.sql" />
     <entry file="file://$PROJECT_DIR$/login.py">
@@ -1627,9 +1713,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="563">
           <caret line="160" column="32" lean-forward="false" selection-start-line="160" selection-start-column="32" selection-end-line="160" selection-end-column="32" />
-          <folding>
-            <element signature="e#37#51#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1640,17 +1724,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/d9041ef9/61a4ae75-6e19-45ba-9f04-3374b9070af6/main.event">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/dbRequestsTest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="586">
           <caret line="47" column="20" lean-forward="true" selection-start-line="41" selection-start-column="8" selection-end-line="47" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1659,44 +1737,8 @@
         <state relative-caret-position="345">
           <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding>
-            <element signature="e#0#24#0" expanded="true" />
+            <element signature="e#0#24#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/kiancalendar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/calendarChild.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1140">
-          <caret line="77" column="14" lean-forward="false" selection-start-line="77" selection-start-column="14" selection-end-line="77" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/kianCalendar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="89" column="129" lean-forward="false" selection-start-line="89" selection-start-column="129" selection-end-line="89" selection-end-column="129" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/eventForms.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="22" lean-forward="false" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/eventForms.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="131" column="25" lean-forward="false" selection-start-line="131" selection-start-column="25" selection-end-line="131" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -1709,64 +1751,6 @@
       </provider>
     </entry>
     <entry file="das://table:/1eb83dd9/61a4ae75-6e19-45ba-9f04-3374b9070af6/main.user" />
-    <entry file="file://$PROJECT_DIR$/templates/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="36" lean-forward="true" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
-          <folding>
-            <element signature="n#style#0;n#a#3;n#nav#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dbRequests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="193" column="4" lean-forward="false" selection-start-line="193" selection-start-column="4" selection-end-line="193" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-            <marker date="1512683065179" expanded="true" signature="1637:1674" ph="SELECT * FRO... event" />
-            <marker date="1512683065179" expanded="true" signature="2011:2047" ph="SELECT * FRO... event" />
-            <marker date="1512683065179" expanded="true" signature="2486:2524" ph="SELECT * FRO... program" />
-            <marker date="1512683065179" expanded="true" signature="3006:3056" ph="SELECT * FRO... event" />
-            <marker date="1512683065179" expanded="true" signature="3254:3293" ph="SELECT * FRO... event" />
-            <marker date="1512683065179" expanded="true" signature="4176:4212" ph="SELECT * FRO... event" />
-            <marker date="1512683065179" expanded="true" signature="4360:4393" ph="DELETE FROM " />
-            <marker date="1512683065179" expanded="true" signature="4417:4584" ph="INSERT INTO event... " />
-            <marker date="1512683065179" expanded="true" signature="5200:5230" ph="SELECT MAX(e... event" />
-            <marker date="1512683065179" expanded="true" signature="5327:5494" ph="INSERT INTO event... " />
-            <marker date="1512683065179" expanded="true" signature="5855:5890" ph="DELETE FROM " />
-            <marker date="1512683065179" expanded="true" signature="6192:6224" ph="SELECT max(r... event" />
-            <marker date="1512683065179" expanded="true" signature="6704:6738" ph="SELECT * FRO... user" />
-            <marker date="1512683065179" expanded="true" signature="7079:7134" ph="SELECT Hashe... user" />
-            <marker date="1512683065179" expanded="true" signature="7586:7628" ph="SELECT Drive... user" />
-            <marker date="1512683065179" expanded="true" signature="7819:7864" ph="UPDATE user " />
-            <marker date="1512683065179" expanded="true" signature="8187:8229" ph="SELECT Googl... user" />
-            <marker date="1512683065179" expanded="true" signature="8821:8862" ph="SELECT Canva... user" />
-            <marker date="1512683065179" expanded="true" signature="9659:9687" ph="SELECT MAX(u... user" />
-            <marker date="1512683065179" expanded="true" signature="9772:9886" ph="INSERT INTO user... " />
-            <marker date="1512683065179" expanded="true" signature="10247:10280" ph="DELETE FROM " />
-            <marker date="1512683065179" expanded="true" signature="10304:10340" ph="DELETE FROM " />
-            <marker date="1512683065179" expanded="true" signature="10364:10398" ph="DELETE FROM " />
-            <marker date="1512683065179" expanded="true" signature="10706:10740" ph="SELECT * FRO... user" />
-            <marker date="1512683065179" expanded="true" signature="10885:10916" ph="DELETE FROM " />
-            <marker date="1512683065179" expanded="true" signature="10940:11054" ph="INSERT INTO user... " />
-            <marker date="1512683065179" expanded="true" signature="11417:11458" ph="SELECT * FRO... program" />
-            <marker date="1512683065179" expanded="true" signature="11912:11953" ph="SELECT * FRO... program" />
-            <marker date="1512683065179" expanded="true" signature="12520:12614" ph="SELECT * FRO... event" />
-            <marker date="1512683065179" expanded="true" signature="13108:13156" ph="UPDATE event... " />
-            <marker date="1512683065179" expanded="true" signature="13516:13561" ph="SELECT Study... event" />
-            <marker date="1512683065179" expanded="true" signature="14024:14058" ph="SELECT MAX(P... program" />
-            <marker date="1512683065179" expanded="true" signature="14149:14279" ph="INSERT INTO program... " />
-            <marker date="1512683065179" expanded="true" signature="14648:14687" ph="DELETE FROM " />
-            <marker date="1512683065179" expanded="true" signature="15011:15051" ph="SELECT * FRO... program" />
-            <marker date="1512683065179" expanded="true" signature="15205:15242" ph="DELETE FROM " />
-            <marker date="1512683065179" expanded="true" signature="15266:15396" ph="INSERT INTO program... " />
-            <marker date="1512683065179" expanded="true" signature="15798:15865" ph="DELETE FROM " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="das://table:/d9041ef9/61a4ae75-6e19-45ba-9f04-3374b9070af6/main.user">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -1795,18 +1779,210 @@
         <state relative-caret-position="151">
           <caret line="9" column="41" lean-forward="true" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
           <folding>
-            <element signature="e#0#55#0" expanded="true" />
+            <element signature="e#0#55#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/kiancalendar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/calendarChild.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="25" lean-forward="false" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+          <folding>
+            <marker date="1512719258718" expanded="false" signature="2062:2149" ph="..." />
+            <marker date="1512719258718" expanded="false" signature="2630:2664" ph="..." />
+            <marker date="1512719258718" expanded="false" signature="3535:3548" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="13" lean-forward="true" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="n#style#0;n#a#3;n#nav#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/d9041ef9/61a4ae75-6e19-45ba-9f04-3374b9070af6/main.event">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/d9041ef9/61a4ae75-6e19-45ba-9f04-3374b9070af6/main.program">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="70" column="31" lean-forward="false" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
+        <state relative-caret-position="1837">
+          <caret line="234" column="11" lean-forward="false" selection-start-line="234" selection-start-column="11" selection-end-line="234" selection-end-column="11" />
           <folding>
             <element signature="e#0#99#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dbRequests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="211" column="19" lean-forward="false" selection-start-line="211" selection-start-column="10" selection-end-line="211" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+            <marker date="1512703579205" expanded="true" signature="1907:1944" ph="SELECT * FRO... event" />
+            <marker date="1512703579205" expanded="true" signature="2277:2313" ph="SELECT * FRO... event" />
+            <marker date="1512703579205" expanded="true" signature="2774:2829" ph="SELECT * FRO... program" />
+            <marker date="1512703579205" expanded="true" signature="3314:3364" ph="SELECT * FRO... event" />
+            <marker date="1512703579205" expanded="true" signature="4260:4296" ph="SELECT * FRO... event" />
+            <marker date="1512703579205" expanded="true" signature="4445:4478" ph="DELETE FROM " />
+            <marker date="1512703579205" expanded="true" signature="4503:4692" ph="INSERT INTO event... " />
+            <marker date="1512703579205" expanded="true" signature="5234:5264" ph="SELECT MAX(e... event" />
+            <marker date="1512703579205" expanded="true" signature="5361:5550" ph="INSERT INTO event... " />
+            <marker date="1512703579205" expanded="true" signature="5933:5968" ph="DELETE FROM " />
+            <marker date="1512703579205" expanded="true" signature="6292:6324" ph="SELECT max(r... event" />
+            <marker date="1512703579205" expanded="true" signature="6804:6838" ph="SELECT * FRO... user" />
+            <marker date="1512703579205" expanded="true" signature="7201:7256" ph="SELECT Hashe... user" />
+            <marker date="1512703579205" expanded="true" signature="7730:7772" ph="SELECT Drive... user" />
+            <marker date="1512703579205" expanded="true" signature="7963:8008" ph="UPDATE user " />
+            <marker date="1512703579205" expanded="true" signature="8331:8373" ph="SELECT Googl... user" />
+            <marker date="1512703579205" expanded="true" signature="8965:9006" ph="SELECT Canva... user" />
+            <marker date="1512703579205" expanded="true" signature="9803:9831" ph="SELECT MAX(u... user" />
+            <marker date="1512703579205" expanded="true" signature="9916:10041" ph="INSERT INTO user... " />
+            <marker date="1512703579205" expanded="true" signature="10402:10435" ph="DELETE FROM " />
+            <marker date="1512703579205" expanded="true" signature="10459:10495" ph="DELETE FROM " />
+            <marker date="1512703579205" expanded="true" signature="10519:10553" ph="DELETE FROM " />
+            <marker date="1512703579205" expanded="true" signature="10883:10917" ph="SELECT * FRO... user" />
+            <marker date="1512703579205" expanded="true" signature="11062:11093" ph="DELETE FROM " />
+            <marker date="1512703579205" expanded="true" signature="11117:11242" ph="INSERT INTO user... " />
+            <marker date="1512703579205" expanded="true" signature="11627:11668" ph="SELECT * FRO... program" />
+            <marker date="1512703579205" expanded="true" signature="12144:12185" ph="SELECT * FRO... program" />
+            <marker date="1512703579205" expanded="true" signature="12774:12868" ph="SELECT * FRO... event" />
+            <marker date="1512703579205" expanded="true" signature="13384:13432" ph="UPDATE event... " />
+            <marker date="1512703579205" expanded="true" signature="13814:13859" ph="SELECT Study... event" />
+            <marker date="1512703579205" expanded="true" signature="14311:14345" ph="SELECT MAX(P... program" />
+            <marker date="1512703579205" expanded="true" signature="14436:14577" ph="INSERT INTO program... " />
+            <marker date="1512703579205" expanded="true" signature="14946:14985" ph="DELETE FROM " />
+            <marker date="1512703579205" expanded="true" signature="15331:15371" ph="SELECT * FRO... program" />
+            <marker date="1512703579205" expanded="true" signature="15525:15562" ph="DELETE FROM " />
+            <marker date="1512703579205" expanded="true" signature="15586:15727" ph="INSERT INTO program... " />
+            <marker date="1512703579205" expanded="true" signature="16151:16218" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/kianCalendar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/eventForms.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="44" column="52" lean-forward="false" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="52" />
+          <folding>
+            <marker date="1512719258746" expanded="true" signature="7664:7729" ph="..." />
+            <marker date="1512719258746" expanded="true" signature="7755:7946" ph="..." />
+            <marker date="1512719258746" expanded="true" signature="7992:11140" ph="..." />
+            <marker date="1512719258746" expanded="true" signature="8109:10577" ph="..." />
+            <marker date="1512719258746" expanded="true" signature="8168:8329" ph="..." />
+            <marker date="1512719258746" expanded="false" signature="8301:8308" ph="×" />
+            <marker date="1512719258746" expanded="false" signature="8372:8495" ph="..." />
+            <marker date="1512719258746" expanded="true" signature="8496:8602" ph="..." />
+            <marker date="1512719258746" expanded="false" signature="8534:8541" ph="×" />
+            <marker date="1512719258746" expanded="true" signature="8634:10565" ph="..." />
+            <marker date="1512719258746" expanded="false" signature="8808:8814" ph=" " />
+            <marker date="1512719258746" expanded="false" signature="8814:8820" ph=" " />
+            <marker date="1512719258746" expanded="false" signature="8820:8826" ph=" " />
+            <marker date="1512719258746" expanded="false" signature="8826:8832" ph=" " />
+            <marker date="1512719258746" expanded="false" signature="8832:8838" ph=" " />
+            <marker date="1512719258746" expanded="false" signature="8838:8844" ph=" " />
+            <marker date="1512719258746" expanded="false" signature="8844:8850" ph=" " />
+            <marker date="1512719258746" expanded="false" signature="8850:8856" ph=" " />
+            <marker date="1512719258746" expanded="false" signature="8856:8862" ph=" " />
+            <marker date="1512719258746" expanded="false" signature="8862:8868" ph=" " />
+            <marker date="1512719258746" expanded="false" signature="8868:8874" ph=" " />
+            <marker date="1512719258746" expanded="false" signature="9010:9016" ph=" " />
+            <marker date="1512719258746" expanded="false" signature="9016:9022" ph=" " />
+            <marker date="1512719258746" expanded="false" signature="9118:9124" ph=" " />
+            <marker date="1512719258746" expanded="false" signature="9124:9130" ph=" " />
+            <marker date="1512719258746" expanded="false" signature="9130:9136" ph=" " />
+            <marker date="1512719258746" expanded="true" signature="9285:9551" ph="..." />
+            <marker date="1512719258746" expanded="true" signature="9632:9872" ph="..." />
+            <marker date="1512719258746" expanded="true" signature="9969:10220" ph="..." />
+            <marker date="1512719258746" expanded="false" signature="10404:10428" ph="..." />
+            <marker date="1512719258746" expanded="true" signature="10429:10550" ph="..." />
+            <marker date="1512719258746" expanded="true" signature="10590:11133" ph="..." />
+            <marker date="1512719258746" expanded="true" signature="10699:10811" ph="{...}" />
+            <marker date="1512719258746" expanded="true" signature="10844:11111" ph="{...}" />
+            <marker date="1512719258746" expanded="true" signature="11149:13139" ph="..." />
+            <marker date="1512719258746" expanded="true" signature="11166:11196" ph="{...}" />
+            <marker date="1512719258746" expanded="true" signature="11211:11267" ph="{...}" />
+            <marker date="1512719258746" expanded="true" signature="11286:11315" ph="{...}" />
+            <marker date="1512719258746" expanded="true" signature="11332:11423" ph="{...}" />
+            <marker date="1512719258746" expanded="true" signature="11447:11541" ph="{...}" />
+            <marker date="1512719258746" expanded="true" signature="11553:11839" ph="{...}" />
+            <marker date="1512719258746" expanded="true" signature="11859:11950" ph="{...}" />
+            <marker date="1512719258746" expanded="true" signature="11971:12100" ph="{...}" />
+            <marker date="1512719258746" expanded="true" signature="12113:12258" ph="{...}" />
+            <marker date="1512719258746" expanded="true" signature="12295:12347" ph="{...}" />
+            <marker date="1512719258746" expanded="true" signature="12362:12450" ph="{...}" />
+            <marker date="1512719258746" expanded="true" signature="12487:12579" ph="..." />
+            <marker date="1512719258746" expanded="true" signature="12616:12692" ph="..." />
+            <marker date="1512719258746" expanded="true" signature="12735:12868" ph="{...}" />
+            <marker date="1512719258746" expanded="true" signature="12754:12810" ph="{...}" />
+            <marker date="1512719258746" expanded="true" signature="12830:12862" ph="{...}" />
+            <marker date="1512719258746" expanded="true" signature="12978:13033" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/eventForms.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="48" column="46" lean-forward="true" selection-start-line="48" selection-start-column="46" selection-end-line="48" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/studyDashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-912">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/pycharm.jar!/resources/html5-schema/html5/tables.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="221" column="16" lean-forward="false" selection-start-line="221" selection-start-column="16" selection-end-line="221" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/studyDashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="146" column="19" lean-forward="false" selection-start-line="146" selection-start-column="19" selection-end-line="146" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
