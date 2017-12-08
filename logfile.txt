@@ -1,1 +1,1 @@
-table user has 8 columns but 7 values were supplied
+table user has 8 columns but 7 values were suppliedError binding parameter :HashedPassword - probably unsupported type.Error binding parameter :HashedPassword - probably unsupported type.Error binding parameter :HashedPassword - probably unsupported type.Error binding parameter :HashedPassword - probably unsupported type.Error binding parameter :HashedPassword - probably unsupported type.

@@ -1,7 +1,7 @@
 import sqlite3
 from sqlite3 import Error
 import json
-from requestHelpers import *
+import hashlib
 #Name/path of the database
 DATABASE = 'test.db'
 # Helper variable for events
@@ -332,7 +332,7 @@ def deleteUser(UserID):
         conn.rollback()
     finally:
         conn.close()
-        return ProgramID
+        return UserID
 #Edit a user
 def editUser(userID,obj):
     
@@ -513,6 +513,23 @@ def editProgram(ProgramID,obj):
     finally:
         conn.close()
         return retVal
+#delete the events from google for a given user
+def deleteGoogleEvents(userID):
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+
+    try:
+        t = str(userID)
+        print(c.execute("DELETE FROM event Where UserID = ? AND Description = 'Google Event'",t))
+        conn.commit()
+        retVal = t
+    except Error as e:
+        print(e)
+        conn.rollback()
+        retVal = e
+    finally:
+        conn.close()
+        return retVal
 
 # Helper Method for converting tuple rows into dictionaries for events
 def makeEventDict(row):
@@ -549,4 +566,8 @@ def writeToLog(inputError):
     file.close() 
     print('An error has been written to the log')
     print(inputError.with_traceback())
-    
+
+def hashString(string):
+    m = hashlib.sha256()
+    m.update(string.encode('utf-8'))
+    return m.digest()
