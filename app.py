@@ -233,6 +233,13 @@ def addProgram():
     form = request.form
     addNewProgram(form)
     return redirect('/calendar')
+
+@app.route('/request/deleteProgram', methods=['POST'])
+def request_deleteProgram():
+    pID = request.form['pID']
+    deleteProgram(pID)
+    return redirect('/calendar')
+
 if __name__ == "__main__":
     app.run()
 

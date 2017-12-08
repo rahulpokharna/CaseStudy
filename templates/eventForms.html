@@ -121,7 +121,7 @@
         </div>
         <div class="modal-header" style="font-family: 'Open Sans', sans-serif; font-size: 100%; color: #FFFFFF; text-shadow: 2px 2px #000000; text-decoration: none;">
                 <span class="close">&times;</span>
-                <h2>Add An Event!</h2>
+                <h2>Add A Program!</h2>
         </div>
         <div class="container">
             <input type="hidden" name="UserID" value={{  session['userId'] }}>
@@ -129,6 +129,23 @@
             <input type="text" name="Title" placeholder="Title" pattern="[a-zA-Z0-9]+" required /><br>
             <label>Program Color:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input type="color" name="Color" id="html5colorpicker" onchange="clickColor(0, -1, -1, 5)" value="#ff0000" style="width:85%;">
+            <input type="submit" value="Submit">
+        </div>
+
+    </form>
+</div>
+
+<div id="divFormProgramDel" class ="modal">
+    <form id="formProgramDel" name="delEventForm" method="post" action="/request/deleteProgram" class="modal-content animate">
+        <div class="imgcontainer">
+                <span onclick="document.getElementById('divFormProgramDel').style.display='none'" class="close" title="Close Modal">&times;</span>
+        </div>
+        <div class="modal-header" style="font-family: 'Open Sans', sans-serif; font-size: 100%; color: #FFFFFF; text-shadow: 2px 2px #000000; text-decoration: none;">
+                <span class="close">&times;</span>
+                <h2>Delete a Program</h2>
+        </div>
+        <div class="container">
+            <select name="pID" id="delProgramList">
             <input type="submit" value="Submit">
         </div>
 
