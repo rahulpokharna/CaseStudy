@@ -5,17 +5,83 @@ import hashlib
 #Name/path of the database
 DATABASE = 'test.db'
 # Helper variable for events
-defaultEvent = {'EventID': -1, 'UserID': 1, 'Start': '2017-10-26T18:53:08Z', 'End': '2017-10-26T19:53:08Z', 'Description': 'An Event', 'ImportanceRanking': 1, 'Title': 'Default Event', 'ProgramID': 1, 'EventType': '', 'StudyPlan': 'Plan not set', 'StudyType': '', 'Color': 'blue', 'Recurring': 0}
+defaultEvent = {
+    'EventID': -1, 
+    'UserID': 1, 
+    'Start': '2017-10-26T18:53:08Z', 
+    'End': '2017-10-26T19:53:08Z', 
+    'Description': 'An Event', 
+    'ImportanceRanking': 1, 
+    'Title': 'Default Event', 
+    'ProgramID': 1, 
+    'EventType': '', 
+    'StudyPlan': 'Plan not set', 
+    'StudyType': '', 
+    'Color': 'blue', 
+    'Recurring': 0
+    }
 # Helper variable for events
-eventTable = ['EventID', 'UserID', 'Start', 'End', 'Description', 'ImportanceRanking', 'Title', 'ProgramID', 'EventType', 'StudyPlan', 'StudyType', 'Color', 'Recurring']
+eventTable = [
+    'EventID', 
+    'UserID', 
+    'Start', 
+    'End', 
+    'Description', 
+    'ImportanceRanking', 
+    'Title', 
+    'ProgramID', 
+    'EventType',
+    'StudyPlan', 
+    'StudyType', 
+    'Color', 
+    'Recurring'
+    ]
 #Helpervariable for users
-defaultUser = {'UserID': 1 , 'email': 'abc123@case.edu', 'FirstName': 'Alpha', 'LastName': 'Cavern', 'HashedPassword': 'hashed', 'GoogleID': -1, 'CanvasID': -1, 'DriveLink': 'https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU'}
+defaultUser = {
+    'UserID': 1 , 
+    'email': 'abc123@case.edu', 
+    'FirstName': 'Alpha', 
+    'LastName': 'Cavern', 
+    'HashedPassword': 'hashed', 
+    'GoogleID': -1, 
+    'CanvasID': -1, 
+    'DriveLink': 'https://drive.google.com/open?id=0B8WM6XnQ3RJ6RS1XUzNfLVNnQlU'
+    }
 #Helpervariable for users
-userTable = ['UserID', 'email', 'FirstName', 'LastName', 'HashedPassword', 'GoogleID', 'CanvasID', 'DriveLink']
+userTable = [
+    'UserID', 
+    'email', 
+    'FirstName', 
+    'LastName', 
+    'HashedPassword', 
+    'GoogleID', 
+    'CanvasID', 
+    'DriveLink'
+    ]
 #Helpervariable for program
-defaultProgram = {'ProgramID': 1, 'UserID': 1, 'Description': '', 'Notes': 'https://docs.google.com/document/d/1Aeaj_uiwTcv5IFS2tH7vJcaj2LbMJOO-0dad8l7x98I/edit', 'ExamLength': 3, 'AssignmentLength': 1, 'QuizLength': 2, 'Color': 'blue', 'Title': 'Default Title'}
+defaultProgram = {
+    'ProgramID': 1, 
+    'UserID': 1, 
+    'Description': '', 
+    'Notes': 'https://docs.google.com/document/d/1Aeaj_uiwTcv5IFS2tH7vJcaj2LbMJOO-0dad8l7x98I/edit', 
+    'ExamLength': 3, 
+    'AssignmentLength': 1, 
+    'QuizLength': 2, 
+    'Color': 'blue', 
+    'Title': 'Default Title'
+    }
 #Helpervariable for program
-programTable = ['ProgramID', 'UserID', 'Description', 'Notes', 'ExamLength', 'AssignmentLength', 'QuizLength', 'Color', 'Title']
+programTable = [
+    'ProgramID', 
+    'UserID', 
+    'Description', 
+    'Notes', 
+    'ExamLength', 
+    'AssignmentLength', 
+    'QuizLength', 
+    'Color', 
+    'Title'
+    ]
 
 
 #not used in demo
@@ -117,7 +183,9 @@ def editEvent(eventID,obj):
         for col in obj:
             tempEvent[col] = obj[col]
         c.execute('DELETE FROM event WHERE eventID=?',t)
-        c.execute('INSERT INTO event VALUES(:EventID, :UserID, :Start, :End, :Description, :ImportanceRanking, :Title, :ProgramID, :EventType, :StudyPlan, :StudyType, :Color, :Recurring)',tempEvent)
+        c.execute('INSERT INTO event VALUES(:EventID, :UserID, '
+        ':Start, :End, :Description, :ImportanceRanking, :Title, '
+        ':ProgramID, :EventType, :StudyPlan, :StudyType, :Color, :Recurring)',tempEvent)
         conn.commit()
         retVal = eventID
     except Error as e:
@@ -129,7 +197,7 @@ def editEvent(eventID,obj):
         return retVal
 
 # Gets a dict with values, changes values of the default event for what needs to be changed
-def addNewEvent(obj):     # make sure all information is in the correct formats. Date and Time processing can be done here.
+def addNewEvent(obj):     
 
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
@@ -144,7 +212,9 @@ def addNewEvent(obj):     # make sure all information is in the correct formats.
         tempEvent['EventID'] = r[0] + 1
 
         
-        c.execute('INSERT INTO event VALUES(:EventID, :UserID, :Start, :End, :Description, :ImportanceRanking, :Title, :ProgramID, :EventType, :StudyPlan, :StudyType, :Color, :Recurring)', tempEvent)
+        c.execute('INSERT INTO event VALUES(:EventID, :UserID, '
+        ':Start, :End, :Description, :ImportanceRanking, :Title, '
+        ':ProgramID, :EventType, :StudyPlan, :StudyType, :Color, :Recurring)', tempEvent)
         
         conn.commit()
     except Error as e:
@@ -310,7 +380,8 @@ def addNewUser(obj):
         c.execute('SELECT MAX(userID) FROM user')
         r = c.fetchone()
         tempUser['UserID'] = r[0] + 1
-        c.execute('INSERT INTO user VALUES(:UserID, :email, :FirstName, :LastName, :HashedPassword, :GoogleID, :CanvasID, :DriveLink)', tempUser)
+        c.execute('INSERT INTO user VALUES(:UserID, :email, :FirstName, '
+        ':LastName, :HashedPassword, :GoogleID, :CanvasID, :DriveLink)', tempUser)
 
         conn.commit()
     except Error as e:
@@ -354,7 +425,8 @@ def editUser(userID,obj):
         for col in obj:
             tempUser[col] = obj[col]
         c.execute('DELETE FROM user WHERE userID=?',t)
-        c.execute('INSERT INTO user VALUES(:UserID, :email, :FirstName, :LastName, :HashedPassword, :GoogleID, :CanvasID, :DriveLink)', tempUser)
+        c.execute('INSERT INTO user VALUES(:UserID, :email, :FirstName, :LastName, '
+        ':HashedPassword, :GoogleID, :CanvasID, :DriveLink)', tempUser)
         conn.commit()
         retVal = userID
     except Error as e:
@@ -468,7 +540,8 @@ def addNewProgram(obj):
         c.execute('SELECT MAX(ProgramID) FROM program')
         r = c.fetchone()
         tempProgram['ProgramID'] = r[0] + 1
-        c.execute('INSERT INTO program VALUES(:ProgramID, :UserID, :Description, :Notes, :ExamLength, :AssignmentLength, :QuizLength, :Color, :Title)', tempProgram)
+        c.execute('INSERT INTO program VALUES(:ProgramID, :UserID, :Description, '
+        ':Notes, :ExamLength, :AssignmentLength, :QuizLength, :Color, :Title)', tempProgram)
 
         conn.commit()
     except Error as e:
@@ -510,7 +583,8 @@ def editProgram(ProgramID,obj):
         for col in obj:
             tempProgram[col] = obj[col]
         c.execute('DELETE FROM program WHERE programID=?',t)
-        c.execute('INSERT INTO program VALUES(:ProgramID, :UserID, :Description, :Notes, :ExamLength, :AssignmentLength, :QuizLength, :Color, :Title)', tempProgram)
+        c.execute('INSERT INTO program VALUES(:ProgramID, :UserID, :Description, :Notes, '
+        ':ExamLength, :AssignmentLength, :QuizLength, :Color, :Title)', tempProgram)
         conn.commit()
         retVal = ProgramID
     except Error as e:
