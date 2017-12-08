@@ -138,24 +138,17 @@ def getUserPrograms(userID):
 def getProgramEvents(userID, programID):
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
+    rowList = []
     try:
-        t = userID, programID
-        ret = c.execute("SELECT * FROM event WHERE userID = ?, programID =?",t)
-        rowList = []
+        ret = c.execute("SELECT * FROM event WHERE userID=? and programID=?", (userID, programID))
         for row in ret:
-            rowList.append(makeEventDict(row))
-        
-        #manually adds the default program for events to this list
-        ret = c.execute("SELECT * FROM event WHERE programID = 1")
-        for row in ret:
+            print(row)
             rowList.append(makeEventDict(row))
     except Error as e:
         print(e)
     finally:       
         conn.close()
-        if(type(rowList) is not None):
-            return rowList
-        return ['Failed']
+        return rowList
 
 #returns a list of dictionaries, values of Program, Events for every program and every event for a user
 def getGroupedUserEvents(userID):

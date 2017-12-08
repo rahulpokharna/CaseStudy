@@ -137,6 +137,22 @@ def setStudyPlan():
         id = request.args.get('eventID')
         return viewStudyPlan('eventID')
 
+@app.route('/request/getUserPrograms', methods=['GET'])
+def reqeuest_getUserPrograms():
+    userID = request.args.get('userID')
+    return jsonify(getUserPrograms(userID))
+
+@app.route('/request/getGroupedUserEvents', methods=['GET'])
+def reqeuest_getGroupedUserEvents():
+    userID = request.args.get('userID')
+    return jsonify(getGroupedUserEvents(userID))
+
+@app.route('/request/getProgramEvents', methods=['GET'])
+def request_getProgramEvents():
+    userID = request.args.get('userID')
+    programID = request.args.get('programID')
+    return jsonify(getProgramEvents(userID, programID))
+
 @app.route('/register', methods=['GET','POST'])
 def register():
     if request.method == 'GET':

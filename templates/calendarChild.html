@@ -9,7 +9,6 @@
     <script src="static/fullCalendar/lib/jquery.min.js"></script>
     <script src="static/fullCalendar/lib/jquery-ui.min.js"></script>
     <script src="static/fullCalendar/fullcalendar.min.js"></script>
-    <script src="static/kianCalendar.js"></script>
     <script src="static/eventForms.js"></script>
     <style>
         a {
@@ -21,7 +20,12 @@
             var userId =  {{  session['userId'] }}
             localStorage.userId = userId.valueOf()
         }
+
+        function getUserID() {
+            return {{ session['userId'] }}
+        }
     </script>
+    <script src="static/kianCalendar.js"></script>
 {% endblock %}
 {% block header %}
 {%  include 'flasher.html' %}

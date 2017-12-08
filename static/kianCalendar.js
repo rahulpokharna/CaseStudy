@@ -18,6 +18,16 @@ day
 */
 idnum = 1;
 $(document).ready(function() {
+    setUserId();
+    userID = getUserID();
+    //getGroupedUserEvents(userID);
+    /*var userProgramIDs = getUserProgramsIDs();
+    console.log(userProgramIDs);
+    for (var i = 0; i < userProgramIDs.length; i++) {
+        console.log(userID, userProgramIDs[i])
+        var events = getProgramEvents(userID, userProgramIDs[i]);
+        console.log(events);
+    }*/
     $('#calendar').fullCalendar({
         viewRender: function(view, element) {
             $('#calendar').fullCalendar('removeEvents');
@@ -76,6 +86,61 @@ $(document).ready(function() {
     }
     */
 });
+
+function getUserProgramsIDs() {
+    var request = $.ajax({
+        type: "GET",
+        url: "/request/getUserPrograms",
+        data: {userID: localStorage.userId},
+        async: false
+    });
+    var parsedRequest = JSON.parse(request.responseText);
+    console.log(parsedRequest);
+    programIDs = [];
+    for (var pr in parsedRequest) {
+        var program = parsedRequest[pr];
+        programIDs.push(program['ProgramID']);
+    } return programIDs;
+/*    localStorage.parsedRequest = request;
+    for (var i = 0; i < parsedRequest.length; i++) {
+        pr = parsedRequest[i];
+        console.log(pr['Color']);
+    }*/
+}
+
+function getGroupedUserEvents(userID) {
+    var request = $.ajax({
+        type: "GET",
+        url: "/request/getGroupedUserEvents",
+        data: {userID: localStorage.userId},
+        async: false
+    });
+    var parsedRequest = JSON.parse(request.responseText);
+    //console.log(parsedRequest);
+    var list = [];
+    for (var pr in parsedRequest) {
+        //console.log(parsedRequest[pr]);
+        eventProgDict = parsedRequest[pr];
+        //console.log(eventProgDict['Events']);
+        for (e in eventProgDict['Events']) {
+            console.log(eventProgDict['Events'][e]);
+            console.log(eventProgDict['Events'][e]['EventID']);
+        }
+        console.log(eventProgDict['Program'])
+        for (var e in eventProgDict['Program']) {
+            console.log(e);
+        }
+    }
+}
+
+function getProgramEvents(user_ID, program_ID) {
+    var request = $.ajax({
+        type: "GET",
+        url: "/request/getProgramEvents",
+        data: {userID: user_ID, programID: program_ID},
+        async: false
+    });
+}
 
 //Pad given value to the left with "0"
 function AddZero(num) {
@@ -215,8 +280,7 @@ function fiveminutesbeforestartNotificationLoop(){
 
 
 function renderEvents() {
-    setUserId();
-    var events = $.ajax({
+    /*var events = $.ajax({
         type: "GET",
         url: "request/events",
         data: {userID: localStorage.userId},
@@ -225,21 +289,38 @@ function renderEvents() {
     var parsedEvents = JSON.parse(events.responseText);
     var allEvents = []
     for (parsedEvent in parsedEvents) {
-        var event = parsedEvents[parsedEvent];
-        var parsedEvent = makeEvent(event['Title'], event['Start'], event['End'], event['EventID']);
-        allEvents.push(parsedEvent)
-        $('#calendar').fullCalendar('renderEvent', parsedEvent);
+        var event = parsedEvents[parsedEvent];*/
+    var request = $.ajax({
+        type: "GET",
+        url: "/request/getGroupedUserEvents",
+        data: {userID: localStorage.userId},
+        async: false
+    });
+    var parsedRequest = JSON.parse(request.responseText);
+    var allEvents = [];
+    for (var pr in parsedRequest) {
+        //console.log(parsedRequest[pr]);
+        var eventProgDict = parsedRequest[pr];
+        //console.log(eventProgDict['Events']);
+        for (e in eventProgDict['Events']) {
+            var tempEvent = eventProgDict['Events'][e];
+            var parsedEvent = makeEvent(tempEvent['Title'], tempEvent['Start'], tempEvent['End'], tempEvent['EventID'], tempEvent['Color'], eventProgDict['Program']['Color']);
+            allEvents.push(parsedEvent)
+            $('#calendar').fullCalendar('renderEvent', parsedEvent);
+        }
     }
     //add all the events to local storage so i can access them for notifications
     localStorage.allEvents = JSON.stringify(allEvents);
 }
 
-function makeEvent(title, start, end, id) {
+function makeEvent(title, start, end, id, color, bColor) {
     var event = {
         title: title,
         start: start,
         end: end,
-        id: id
+        id: id,
+        color: color,
+        borderColor: bColor
     };
     return event;
 }
