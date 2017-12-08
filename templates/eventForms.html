@@ -2,7 +2,7 @@
 <script src="static/eventForms.js"></script>
 
 <div id="divFormEventNew" class="modal">
-	<form id="formEventNew" name="newEventForm" method="" action="" class="modal-content animate">
+	<form id="formEventNew" name="newEventForm" method="" class="modal-content animate">
         <label></label>
         <div class="imgcontainer">
                 <span onclick="document.getElementById('divFormEventNew').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -40,6 +40,10 @@
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="N/A">N/A</option>
+            </select><br>
+            <label>Program:</label>
+            <select name="ProgramID" id="programList">
+
             </select><br>
             <input type="button" value="Study" name="study" onclick= "ifStudy()" />
             <input type="button" value="Finished" name="finished" onclick="postToDB(); message();" />
@@ -108,6 +112,27 @@
             }
         }
 	</script>
+</div>
+
+<div id="divFormProgramNew" class ="modal">
+    <form id="formProgramNew" name="newEventForm" method="post" action="/request/addProgram" class="modal-content animate">
+        <div class="imgcontainer">
+                <span onclick="document.getElementById('divFormProgramNew').style.display='none'" class="close" title="Close Modal">&times;</span>
+        </div>
+        <div class="modal-header" style="font-family: 'Open Sans', sans-serif; font-size: 100%; color: #FFFFFF; text-shadow: 2px 2px #000000; text-decoration: none;">
+                <span class="close">&times;</span>
+                <h2>Add An Event!</h2>
+        </div>
+        <div class="container">
+            <input type="hidden" name="UserID" value={{  session['userId'] }}>
+            <label>Title:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input type="text" name="Title" placeholder="Title" pattern="[a-zA-Z0-9]+" required /><br>
+            <label>Program Color:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input type="color" name="Color" id="html5colorpicker" onchange="clickColor(0, -1, -1, 5)" value="#ff0000" style="width:85%;">
+            <input type="submit" value="Submit">
+        </div>
+
+    </form>
 </div>
 <!-- <style>
 	#divFormEventNew {

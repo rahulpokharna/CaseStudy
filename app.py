@@ -71,7 +71,8 @@ def login():
             if googleID != '-1':
                 session['image'] = google_stuff.profileImage(googleID)
             else:
-                session['image'] = None
+                if 'image' in session:
+                    session.pop('image')
 
         return redirect('/calendar')
     else:
@@ -227,7 +228,11 @@ def requestStudyEvent():
             return res
         return res
 
-
+@app.route('/request/addProgram',methods=['POST'])
+def addProgram():
+    form = request.form
+    addNewProgram(form)
+    return redirect('/calendar')
 if __name__ == "__main__":
     app.run()
 

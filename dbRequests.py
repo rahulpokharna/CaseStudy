@@ -121,10 +121,11 @@ def getUserPrograms(userID):
     c = conn.cursor()
     try:
         t = userID,
-        ret = c.execute("SELECT * FROM program WHERE userID = ?", t)
+        ret = c.execute("SELECT * FROM program WHERE userID = ? OR ProgramID = 1", t)
         rowList = []
         for row in ret:
             rowList.append(makeProgramDict(row))
+
     except Error as e:
         print(e)
         writeToLog(e)
@@ -161,6 +162,7 @@ def getGroupedUserEvents(userID):
             'Events': getProgramEvents(userID, program['ProgramID'])
         }
         returnList.append(groupDict)
+    print(returnList)
     return returnList
 
 # Edits an event based on the given ID and the dictionary passed in
@@ -531,8 +533,7 @@ def viewStudyPlan(eventID):
             return r[0]
         return 'Something went wrong'
 
-# Not implemented for this demo
-def addNewProgram(obj): 
+def addNewProgram(obj):
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
     try:

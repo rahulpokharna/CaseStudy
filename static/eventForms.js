@@ -7,6 +7,15 @@ function buttonEventNew() {
 	}
 }
 
+function buttonProgramNew() {
+	$("#divFormProgramNew").css("display", "initial");
+	$("#buttonEventNew").text("(>)");
+	datetimes = document.getElementsByClassName("myCurrentDate")
+	for(var i = 0; i < datetimes.length; i++){
+		datetimes[i].value = localStorage.currentTime
+	}
+}
+
 function submitNewEventForm() {
 	$("#divFormEventNew").css("display", "none");
 	$("#buttonEventNew").text("(<)");
@@ -16,6 +25,10 @@ function submitNewEventForm() {
 function cancelNewEventForm() {
 	$("#divFormEventNew").css("display", "none");
 	$("#buttonEventNew").text("(<)");
+}
+function cancelNewProgramForm() {
+	$("#divFormProgramNewNew").css("display", "none");
+	$("#buttonProgramNew").text("(<)");
 }
 
 
@@ -27,6 +40,19 @@ $("#formEventNew").submit(function() {
 		alert("Invalid Event Input!");
 	}
 });
+function populateProgramDropdown(){
+	//populate the program dropdown for add event
+	var parsedProgams = JSON.parse(localStorage.getItem("allPrograms"));
+	var length = $('#programList').children('option').length;
+	if (length == 0 && parsedProgams != null){
+		for(var i in parsedProgams){
+			var option = parsedProgams[i];
+
+			$('#programList').append($('<option/>').attr("value", option.ProgramID).text(option.Title));
+		}
+	}
+}
+setTimeout(populateProgramDropdown,1000);
 
 function dateTimetoMoment(day, month, year, hour, minute, ampm) {
 	//2017-12-25T15:00:00

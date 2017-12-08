@@ -67,6 +67,8 @@ $(document).ready(function() {
     localStorage.currentTime = [[now.getFullYear(), AddZero(now.getMonth()+1), AddZero(now.getDate())].join("-"),[AddZero(now.getHours()),
         AddZero(now.getMinutes())].join(":")].join("T");
 
+
+
     //a method call for each type of notification we have.
     var waitTime = 5000 //wait five seconds for each loop
     notificationLoop(waitTime);
@@ -156,7 +158,7 @@ function closeInputForm() {
 }
 
 //this looop keeps running in the backgroudn of the clients browser, and will send a notification when an envent is happeninging.
-function notificationLoop(){
+function notificationLoop(waitTime){
     var allEvents = JSON.parse(localStorage.allEvents);
 
     allEvents.sort(function(a,b){
@@ -182,7 +184,6 @@ function notificationLoop(){
     }
     function loopy(){
             now = new Date();
-        console.log(allFutureEvents.length)
         while(allFutureEvents.length != 0 && new Date(allFutureEvents[0].start) < now){
             alert(allFutureEvents.shift().title + ' is starting');
         }
@@ -194,7 +195,7 @@ function notificationLoop(){
 
 }
 
-function endNotificationLoop(){
+function endNotificationLoop(waitTime){
     var allEvents = JSON.parse(localStorage.allEvents);
 
     allEvents.sort(function(a,b){
@@ -220,7 +221,6 @@ function endNotificationLoop(){
     }
     function loopy(){
         now = new Date();
-        console.log(allFutureEvents.length)
         while(allFutureEvents.length != 0 && new Date(allFutureEvents[0].end) < now){
             alert(allFutureEvents.shift().title + ' is ending');
         }
@@ -232,7 +232,7 @@ function endNotificationLoop(){
 
 }
 
-function fiveminutesbeforestartNotificationLoop(){
+function fiveminutesbeforestartNotificationLoop(waitTime){
     var MS_PER_MINUTE = 60000;
     var allEvents = JSON.parse(localStorage.allEvents);
 
@@ -260,14 +260,15 @@ function fiveminutesbeforestartNotificationLoop(){
     }
     function loopy(){
         now = new Date();
-        console.log(allFutureEvents.length)
         //get the time for 5 minutes before
-        var eventValue = new Date(allFutureEvents[0].start).valueOf()- 5*MS_PER_MINUTE
-        var eventDate = new Date(eventValue)
-        while(allFutureEvents.length != 0 && eventDate < now){
-            alert(allFutureEvents.shift().title + ' will start in 5 minutes');
-            eventValue = new Date(allFutureEvents[0].start).valueOf()- 5*MS_PER_MINUTE
-            eventDate = new Date(eventValue)
+        if(allFutureEvents.length > 0) {
+            var eventValue = new Date(allFutureEvents[0].start).valueOf() - 5 * MS_PER_MINUTE
+            var eventDate = new Date(eventValue)
+            while (allFutureEvents.length != 0 && eventDate < now) {
+                alert(allFutureEvents.shift().title + ' will start in 5 minutes');
+                eventValue = new Date(allFutureEvents[0].start).valueOf() - 5 * MS_PER_MINUTE
+                eventDate = new Date(eventValue)
+            }
         }
 
     }
@@ -297,10 +298,13 @@ function renderEvents() {
         async: false
     });
     var parsedRequest = JSON.parse(request.responseText);
+    console.log(parsedRequest)
+    var programList = []
     var allEvents = [];
     for (var pr in parsedRequest) {
         //console.log(parsedRequest[pr]);
         var eventProgDict = parsedRequest[pr];
+        programList.push(eventProgDict['Program'])
         //console.log(eventProgDict['Events']);
         for (e in eventProgDict['Events']) {
             var tempEvent = eventProgDict['Events'][e];
@@ -311,6 +315,7 @@ function renderEvents() {
     }
     //add all the events to local storage so i can access them for notifications
     localStorage.allEvents = JSON.stringify(allEvents);
+    localStorage.allPrograms = JSON.stringify(programList);
 }
 
 function makeEvent(title, start, end, id, color, bColor) {
